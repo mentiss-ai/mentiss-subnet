@@ -21,12 +21,13 @@ def sigmoid_reward(
     steepness: float = 20.0,
 ) -> float:
     """
-    Sigmoid reward centered at the given threshold.
+    Sigmoid reward with a hard cutoff at the threshold.
 
-    At win_rate == threshold, reward is 0.5.
-    Below threshold -> approaches 0.
-    Above threshold -> approaches 1.
+    Below threshold -> 0 (no reward for low-effort miners).
+    Above threshold -> sigmoid curve approaching 1.
     """
+    if win_rate < threshold:
+        return 0.0
     x = steepness * (win_rate - threshold)
     x = max(-500, min(500, x))
     return 1.0 / (1.0 + math.exp(-x))

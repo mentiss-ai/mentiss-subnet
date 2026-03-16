@@ -200,8 +200,7 @@ def add_validator_args(cls, parser):
         "--neuron.axon_off",
         "--axon_off",
         action="store_true",
-        # Note: the validator needs to serve an Axon with their IP or they may
-        #   be blacklisted by the firewall of serving peers on the network.
+        # Validators only make outbound calls to miners, no axon needed.
         help="Set this flag to not attempt to serve an Axon.",
         default=True,
     )
