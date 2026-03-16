@@ -4,7 +4,7 @@ description: Review Mentiss API alignment and validation docs accuracy
 user-invocable: true
 ---
 
-Run two checks in parallel and report findings:
+Run Check 1 and Check 2 in parallel first, then run Check 3 after both complete (Check 3 needs their results):
 
 ## Check 1: API Schema Alignment
 
@@ -33,6 +33,8 @@ Run two checks in parallel and report findings:
    - Are all config parameters listed with correct defaults?
    - Does the described flow match the actual code flow?
    - Are all files in the file reference table still accurate?
+   - Do the docs correctly attribute metric sources (locally computed vs. fetched from API)?
+   - Are there any dead/unused functions in the implementation files that contradict the documented flow?
 4. Report any drift between docs and code.
 
 ## Check 3: Self-Improvement
