@@ -36,7 +36,6 @@ def check_config(cls, config: "bt.Config"):
             config.neuron.name,
         )
     )
-    print("full path:", full_path)
     config.neuron.full_path = os.path.expanduser(full_path)
     if not os.path.exists(config.neuron.full_path):
         os.makedirs(config.neuron.full_path, exist_ok=True)
@@ -79,7 +78,7 @@ def add_args(cls, parser):
 
     parser.add_argument(
         "--neuron.events_retention_size",
-        type=str,
+        type=int,
         help="Events retention size.",
         default=2 * 1024 * 1024 * 1024,  # 2 GB
     )

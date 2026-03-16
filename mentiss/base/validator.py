@@ -1,4 +1,5 @@
 import copy
+import os
 import numpy as np
 import asyncio
 import argparse
@@ -56,7 +57,7 @@ class BaseValidatorNeuron(BaseNeuron):
         self.is_running: bool = False
         self.thread: Union[threading.Thread, None] = None
         self.lock = asyncio.Lock()
-        self.uid = 0
+
     def serve_axon(self):
         """Serve axon to enable external connections."""
 
@@ -117,7 +118,8 @@ class BaseValidatorNeuron(BaseNeuron):
 
         # If someone intentionally stops the validator, it'll safely terminate operations.
         except KeyboardInterrupt:
-            self.axon.stop()
+            if hasattr(self, "axon"):
+                self.axon.stop()
             bt.logging.success("Validator killed by keyboard interrupt.")
             exit()
 
@@ -332,8 +334,13 @@ class BaseValidatorNeuron(BaseNeuron):
         """Loads the state of the validator from a file."""
         bt.logging.info("Loading validator state.")
 
+        state_path = self.config.neuron.full_path + "/state.npz"
+        if not os.path.exists(state_path):
+            bt.logging.info("No saved state found, starting fresh.")
+            return
+
         # Load the state of the validator from file.
-        state = np.load(self.config.neuron.full_path + "/state.npz")
+        state = np.load(state_path)
         self.step = state["step"]
         self.scores = state["scores"]
         self.hotkeys = state["hotkeys"]
