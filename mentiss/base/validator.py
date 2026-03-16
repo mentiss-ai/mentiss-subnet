@@ -50,7 +50,7 @@ class BaseValidatorNeuron(BaseNeuron):
             bt.logging.warning("axon off, not serving ip to chain.")
 
         # Create asyncio event loop to manage async tasks.
-        self.loop = asyncio.get_event_loop()
+        self.loop = asyncio.new_event_loop()
 
         # Instantiate runners
         self.should_exit: bool = False
@@ -158,7 +158,14 @@ class BaseValidatorNeuron(BaseNeuron):
         self.run_in_background_thread()
         return self
 
+    def _cleanup_api_client(self):
+        """Close the Mentiss API client if it exists."""
+        if hasattr(self, "_api_client") and self._api_client is not None:
+            self.loop.run_until_complete(self._api_client.close())
+            self._api_client = None
+
     def __exit__(self, exc_type, exc_value, traceback):
+        self._cleanup_api_client()
         if self.is_running:
             bt.logging.debug("Stopping validator in background thread.")
             self.should_exit = True
