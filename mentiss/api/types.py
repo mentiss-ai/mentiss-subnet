@@ -12,6 +12,34 @@ class GameSettings:
 
 
 @dataclass
+class GameMetrics:
+    surviving_werewolves: int = 0
+    total_werewolves: int = 0
+    game_dominance: float = 0.0
+    total_eliminated_by_vote: int = 0
+    good_eliminated_by_vote: int = 0
+    voting_manipulation_rate: float = 0.0
+
+
+@dataclass
+class HumanPlayerMetrics:
+    player_id: str = ""
+    role: str = ""
+    survived: bool = False
+    vote_influence: float = 0.0
+    rounds_survived: int = 0
+    total_rounds: int = 0
+
+
+@dataclass
+class PlayerStatsResponse:
+    game_id: str = ""
+    winner: Optional[str] = None
+    game_metrics: GameMetrics = field(default_factory=GameMetrics)
+    human_player_metrics: HumanPlayerMetrics = field(default_factory=HumanPlayerMetrics)
+
+
+@dataclass
 class NextInput:
     options: List[Dict[str, Any]] = field(default_factory=list)
     prompt: str = ""

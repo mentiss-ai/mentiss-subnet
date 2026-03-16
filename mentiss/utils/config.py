@@ -275,6 +275,27 @@ def add_validator_args(cls, parser):
         default=2.0,
     )
 
+    parser.add_argument(
+        "--mentiss.weight_win_rate",
+        type=float,
+        help="Weight for win rate in composite score (should sum to 1.0 with other weights).",
+        default=0.5,
+    )
+
+    parser.add_argument(
+        "--mentiss.weight_game_dominance",
+        type=float,
+        help="Weight for game dominance in composite score.",
+        default=0.25,
+    )
+
+    parser.add_argument(
+        "--mentiss.weight_vote_influence",
+        type=float,
+        help="Weight for vote influence in composite score.",
+        default=0.25,
+    )
+
 
 def config(cls):
     """

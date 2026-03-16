@@ -19,6 +19,9 @@ class GameOutcome:
     result: GameResult = GameResult.IN_PROGRESS
     started_at: float = field(default_factory=time.time)
     finished_at: Optional[float] = None
+    game_dominance: float = 0.0
+    vote_influence: float = 0.0
+    survived: bool = False
 
 
 @dataclass
@@ -28,10 +31,34 @@ class MinerGameStats:
     wins: int = 0
     losses: int = 0
     errors: int = 0
+    game_dominance_sum: float = 0.0
+    vote_influence_sum: float = 0.0
+    survived_count: int = 0
+
+    @property
+    def completed_games(self) -> int:
+        return self.wins + self.losses
 
     @property
     def win_rate(self) -> float:
-        completed = self.wins + self.losses
-        if completed == 0:
+        if self.completed_games == 0:
             return 0.0
-        return self.wins / completed
+        return self.wins / self.completed_games
+
+    @property
+    def avg_game_dominance(self) -> float:
+        if self.completed_games == 0:
+            return 0.0
+        return self.game_dominance_sum / self.completed_games
+
+    @property
+    def avg_vote_influence(self) -> float:
+        if self.completed_games == 0:
+            return 0.0
+        return self.vote_influence_sum / self.completed_games
+
+    @property
+    def survival_rate(self) -> float:
+        if self.completed_games == 0:
+            return 0.0
+        return self.survived_count / self.completed_games

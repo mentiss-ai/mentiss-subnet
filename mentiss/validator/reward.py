@@ -16,7 +16,7 @@ GOOD_ROLES = {
 
 
 def sigmoid_reward(
-    win_rate: float,
+    score: float,
     threshold: float = 0.30,
     steepness: float = 20.0,
 ) -> float:
@@ -26,11 +26,32 @@ def sigmoid_reward(
     Below threshold -> 0 (no reward for low-effort miners).
     Above threshold -> sigmoid curve approaching 1.
     """
-    if win_rate < threshold:
+    if score < threshold:
         return 0.0
-    x = steepness * (win_rate - threshold)
+    x = steepness * (score - threshold)
     x = max(-500, min(500, x))
     return 1.0 / (1.0 + math.exp(-x))
+
+
+def composite_score(
+    win_rate: float,
+    game_dominance: float,
+    vote_influence: float,
+    weight_win_rate: float = 0.5,
+    weight_game_dominance: float = 0.25,
+    weight_vote_influence: float = 0.25,
+) -> float:
+    """
+    Combine the three scoring metrics into a single composite score.
+
+    All inputs and output are in [0, 1].
+    Weights should sum to 1.0.
+    """
+    return (
+        weight_win_rate * win_rate
+        + weight_game_dominance * game_dominance
+        + weight_vote_influence * vote_influence
+    )
 
 
 def determine_game_result(role: str, winner: str) -> str:

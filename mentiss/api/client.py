@@ -4,7 +4,15 @@ import httpx
 import bittensor as bt
 from typing import Optional, List, Dict, Any
 
-from .types import GameSettings, GameStatus, NextInput, HumanPlayer
+from .types import (
+    GameSettings,
+    GameStatus,
+    NextInput,
+    HumanPlayer,
+    GameMetrics,
+    HumanPlayerMetrics,
+    PlayerStatsResponse,
+)
 
 
 class MentissAPIClient:
@@ -119,6 +127,49 @@ class MentissAPIClient:
             god_log=game.get("godLog", ""),
             summary_log=game.get("summaryLog", ""),
             raw=raw,
+        )
+
+    async def get_player_stats(self, game_id: str) -> PlayerStatsResponse:
+        """Fetch per-player scoring metrics for a completed game."""
+        input_data = json.dumps({"json": {"gameId": game_id}})
+
+        response = await self.client.get(
+            "/api/trpc/playRouter.playerStats",
+            params={"input": input_data},
+        )
+        response.raise_for_status()
+        raw = response.json()["result"]["data"]["json"]
+        return self._parse_player_stats(game_id, raw)
+
+    def _parse_player_stats(
+        self, game_id: str, raw: Dict[str, Any]
+    ) -> PlayerStatsResponse:
+        gm = raw.get("gameMetrics", {})
+        hm = raw.get("humanPlayerMetrics", {})
+
+        game_metrics = GameMetrics(
+            surviving_werewolves=gm.get("survivingWerewolves", 0),
+            total_werewolves=gm.get("totalWerewolves", 0),
+            game_dominance=gm.get("gameDominance", 0.0),
+            total_eliminated_by_vote=gm.get("totalEliminatedByVote", 0),
+            good_eliminated_by_vote=gm.get("goodEliminatedByVote", 0),
+            voting_manipulation_rate=gm.get("votingManipulationRate", 0.0),
+        )
+
+        human_player_metrics = HumanPlayerMetrics(
+            player_id=hm.get("playerId", ""),
+            role=hm.get("role", ""),
+            survived=hm.get("survived", False),
+            vote_influence=hm.get("voteInfluence", 0.0),
+            rounds_survived=hm.get("roundsSurvived", 0),
+            total_rounds=hm.get("totalRounds", 0),
+        )
+
+        return PlayerStatsResponse(
+            game_id=game_id,
+            winner=raw.get("winner"),
+            game_metrics=game_metrics,
+            human_player_metrics=human_player_metrics,
         )
 
     async def close(self):
