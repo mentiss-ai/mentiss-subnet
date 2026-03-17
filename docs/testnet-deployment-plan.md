@@ -1,49 +1,105 @@
-# Mentiss Subnet — Bittensor Testnet Deployment Plan
+# Mentiss Subnet — Deployment Plan (Localnet → Testnet)
 
-This document is a step-by-step plan to validate that the Mentiss Werewolf subnet can be deployed and operated on the Bittensor testnet. No code changes are required — this is purely an operational checklist.
+This document is a step-by-step plan to validate that the Mentiss Werewolf subnet works end-to-end. We start with **localnet** (a local blockchain on your machine — no real tokens, instant feedback) and then graduate to **testnet** (the public Bittensor test network).
+
+No code changes are required — this is purely an operational checklist.
 
 ---
 
 ## Table of Contents
 
-1. [Prerequisites](#1-prerequisites)
-2. [Environment Setup](#2-environment-setup)
-3. [Wallet Creation](#3-wallet-creation)
-4. [Obtain Testnet TAO](#4-obtain-testnet-tao)
-5. [Create the Subnet on Testnet](#5-create-the-subnet-on-testnet)
-6. [Register Neurons (Validator + Miners)](#6-register-neurons-validator--miners)
-7. [Configure and Launch Miners](#7-configure-and-launch-miners)
-8. [Configure and Launch the Validator](#8-configure-and-launch-the-validator)
-9. [Validation Checklist — What to Verify](#9-validation-checklist--what-to-verify)
-10. [Enable Emissions (Root Network)](#10-enable-emissions-root-network)
-11. [Invite External Miners](#11-invite-external-miners)
-12. [Troubleshooting](#12-troubleshooting)
-13. [Teardown / Cleanup](#13-teardown--cleanup)
+### Part 1: Localnet (Start Here)
+1. [Localnet Prerequisites](#1-localnet-prerequisites)
+2. [Start the Local Blockchain](#2-start-the-local-blockchain)
+3. [Environment Setup](#3-environment-setup)
+4. [Create Wallets](#4-create-wallets)
+5. [Fund Wallets via Local Faucet](#5-fund-wallets-via-local-faucet)
+6. [Create the Subnet Locally](#6-create-the-subnet-locally)
+7. [Register Neurons](#7-register-neurons)
+8. [Bootstrap Incentives (Stake)](#8-bootstrap-incentives-stake)
+9. [Launch Miners on Localnet](#9-launch-miners-on-localnet)
+10. [Launch the Validator on Localnet](#10-launch-the-validator-on-localnet)
+11. [Localnet Validation Checklist](#11-localnet-validation-checklist)
+12. [Enable Emissions on Localnet](#12-enable-emissions-on-localnet)
+13. [Localnet Troubleshooting](#13-localnet-troubleshooting)
+14. [Localnet Teardown](#14-localnet-teardown)
+
+### Part 2: Testnet (After Localnet Passes)
+15. [Testnet Prerequisites](#15-testnet-prerequisites)
+16. [Obtain Testnet TAO](#16-obtain-testnet-tao)
+17. [Create the Subnet on Testnet](#17-create-the-subnet-on-testnet)
+18. [Register, Launch, and Validate on Testnet](#18-register-launch-and-validate-on-testnet)
+19. [Enable Emissions on Testnet](#19-enable-emissions-on-testnet)
+20. [Invite External Miners](#20-invite-external-miners)
+21. [Testnet Troubleshooting](#21-testnet-troubleshooting)
+22. [Testnet Teardown](#22-testnet-teardown)
+
+### Appendix
+- [Full Validation Checklist](#full-validation-checklist)
+- [Timeline Estimate](#timeline-estimate)
+- [References](#references)
 
 ---
 
-## 1. Prerequisites
+# Part 1: Localnet (Start Here)
 
-Before you begin, make sure you have:
+Localnet runs a Bittensor blockchain entirely on your machine via Docker. There is **no activation delay**, **no need for Discord faucet requests**, and blocks can be produced in fast mode (250ms). This is the fastest way to validate the subnet.
+
+---
+
+## 1. Localnet Prerequisites
 
 | Requirement | Details |
 |---|---|
+| **Docker** | Docker Engine 20+ with at least **20 GB RAM** allocated |
 | **Python 3.10+** | Required by the subnet code and Bittensor SDK |
-| **Bittensor SDK & CLI** | `bittensor >= 9.10.1` and `bittensor-cli >= 9.10.1` (installed via `requirements.txt`) |
-| **Mentiss API key** | Obtain from the Mentiss team; needed by the validator to run games |
-| **A server or machine** | For running the validator (and optionally test miners). A VPS or cloud instance with a public IP is recommended so miners can reach the validator's dendrite |
-| **Discord access** | Join the [Bittensor Discord](https://discord.gg/bittensor) — needed to request testnet TAO |
+| **Bittensor SDK & CLI** | `bittensor >= 9.10.1` and btcli (installed via `requirements.txt`) |
+| **Mentiss API key** | Obtain from the Mentiss team; needed by the validator to call the game API |
+| **4-5 terminal windows** | One for the chain, one for the validator, and 1-3 for miners |
 
 ---
 
-## 2. Environment Setup
+## 2. Start the Local Blockchain
+
+Pull and run the official subtensor localnet Docker image:
 
 ```bash
-# Clone the repo (if not already done)
-git clone https://github.com/mentiss-ai/mentiss-subnet.git
+# Pull the localnet image
+docker pull ghcr.io/opentensor/subtensor-localnet:devnet-ready
+
+# Run in fast-block mode (250ms blocks — recommended for development)
+docker run --rm --name local_chain \
+  -p 9944:9944 \
+  -p 9945:9945 \
+  ghcr.io/opentensor/subtensor-localnet:devnet-ready
+```
+
+Leave this running in its own terminal. You should see block production logs.
+
+**Verify the chain is reachable** (in a new terminal):
+
+```bash
+python -c "
+from substrateinterface import SubstrateInterface
+substrate = SubstrateInterface(url='ws://127.0.0.1:9945')
+print(f'Connected to local chain, block #{substrate.get_block_number(None)}')
+"
+```
+
+> **Tip:** To use standard 12-second blocks instead of fast mode, append `False` to the docker run command. Fast mode is recommended for initial testing since everything happens much quicker.
+
+> **Note:** The `--rm` flag means the chain state is wiped when you stop the container. Remove `--rm` if you want to persist state across restarts.
+
+---
+
+## 3. Environment Setup
+
+In a **new terminal** (keep the chain running):
+
+```bash
 cd mentiss-subnet
 
-# Create a virtual environment (recommended)
+# Create a virtual environment
 python3 -m venv .venv
 source .venv/bin/activate
 
@@ -51,36 +107,30 @@ source .venv/bin/activate
 pip install -r requirements.txt
 pip install -e .
 
-# Verify bittensor CLI is available
+# Verify
 btcli --version
-```
-
-Confirm the Mentiss package is importable:
-
-```bash
 python -c "import mentiss; print(mentiss.__version__)"
 ```
 
 ---
 
-## 3. Wallet Creation
+## 4. Create Wallets
 
-You need **three wallets**: one subnet owner, one validator, and at least one miner. The owner creates and controls the subnet; the validator and miner are registered as neurons on it.
+Create wallets for the subnet owner, validator, and miners. On localnet these are throwaway — no real value.
 
 ```bash
-# --- Subnet Owner ---
+# Subnet owner
 btcli wallet new_coldkey --wallet.name owner
-# (No hotkey needed for the owner — it only owns the subnet)
 
-# --- Validator ---
+# Validator
 btcli wallet new_coldkey --wallet.name validator
 btcli wallet new_hotkey --wallet.name validator --wallet.hotkey default
 
-# --- Miner 1 ---
+# Miner 1
 btcli wallet new_coldkey --wallet.name miner1
 btcli wallet new_hotkey --wallet.name miner1 --wallet.hotkey default
 
-# --- (Optional) Miner 2 & 3 for multi-miner testing ---
+# (Optional) Miner 2 & 3
 btcli wallet new_coldkey --wallet.name miner2
 btcli wallet new_hotkey --wallet.name miner2 --wallet.hotkey default
 
@@ -88,9 +138,7 @@ btcli wallet new_coldkey --wallet.name miner3
 btcli wallet new_hotkey --wallet.name miner3 --wallet.hotkey default
 ```
 
-**Security note:** These are testnet-only wallets. Never reuse mainnet passwords or keys. Store the mnemonics in a safe place for the duration of testing.
-
-Verify your wallets exist:
+Verify:
 
 ```bash
 btcli wallet list
@@ -98,111 +146,129 @@ btcli wallet list
 
 ---
 
-## 4. Obtain Testnet TAO
+## 5. Fund Wallets via Local Faucet
 
-The automated faucet is **disabled** on the Bittensor testnet. You must request test TAO manually:
-
-1. Join the [Bittensor Discord](https://discord.gg/bittensor).
-2. Go to the appropriate faucet or testnet channel.
-3. Post your **owner** coldkey address and request **at least 150 test TAO** (100+ for subnet creation, plus extra for registration fees and transaction costs).
-4. Also request test TAO for your **validator** and **miner** wallets (a few TAO each for registration).
-
-Check your balances:
+On localnet, you can mint free TAO using the built-in faucet. Each call grants ~100 TAO. Run it multiple times if needed (subnet creation costs ~1000 TAO on a fresh local chain).
 
 ```bash
-btcli wallet balance --wallet.name owner --subtensor.network test
-btcli wallet balance --wallet.name validator --subtensor.network test
-btcli wallet balance --wallet.name miner1 --subtensor.network test
+# Fund the owner (run multiple times to accumulate enough for subnet creation)
+btcli wallet faucet --wallet.name owner --subtensor.chain_endpoint ws://127.0.0.1:9945
+btcli wallet faucet --wallet.name owner --subtensor.chain_endpoint ws://127.0.0.1:9945
+btcli wallet faucet --wallet.name owner --subtensor.chain_endpoint ws://127.0.0.1:9945
+btcli wallet faucet --wallet.name owner --subtensor.chain_endpoint ws://127.0.0.1:9945
+btcli wallet faucet --wallet.name owner --subtensor.chain_endpoint ws://127.0.0.1:9945
+btcli wallet faucet --wallet.name owner --subtensor.chain_endpoint ws://127.0.0.1:9945
+btcli wallet faucet --wallet.name owner --subtensor.chain_endpoint ws://127.0.0.1:9945
+btcli wallet faucet --wallet.name owner --subtensor.chain_endpoint ws://127.0.0.1:9945
+btcli wallet faucet --wallet.name owner --subtensor.chain_endpoint ws://127.0.0.1:9945
+btcli wallet faucet --wallet.name owner --subtensor.chain_endpoint ws://127.0.0.1:9945
+
+# Fund the validator (needs TAO for registration + staking)
+btcli wallet faucet --wallet.name validator --subtensor.chain_endpoint ws://127.0.0.1:9945
+btcli wallet faucet --wallet.name validator --subtensor.chain_endpoint ws://127.0.0.1:9945
+btcli wallet faucet --wallet.name validator --subtensor.chain_endpoint ws://127.0.0.1:9945
+
+# Fund miners
+btcli wallet faucet --wallet.name miner1 --subtensor.chain_endpoint ws://127.0.0.1:9945
+btcli wallet faucet --wallet.name miner2 --subtensor.chain_endpoint ws://127.0.0.1:9945
+btcli wallet faucet --wallet.name miner3 --subtensor.chain_endpoint ws://127.0.0.1:9945
 ```
 
-**You need at minimum:**
-- Owner: ~100+ TAO (subnet creation lock cost — this is returned when subnet is deregistered)
-- Validator: ~1-5 TAO (for registration recycling cost)
-- Each miner: ~1-5 TAO (for registration recycling cost)
-
-The exact costs are dynamic. Check the current lock cost with:
+Check balances:
 
 ```bash
-btcli subnet lock_cost --subtensor.network test
+btcli wallet balance --wallet.name owner --subtensor.chain_endpoint ws://127.0.0.1:9945
+btcli wallet balance --wallet.name validator --subtensor.chain_endpoint ws://127.0.0.1:9945
+btcli wallet balance --wallet.name miner1 --subtensor.chain_endpoint ws://127.0.0.1:9945
 ```
+
+You need at least ~1000 TAO in the owner wallet for subnet creation on a fresh chain.
 
 ---
 
-## 5. Create the Subnet on Testnet
-
-Once the owner wallet is funded:
+## 6. Create the Subnet Locally
 
 ```bash
 btcli subnet create \
   --wallet.name owner \
-  --subtensor.network test
+  --subtensor.chain_endpoint ws://127.0.0.1:9945
 ```
 
-This will prompt you to confirm the TAO lock cost. Once confirmed, the chain assigns a **netuid** to your new subnet. **Write this number down** — you will use it in every subsequent command.
+Confirm when prompted. The first subnet on a fresh chain gets **netuid 1**.
+
+Verify:
 
 ```bash
-# Verify your subnet exists
-btcli subnet list --subtensor.network test
+btcli subnet list --subtensor.chain_endpoint ws://127.0.0.1:9945
 ```
 
-Look for your subnet in the list and confirm the netuid.
-
-**Important:** New subnets have an **activation delay** of approximately 7 × 7200 blocks (~1 week) before they can fully operate with emissions. During this period you can still register neurons and run validators/miners, but weight-setting and emissions won't be active until the subnet activates. Use this time to test the game loop and debugging.
+You should see your subnet in the list.
 
 ---
 
-## 6. Register Neurons (Validator + Miners)
+## 7. Register Neurons
 
-Register the validator and miner(s) on your new subnet. Replace `<NETUID>` with the number from step 5.
+Register the validator and miners on your subnet. On a fresh chain the netuid is `1`.
 
 ```bash
 # Register validator
 btcli subnet register \
-  --netuid <NETUID> \
+  --netuid 1 \
   --wallet.name validator \
   --wallet.hotkey default \
-  --subtensor.network test
+  --subtensor.chain_endpoint ws://127.0.0.1:9945
 
 # Register miner 1
 btcli subnet register \
-  --netuid <NETUID> \
+  --netuid 1 \
   --wallet.name miner1 \
   --wallet.hotkey default \
-  --subtensor.network test
+  --subtensor.chain_endpoint ws://127.0.0.1:9945
 
 # (Optional) Register additional miners
 btcli subnet register \
-  --netuid <NETUID> \
+  --netuid 1 \
   --wallet.name miner2 \
   --wallet.hotkey default \
-  --subtensor.network test
+  --subtensor.chain_endpoint ws://127.0.0.1:9945
 
 btcli subnet register \
-  --netuid <NETUID> \
+  --netuid 1 \
   --wallet.name miner3 \
   --wallet.hotkey default \
-  --subtensor.network test
+  --subtensor.chain_endpoint ws://127.0.0.1:9945
 ```
 
-Verify registrations:
+Verify:
 
 ```bash
-btcli wallet overview --wallet.name validator --subtensor.network test
-btcli wallet overview --wallet.name miner1 --subtensor.network test
-
-# Or view the full metagraph:
-btcli subnet metagraph --netuid <NETUID> --subtensor.network test
+btcli subnet metagraph --netuid 1 --subtensor.chain_endpoint ws://127.0.0.1:9945
 ```
 
 You should see your validator and miner UIDs listed.
 
 ---
 
-## 7. Configure and Launch Miners
+## 8. Bootstrap Incentives (Stake)
 
-Each miner needs its own terminal/process and a unique axon port.
+Add stake to the validator so the incentive mechanism activates. This gives the validator "weight" in the network.
 
-**Terminal 1 — Miner 1:**
+```bash
+btcli stake add \
+  --wallet.name validator \
+  --wallet.hotkey default \
+  --subtensor.chain_endpoint ws://127.0.0.1:9945
+```
+
+When prompted for the amount, stake a significant portion (e.g., 100+ TAO).
+
+---
+
+## 9. Launch Miners on Localnet
+
+Open a **new terminal** for each miner.
+
+**Terminal — Miner 1:**
 
 ```bash
 cd mentiss-subnet
@@ -211,48 +277,50 @@ source .venv/bin/activate
 python neurons/miner.py \
   --wallet.name miner1 \
   --wallet.hotkey default \
-  --subtensor.network test \
-  --netuid <NETUID> \
+  --subtensor.chain_endpoint ws://127.0.0.1:9945 \
+  --netuid 1 \
   --axon.port 8091 \
   --logging.debug
 ```
 
-**Terminal 2 — Miner 2 (optional):**
+**Terminal — Miner 2 (optional):**
 
 ```bash
+cd mentiss-subnet && source .venv/bin/activate
+
 python neurons/miner.py \
   --wallet.name miner2 \
   --wallet.hotkey default \
-  --subtensor.network test \
-  --netuid <NETUID> \
+  --subtensor.chain_endpoint ws://127.0.0.1:9945 \
+  --netuid 1 \
   --axon.port 8092 \
   --logging.debug
 ```
 
-**Terminal 3 — Miner 3 (optional):**
+**Terminal — Miner 3 (optional):**
 
 ```bash
+cd mentiss-subnet && source .venv/bin/activate
+
 python neurons/miner.py \
   --wallet.name miner3 \
   --wallet.hotkey default \
-  --subtensor.network test \
-  --netuid <NETUID> \
+  --subtensor.chain_endpoint ws://127.0.0.1:9945 \
+  --netuid 1 \
   --axon.port 8093 \
   --logging.debug
 ```
 
 **What to look for:**
-- Miner logs should show `Miner running...` heartbeat messages
-- No import errors or crash on startup
-- The axon should bind to the specified port
-
-**Note:** The reference miner (`neurons/miner.py`) uses random action selection. This is fine for testnet validation — you are testing infrastructure, not AI strategy.
+- `Miner running...` heartbeat messages in each terminal
+- No import errors or crashes on startup
+- The axon binds to the specified port
 
 ---
 
-## 8. Configure and Launch the Validator
+## 10. Launch the Validator on Localnet
 
-The validator requires the **Mentiss API key** to start and run Werewolf games.
+Open another **new terminal**:
 
 ```bash
 cd mentiss-subnet
@@ -263,8 +331,8 @@ export MENTISS_API_KEY="sk_mentiss_your_key_here"
 python neurons/validator.py \
   --wallet.name validator \
   --wallet.hotkey default \
-  --subtensor.network test \
-  --netuid <NETUID> \
+  --subtensor.chain_endpoint ws://127.0.0.1:9945 \
+  --netuid 1 \
   --mentiss.game_setting "G6_1SR1WT_2WW_2VG-H" \
   --mentiss.games_per_cycle 1 \
   --mentiss.poll_interval 2.0 \
@@ -273,133 +341,308 @@ python neurons/validator.py \
 ```
 
 **What to look for in validator logs:**
-1. `Started game: <game_id>` — confirms Mentiss API connectivity
-2. `Selected miner UID <N> for Werewolf game` — confirms metagraph sees miners
-3. `Submitted action for game <game_id>` — confirms miner communication works (dendrite → axon → response)
-4. `Game <game_id> ended: win/loss ...` — confirms full game loop completion
-5. `Updated scores from composite metrics` — confirms reward computation ran
+
+| Log message | What it confirms |
+|---|---|
+| `Started game: <game_id>` | Mentiss API connectivity works |
+| `Selected miner UID <N> for Werewolf game` | Metagraph sees registered miners |
+| `Submitted action for game <game_id>` | Dendrite → miner axon → response round-trip works |
+| `Game <game_id> ended: win/loss` | Full game loop completed |
+| `Updated scores from composite metrics` | Reward computation ran successfully |
 
 ---
 
-## 9. Validation Checklist — What to Verify
+## 11. Localnet Validation Checklist
 
-This is the core of the testnet plan. Each item should be checked off to confirm the subnet is working end-to-end.
+This is the core checklist. Every item should pass before moving to testnet.
 
 ### Phase A: Infrastructure (no games yet)
 
-- [ ] All wallets created and funded with testnet TAO
-- [ ] Subnet created and netuid confirmed via `btcli subnet list`
-- [ ] Validator and at least 1 miner registered on the subnet
+- [ ] Local chain is running (`docker ps` shows `local_chain`)
+- [ ] All wallets created and funded via faucet
+- [ ] Subnet created — `btcli subnet list` shows netuid 1
+- [ ] Validator and at least 1 miner registered on subnet
 - [ ] Miner process starts without errors and serves the axon
 - [ ] Validator process starts without errors
-- [ ] Validator can see miners in the metagraph (`Selected miner UID ...` in logs)
+- [ ] Validator sees miners in the metagraph
 
 ### Phase B: Game Loop (single game)
 
 - [ ] Validator starts a game via the Mentiss API (`Started game: ...`)
-- [ ] Validator polls game status successfully (no API errors in logs)
+- [ ] Validator polls game status successfully (no API errors)
 - [ ] Validator sends `WerewolfSynapse` to miner via dendrite
-- [ ] Miner receives the synapse and returns a response (check miner logs for `Responding with action: ...`)
-- [ ] Validator submits the miner's action back to the API (`Submitted action for game ...`)
+- [ ] Miner receives synapse and returns a response (`Responding with action: ...` in miner logs)
+- [ ] Validator submits miner's action back to API (`Submitted action for game ...`)
 - [ ] Game completes — validator logs `Game <id> ended: win/loss`
-- [ ] Validator fetches player stats post-game (`game_dominance`, `vote_influence` values visible in log)
+- [ ] Validator fetches player stats post-game (`game_dominance`, `vote_influence` visible in logs)
 - [ ] `game_stats.json` is created/updated in the validator's data directory
 
 ### Phase C: Scoring and Weights
 
-- [ ] Validator computes composite scores and sigmoid rewards (`Updated scores from composite metrics`)
-- [ ] After running multiple games, check that score array is non-zero for active miners
-- [ ] After `epoch_length` blocks (default 100), validator attempts to set weights on-chain
-- [ ] Confirm weights via: `btcli subnet metagraph --netuid <NETUID> --subtensor.network test`
-- [ ] Miners that played games should have non-zero weights; inactive UIDs should have zero
+- [ ] Validator computes composite scores and sigmoid rewards
+- [ ] After multiple games, score array is non-zero for active miners
+- [ ] After `epoch_length` blocks, validator sets weights on-chain
+- [ ] `btcli subnet metagraph --netuid 1 --subtensor.chain_endpoint ws://127.0.0.1:9945` shows non-zero weights for active miners
 
 ### Phase D: Multi-Miner (scaling test)
 
-- [ ] Run 2-3 miners simultaneously, each on different ports
-- [ ] Validator plays games against different miners over time (random UID selection)
-- [ ] `game_stats.json` shows stats accumulated for multiple miner UIDs
+- [ ] Run 2-3 miners simultaneously on different ports
+- [ ] Validator plays games with different miners over time
+- [ ] `game_stats.json` shows stats for multiple miner UIDs
 - [ ] Weights reflect relative performance across miners
 
 ### Phase E: Persistence and Recovery
 
 - [ ] Stop the validator (`Ctrl+C`)
-- [ ] Restart the validator — confirm it loads saved state (`load_state()` in logs)
-- [ ] Verify `game_stats.json` stats survived the restart
-- [ ] Confirm the validator resumes game cycles without issues
+- [ ] Restart the validator — confirm it loads saved state
+- [ ] `game_stats.json` stats survived the restart
+- [ ] Validator resumes game cycles without issues
 
 ---
 
-## 10. Enable Emissions (Root Network)
+## 12. Enable Emissions on Localnet
 
-Once the subnet is activated (after the ~1 week activation delay), you can enable emissions by registering on the root network and setting root weights:
+To test the full incentive loop with emissions:
 
 ```bash
-# Register the validator on the root network
+# Register validator on the root subnet
+btcli root register \
+  --wallet.name validator \
+  --wallet.hotkey default \
+  --subtensor.chain_endpoint ws://127.0.0.1:9945
+
+# Boost your subnet to direct emissions to it
+btcli root boost \
+  --netuid 1 \
+  --increase 1 \
+  --wallet.name validator \
+  --wallet.hotkey default \
+  --subtensor.chain_endpoint ws://127.0.0.1:9945
+```
+
+After a few blocks, check that emissions are flowing:
+
+```bash
+btcli subnet metagraph --netuid 1 --subtensor.chain_endpoint ws://127.0.0.1:9945
+```
+
+Look for non-zero `emission` values next to your miner UIDs.
+
+---
+
+## 13. Localnet Troubleshooting
+
+| Symptom | Likely Cause | Fix |
+|---|---|---|
+| Docker container won't start | Insufficient RAM | Allocate at least 20 GB to Docker |
+| `Connection refused` on ws://127.0.0.1:9945 | Chain not running | Check `docker ps`, restart container |
+| Faucet gives 0 TAO or errors | Chain not ready yet | Wait a few seconds for blocks to produce, retry |
+| `btcli subnet create` fails — insufficient balance | Need more faucet calls | Run faucet 10+ times for the owner wallet |
+| Miner/validator can't connect to chain | Wrong endpoint | Ensure you're using `ws://127.0.0.1:9945` (not 9944) |
+| Validator logs `No available miners` | Miners not registered or not running | Check metagraph, ensure miners are up |
+| `MENTISS_API_KEY not set` | Missing env var | `export MENTISS_API_KEY="sk_mentiss_..."` |
+| Weights not changing | Not enough blocks elapsed | In fast mode, 100 blocks = ~25 seconds. Wait and check again |
+
+---
+
+## 14. Localnet Teardown
+
+```bash
+# Stop all miner/validator processes (Ctrl+C in each terminal)
+
+# Stop the local chain
+docker stop local_chain
+```
+
+The `--rm` flag means the container and chain state are automatically cleaned up. If you removed `--rm`, manually clean up with `docker rm local_chain`.
+
+---
+
+# Part 2: Testnet (After Localnet Passes)
+
+Once all localnet validation phases (A-E) pass, you're ready to deploy on the public Bittensor testnet. The main differences from localnet:
+
+| Aspect | Localnet | Testnet |
+|---|---|---|
+| **Blockchain** | Docker on your machine | Public test chain |
+| **TAO** | Free via faucet (unlimited) | Request from Bittensor Discord |
+| **Subnet activation** | Immediate | ~1 week delay after creation |
+| **Network flag** | `--subtensor.chain_endpoint ws://127.0.0.1:9945` | `--subtensor.network test` |
+| **Other miners** | Only yours | Anyone can join |
+
+---
+
+## 15. Testnet Prerequisites
+
+Everything from localnet, plus:
+
+| Requirement | Details |
+|---|---|
+| **Discord access** | Join the [Bittensor Discord](https://discord.gg/bittensor) to request testnet TAO |
+| **Public IP / VPS** | Recommended so external miners can reach your validator. A cloud instance (AWS, GCP, etc.) works well |
+
+You can **reuse the same wallets** from localnet — they work on any network. Or create fresh ones if you prefer.
+
+---
+
+## 16. Obtain Testnet TAO
+
+The automated faucet is **disabled** on the public testnet. You must request TAO manually:
+
+1. Join the [Bittensor Discord](https://discord.gg/bittensor).
+2. Go to the testnet faucet channel.
+3. Post your **owner** coldkey address and request **at least 150 test TAO**.
+4. Also request TAO for your **validator** and **miner** wallets (~5 TAO each).
+
+Check balances:
+
+```bash
+btcli wallet balance --wallet.name owner --subtensor.network test
+btcli wallet balance --wallet.name validator --subtensor.network test
+btcli wallet balance --wallet.name miner1 --subtensor.network test
+```
+
+Check the current subnet creation cost:
+
+```bash
+btcli subnet lock_cost --subtensor.network test
+```
+
+---
+
+## 17. Create the Subnet on Testnet
+
+```bash
+btcli subnet create \
+  --wallet.name owner \
+  --subtensor.network test
+```
+
+Write down the assigned **netuid**.
+
+```bash
+btcli subnet list --subtensor.network test
+```
+
+**Important:** New subnets have an **activation delay** of ~7 × 7200 blocks (~1 week) before emissions activate. You can still register neurons, run validators/miners, and test the game loop during this period.
+
+---
+
+## 18. Register, Launch, and Validate on Testnet
+
+Follow the same steps as localnet (steps 7-11), but replace the chain endpoint flag:
+
+| Localnet | Testnet |
+|---|---|
+| `--subtensor.chain_endpoint ws://127.0.0.1:9945` | `--subtensor.network test` |
+
+```bash
+# Register
+btcli subnet register --netuid <NETUID> --wallet.name validator --wallet.hotkey default --subtensor.network test
+btcli subnet register --netuid <NETUID> --wallet.name miner1 --wallet.hotkey default --subtensor.network test
+
+# Stake
+btcli stake add --wallet.name validator --wallet.hotkey default --subtensor.network test
+
+# Launch miner
+python neurons/miner.py \
+  --wallet.name miner1 --wallet.hotkey default \
+  --subtensor.network test --netuid <NETUID> \
+  --axon.port 8091 --logging.debug
+
+# Launch validator
+export MENTISS_API_KEY="sk_mentiss_your_key_here"
+python neurons/validator.py \
+  --wallet.name validator --wallet.hotkey default \
+  --subtensor.network test --netuid <NETUID> \
+  --mentiss.game_setting "G6_1SR1WT_2WW_2VG-H" \
+  --mentiss.games_per_cycle 1 \
+  --mentiss.poll_interval 2.0 \
+  --neuron.epoch_length 100 \
+  --logging.debug
+```
+
+Run through the same **validation checklist** (Phases A-E) from step 11 — this time on the live testnet.
+
+---
+
+## 19. Enable Emissions on Testnet
+
+After the ~1 week activation delay:
+
+```bash
 btcli root register \
   --wallet.name validator \
   --wallet.hotkey default \
   --subtensor.network test
 
-# Set root weights to direct emissions to your subnet
 btcli root weights --subtensor.network test
 ```
 
-This step is optional for basic testnet validation but is required to test the full incentive loop with emissions.
-
 ---
 
-## 11. Invite External Miners
+## 20. Invite External Miners
 
-Once the basic validation (Phases A-E) is complete, you can invite others to mine on your testnet subnet. They need:
-
-1. **Your subnet's netuid** on testnet
-2. **Testnet TAO** for registration (direct them to Discord)
-3. **The Mentiss subnet repo** to install and run the miner
-4. **A guide** — point them to `docs/testnet-development.md` (sections 1-8 cover miner setup)
-
-Provide them with:
+Once validation passes on testnet, share these details with miners:
 
 ```
 Subnet netuid:  <NETUID>
-Network:        test (testnet)
+Network:        test (Bittensor testnet)
 Repo:           https://github.com/mentiss-ai/mentiss-subnet
-Miner command:  python neurons/miner.py \
-                  --wallet.name <their_wallet> \
+Install:        pip install -r requirements.txt && pip install -e .
+Run:            python neurons/miner.py \
+                  --wallet.name <wallet> \
                   --wallet.hotkey default \
                   --subtensor.network test \
                   --netuid <NETUID> \
-                  --axon.port <their_port> \
+                  --axon.port <port> \
                   --logging.debug
 ```
 
+External miners need their own testnet TAO for registration (~1-5 TAO).
+
 ---
 
-## 12. Troubleshooting
+## 21. Testnet Troubleshooting
 
 | Symptom | Likely Cause | Fix |
 |---|---|---|
-| `btcli subnet create` fails with insufficient balance | Owner wallet underfunded | Request more testnet TAO from Discord |
-| Validator logs `No available miners` | Miners not registered or not running | Check `btcli subnet metagraph`, ensure miners are up |
-| Validator logs `MENTISS_API_KEY not set` | Missing or incorrect env var | `export MENTISS_API_KEY="sk_mentiss_..."` |
-| Validator logs `Failed to start game` | Bad API key or invalid game setting | Verify API key works; check `--mentiss.game_setting` |
-| Miner logs `Missing dendrite or hotkey` | Validator not registered or blacklist issue | Ensure validator is registered on the same netuid |
-| `Dendrite error for miner <uid>` | Miner unreachable (port/firewall) | Ensure miner axon port is open and miner is running |
-| Weights not changing | Not enough blocks elapsed | Wait for `epoch_length` (100) blocks (~20 minutes on testnet) |
-| Weights all zero | No games completed or below threshold | Lower `--mentiss.reward_threshold` for testing, or play more games |
-| Subnet not emitting | Activation delay not elapsed | Wait ~1 week after subnet creation, then register on root |
+| `btcli subnet create` insufficient balance | Owner underfunded | Request more testnet TAO from Discord |
+| Validator logs `No available miners` | Miners not registered or unreachable | Check `btcli subnet metagraph --netuid <NETUID> --subtensor.network test` |
+| `Failed to start game` | Bad API key or game setting | Verify `MENTISS_API_KEY`; check `--mentiss.game_setting` |
+| Miner logs `Missing dendrite or hotkey` | Validator not registered on same subnet | Ensure same netuid |
+| `Dendrite error for miner <uid>` | Miner unreachable (port/firewall) | Open the axon port, check miner is running |
+| Weights not changing | Not enough blocks elapsed | Wait for `epoch_length` (100) blocks (~20 min on testnet) |
+| Weights all zero | No games completed or scores below threshold | Play more games or lower `--mentiss.reward_threshold` |
+| Subnet not emitting | Activation delay not elapsed | Wait ~1 week, then register on root |
 
 ---
 
-## 13. Teardown / Cleanup
-
-When testing is complete:
+## 22. Testnet Teardown
 
 1. Stop all miner and validator processes (`Ctrl+C`)
-2. Optionally deregister from the subnet to reclaim test TAO:
-   ```bash
-   btcli subnet list --subtensor.network test
-   ```
-3. Testnet wallets can be safely deleted if no longer needed — they hold no real value
+2. Testnet wallets can be safely deleted — they hold no real value
+3. The subnet will eventually be deregistered by the chain if inactive, returning locked TAO
+
+---
+
+## Full Validation Checklist
+
+Summary of everything that must pass (on either localnet or testnet):
+
+- [ ] **Infra:** Chain running, wallets funded, subnet created, neurons registered
+- [ ] **Startup:** Miner and validator processes start without errors
+- [ ] **Discovery:** Validator sees miners in metagraph
+- [ ] **Game start:** Validator calls Mentiss API to create a game
+- [ ] **Communication:** Validator sends synapse to miner, miner responds
+- [ ] **Action submission:** Validator submits miner action to API
+- [ ] **Game completion:** Game runs to completion (win/loss logged)
+- [ ] **Stats collection:** Player stats fetched, `game_stats.json` updated
+- [ ] **Scoring:** Composite scores and sigmoid rewards computed
+- [ ] **Weights:** Weights set on-chain, visible in metagraph
+- [ ] **Multi-miner:** Multiple miners scored and weighted correctly
+- [ ] **Persistence:** Validator state survives restart
+- [ ] **Emissions:** (Optional) TAO flows to miners based on weights
 
 ---
 
@@ -407,19 +650,25 @@ When testing is complete:
 
 | Phase | Duration | Notes |
 |---|---|---|
-| Setup (steps 1-4) | 1-2 days | Most time spent waiting for testnet TAO from Discord |
-| Subnet creation + registration (steps 5-6) | 30 minutes | Quick once funded |
-| Activation delay | ~1 week | Chain-enforced; can test game loop during this time |
-| Basic validation (steps 7-9, Phases A-C) | 1-2 days | Running games and checking logs |
-| Multi-miner and persistence tests (Phases D-E) | 1 day | |
-| External miner invitations (step 11) | Ongoing | After internal validation passes |
+| **Localnet setup** (steps 1-8) | **30 minutes** | Docker + wallets + faucet + subnet |
+| **Localnet validation** (steps 9-12) | **1-2 hours** | Run games, check all phases |
+| **Testnet TAO acquisition** (step 16) | 1-2 days | Waiting for Discord response |
+| **Testnet subnet creation** (step 17) | 30 minutes | Quick once funded |
+| **Testnet activation delay** | ~1 week | Can test game loop during this time |
+| **Testnet validation** (step 18) | 1-2 days | Re-run all phases on live network |
+| **External miner invitations** (step 20) | Ongoing | After testnet validation passes |
+
+**Total time to first localnet validation: ~2 hours.**
 
 ---
 
 ## References
 
+- [Bittensor: Run a Local Blockchain Instance](https://docs.learnbittensor.org/local-build/deploy)
+- [Bittensor: Using Docker for Subtensor](https://docs.learnbittensor.org/subtensor-nodes/using-docker)
 - [Bittensor: Create a Subnet](https://docs.learnbittensor.org/subnets/create-a-subnet)
+- [Bittensor Subnet Template: Running on Staging (Local)](https://github.com/opentensor/bittensor-subnet-template/blob/main/docs/running_on_staging.md)
 - [Bittensor Subnet Template: Running on Testnet](https://github.com/opentensor/bittensor-subnet-template/blob/main/docs/running_on_testnet.md)
 - [Bittensor: Register, Validate and Mine](https://docs.learnbittensor.org/subnets/register-validate-mine/)
-- [Mentiss Subnet: Testnet Development Guide](./testnet-development.md)
+- [Subtensor GitHub: Running Locally](https://github.com/opentensor/subtensor/blob/main/docs/running-subtensor-locally.md)
 - [Mentiss Subnet: Validation Logic](./validation-logic.md)
