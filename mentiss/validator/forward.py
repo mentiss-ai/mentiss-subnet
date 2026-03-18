@@ -88,7 +88,8 @@ async def _run_game_loop(
     poll_interval: float,
 ):
     """Run the game loop until the game ends or miner is penalized."""
-    while True:
+    # Safety cap: 1 hour max (1800 polls × 2s interval)
+    for _ in range(1800):
         await asyncio.sleep(poll_interval)
 
         try:
