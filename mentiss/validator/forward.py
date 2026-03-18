@@ -88,6 +88,10 @@ async def _run_game_loop(
     poll_interval: float,
 ):
     """Run the game loop until the game ends or miner is penalized."""
+    # Consecutive error counter — persists across loop iterations.
+    # Resets to 0 on any successful action.
+    error_strikes = 0
+
     # Safety cap: 1 hour max (1800 polls × 2s interval)
     for _ in range(1800):
         await asyncio.sleep(poll_interval)
@@ -168,10 +172,11 @@ async def _run_game_loop(
             round_number=status.current_round,
         )
 
-        # Per-action error tracking: 3 strikes per action call
-        error_strikes = 0
-
         try:
+            bt.logging.debug(
+                f"Sending synapse to miner {miner_uid} at "
+                f"{self.metagraph.axons[miner_uid]}"
+            )
             responses = await self.dendrite(
                 axons=[self.metagraph.axons[miner_uid]],
                 synapse=synapse,
@@ -190,6 +195,17 @@ async def _run_game_loop(
                 self._game_manager.record_result(game_id, GameResult.ERROR)
                 return
             continue
+
+        # Debug: inspect raw response
+        if responses:
+            r = responses[0]
+            bt.logging.debug(
+                f"Dendrite response from miner {miner_uid}: "
+                f"response={r.response!r}, "
+                f"dendrite.status_code={r.dendrite.status_code if r.dendrite else 'N/A'}, "
+                f"dendrite.status_message={r.dendrite.status_message if r.dendrite else 'N/A'}, "
+                f"axon.status_code={r.axon.status_code if r.axon else 'N/A'}"
+            )
 
         if not responses or responses[0].response is None:
             error_strikes += 1
@@ -214,6 +230,8 @@ async def _run_game_loop(
                 player_id=player_id,
             )
             bt.logging.info(f"Submitted action for game {game_id}: {action_data}")
+            # Reset consecutive error counter on success
+            error_strikes = 0
         except (json.JSONDecodeError, Exception) as e:
             error_strikes += 1
             bt.logging.error(
