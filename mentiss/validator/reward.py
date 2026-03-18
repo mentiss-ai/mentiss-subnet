@@ -42,16 +42,29 @@ def composite_score(
     weight_vote_influence: float = 0.25,
 ) -> float:
     """
-    Combine the three scoring metrics into a single composite score.
+    Combine scoring metrics into a single composite score.
+
+    Design philosophy:
+    - Losses always get 0 reward (no participation trophies)
+    - Win rate determines how OFTEN a miner gets rewarded over time
+    - Game dominance + vote influence determine HOW MUCH reward per win
+    - A miner who wins through luck (low dominance/influence) gets less
+    - A miner who wins AND dominates gets maximum reward
 
     All inputs and output are in [0, 1].
-    Weights should sum to 1.0.
     """
-    return (
-        weight_win_rate * win_rate
-        + weight_game_dominance * game_dominance
+    # Win rate is the base: if you never win, score is 0
+    if win_rate == 0:
+        return 0.0
+
+    # Quality score: how well does the miner play when they win?
+    quality = (
+        weight_game_dominance * game_dominance
         + weight_vote_influence * vote_influence
-    )
+    ) / (weight_game_dominance + weight_vote_influence)
+
+    # Final score: win_rate determines base, quality adjusts the magnitude
+    return weight_win_rate * win_rate + (1 - weight_win_rate) * (win_rate * quality)
 
 
 def determine_game_result(role: str, winner: str) -> str:

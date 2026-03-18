@@ -17,6 +17,7 @@ from mentiss.utils.uids import get_random_uids
 
 MAX_ROUNDS_PER_GAME = 100
 MINER_TIMEOUT = 30
+MAX_ERROR_STRIKES = 3
 
 
 async def forward(self):
@@ -88,6 +89,8 @@ async def _run_game_loop(
     poll_interval: float,
 ):
     """Run the game loop until completion."""
+    error_strikes = 0
+
     for _ in range(MAX_ROUNDS_PER_GAME):
         await asyncio.sleep(poll_interval)
 
@@ -176,10 +179,30 @@ async def _run_game_loop(
             )
         except Exception as e:
             bt.logging.error(f"Dendrite error for miner {miner_uid}: {e}")
+            error_strikes += 1
+            bt.logging.warning(f"Miner {miner_uid} strike {error_strikes}/{MAX_ERROR_STRIKES}")
+            if error_strikes >= MAX_ERROR_STRIKES:
+                bt.logging.error(
+                    f"Miner {miner_uid} exceeded {MAX_ERROR_STRIKES} error strikes "
+                    f"in game {game_id}. Penalizing with zero score."
+                )
+                self._game_manager.record_result(game_id, GameResult.ERROR)
+                return
             continue
 
         if not responses or responses[0].response is None:
-            bt.logging.warning(f"Miner {miner_uid} returned no response for game {game_id}")
+            error_strikes += 1
+            bt.logging.warning(
+                f"Miner {miner_uid} returned no response for game {game_id} "
+                f"(strike {error_strikes}/{MAX_ERROR_STRIKES})"
+            )
+            if error_strikes >= MAX_ERROR_STRIKES:
+                bt.logging.error(
+                    f"Miner {miner_uid} exceeded {MAX_ERROR_STRIKES} error strikes "
+                    f"in game {game_id}. Penalizing with zero score."
+                )
+                self._game_manager.record_result(game_id, GameResult.ERROR)
+                return
             continue
 
         try:
@@ -190,8 +213,21 @@ async def _run_game_loop(
                 player_id=player_id,
             )
             bt.logging.info(f"Submitted action for game {game_id}: {action_data}")
-        except Exception as e:
-            bt.logging.error(f"Failed to submit action for game {game_id}: {e}")
+            # Reset strikes on successful action
+            error_strikes = 0
+        except (json.JSONDecodeError, Exception) as e:
+            error_strikes += 1
+            bt.logging.error(
+                f"Failed to submit action for game {game_id}: {e} "
+                f"(strike {error_strikes}/{MAX_ERROR_STRIKES})"
+            )
+            if error_strikes >= MAX_ERROR_STRIKES:
+                bt.logging.error(
+                    f"Miner {miner_uid} exceeded {MAX_ERROR_STRIKES} error strikes "
+                    f"in game {game_id}. Penalizing with zero score."
+                )
+                self._game_manager.record_result(game_id, GameResult.ERROR)
+                return
 
     bt.logging.warning(f"Game {game_id} exceeded max rounds")
     self._game_manager.record_result(game_id, GameResult.ERROR)

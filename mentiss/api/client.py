@@ -16,14 +16,16 @@ from .types import (
 
 
 class MentissAPIClient:
-    BASE_URL = "https://api.mentiss.ai"
+    DEFAULT_BASE_URL = "https://api.mentiss.ai"
 
-    def __init__(self, api_key: Optional[str] = None):
+    def __init__(self, api_key: Optional[str] = None, base_url: Optional[str] = None):
         self.api_key = api_key or os.getenv("MENTISS_API_KEY", "")
         if not self.api_key:
             bt.logging.warning("MENTISS_API_KEY not set")
+        self.base_url = base_url or os.getenv("MENTISS_API_URL", self.DEFAULT_BASE_URL)
+        bt.logging.info(f"Mentiss API URL: {self.base_url}")
         self.client = httpx.AsyncClient(
-            base_url=self.BASE_URL,
+            base_url=self.base_url,
             headers={
                 "Authorization": f"Bearer {self.api_key}",
                 "Content-Type": "application/json",
@@ -44,7 +46,7 @@ class MentissAPIClient:
         }
 
         response = await self.client.post(
-            "/api/trpc/playRouter.start",
+            "/api/playRouter.start",
             json=payload,
         )
         response.raise_for_status()
@@ -58,7 +60,7 @@ class MentissAPIClient:
         input_data = json.dumps({"json": {"gameId": game_id}})
 
         response = await self.client.get(
-            "/api/trpc/playRouter.status",
+            "/api/playRouter.status",
             params={"input": input_data},
         )
         response.raise_for_status()
@@ -82,7 +84,7 @@ class MentissAPIClient:
             payload["json"]["playerId"] = player_id
 
         response = await self.client.post(
-            "/api/trpc/playRouter.submitAction",
+            "/api/playRouter.submitAction",
             json=payload,
         )
         response.raise_for_status()
@@ -134,7 +136,7 @@ class MentissAPIClient:
         input_data = json.dumps({"json": {"gameId": game_id}})
 
         response = await self.client.get(
-            "/api/trpc/playRouter.playerStats",
+            "/api/playRouter.playerStats",
             params={"input": input_data},
         )
         response.raise_for_status()
