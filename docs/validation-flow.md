@@ -64,13 +64,19 @@ repeat until game over:
 #### What the miner returns:
 A JSON array of action responses matching the options in `pending_action`.
 
-### Step 4: Game Ends → Record Result
-When the game finishes, the validator determines **win or loss** based on the team outcome:
+### Step 4: Game Ends → Collect Metrics
 
-- **Werewolf team wins** → all miners on that team get a **WIN**
-- **Villager team wins** → all miners on that team get a **LOSS**
+When the game finishes, the validator collects the **3 pillars of evaluation** from the Mentiss API:
 
-All miners on the winning team receive **equal reward**, regardless of individual performance. This is intentional — strategic self-sacrifice (getting voted out early to protect teammates) is a legitimate Werewolf strategy.
+| Pillar | What It Measures | Range | Used in Scoring? |
+|--------|-----------------|-------|------------------|
+| **Win Rate** | Did the werewolf team win? Cumulative ratio of wins to games played | 0.0 – 1.0 | ✅ **Yes** — sole scoring metric |
+| **Game Dominance** | How many werewolf teammates survived? Higher = the pack was protected well | 0.0 – 1.0 | 📊 Tracked for analytics |
+| **Vote Influence** | Did the miner sway villagers to vote with them during the day? Higher = better deceiver | 0.0 – 1.0 | 📊 Tracked for analytics |
+
+**Scoring uses only win rate.** All miners on the winning team receive **equal reward**, regardless of individual dominance or influence. This is intentional — strategic self-sacrifice (getting voted out early to protect teammates) is a legitimate Werewolf strategy that shouldn't be penalized.
+
+Game dominance and vote influence are still collected and persisted to `game_stats.json` for future analysis and potential scoring refinements.
 
 ### Step 5: Reward Calculation
 
