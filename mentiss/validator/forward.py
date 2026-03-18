@@ -1,5 +1,6 @@
 import json
 import asyncio
+import time
 import numpy as np
 import bittensor as bt
 
@@ -18,6 +19,7 @@ from mentiss.utils.uids import get_random_uids
 MAX_ROUNDS_PER_GAME = 100
 MINER_TIMEOUT = 30
 MAX_ERROR_STRIKES = 3
+MAX_GAME_TIMEOUT_SECONDS = 300  # 5 minutes wall-clock timeout per game
 
 
 async def forward(self):
@@ -90,8 +92,19 @@ async def _run_game_loop(
 ):
     """Run the game loop until completion."""
     error_strikes = 0
+    game_start_time = time.time()
 
     for _ in range(MAX_ROUNDS_PER_GAME):
+        # Wall-clock timeout: stop game if it's been running too long
+        elapsed = time.time() - game_start_time
+        if elapsed > MAX_GAME_TIMEOUT_SECONDS:
+            bt.logging.warning(
+                f"Game {game_id} timed out after {elapsed:.0f}s "
+                f"(max {MAX_GAME_TIMEOUT_SECONDS}s)"
+            )
+            self._game_manager.record_result(game_id, GameResult.ERROR)
+            return
+
         await asyncio.sleep(poll_interval)
 
         try:
