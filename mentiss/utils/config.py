@@ -172,7 +172,7 @@ def add_validator_args(cls, parser):
         "--neuron.num_concurrent_forwards",
         type=int,
         help="The number of concurrent forwards running at any time.",
-        default=1,
+        default=30,
     )
 
     parser.add_argument(
@@ -237,7 +237,7 @@ def add_validator_args(cls, parser):
         "--mentiss.game_setting",
         type=str,
         help="Werewolf game configuration string.",
-        default="G6_1SR1WT_2WW_2VG-H",
+        default="G9_1SR1WT1HT_2WW1AW_3VG-H",
     )
 
     parser.add_argument(
@@ -248,10 +248,10 @@ def add_validator_args(cls, parser):
     )
 
     parser.add_argument(
-        "--mentiss.games_per_cycle",
+        "--mentiss.protection_min_games",
         type=int,
-        help="Minimum games before reward calculation applies.",
-        default=1,
+        help="Minimum completed games before scoring applies (protection window).",
+        default=10,
     )
 
     parser.add_argument(
@@ -276,24 +276,24 @@ def add_validator_args(cls, parser):
     )
 
     parser.add_argument(
-        "--mentiss.weight_win_rate",
+        "--mentiss.scoring_window_hours",
         type=float,
-        help="Weight for win rate in composite score (should sum to 1.0 with other weights).",
-        default=0.5,
+        help="Only count games from the last N hours for win rate.",
+        default=36.0,
     )
 
     parser.add_argument(
-        "--mentiss.weight_game_dominance",
-        type=float,
-        help="Weight for game dominance in composite score.",
-        default=0.25,
+        "--mentiss.max_games_in_window",
+        type=int,
+        help="Maximum number of games to consider within the scoring window.",
+        default=50,
     )
 
     parser.add_argument(
-        "--mentiss.weight_vote_influence",
+        "--mentiss.stale_decay_hours",
         type=float,
-        help="Weight for vote influence in composite score.",
-        default=0.25,
+        help="Hours of inactivity before score decays linearly to zero.",
+        default=48.0,
     )
 
 

@@ -248,31 +248,53 @@ async def _run_game_loop(
 
 
 def _update_rewards(self):
-    """Update scores from accumulated game stats using composite scoring."""
+    """Update scores using sliding window scoring.
+
+    Scoring pipeline per miner:
+      1. Protection window: if < PROTECTION_MIN_GAMES completed → neutral score (0.5)
+      2. Active scoring: windowed win rate (last MAX_GAMES within SCORING_WINDOW)
+      3. Staleness decay: linear decay to 0 if no games in STALE_DECAY_HOURS
+      4. Sigmoid reward: maps effective score through sigmoid with cutoff threshold
+      5. EMA smoothing: blended into running scores via exponential moving average
+    """
+    from mentiss.game.state import (
+        PROTECTION_MIN_GAMES,
+        SCORING_WINDOW_HOURS,
+        MAX_GAMES_IN_WINDOW,
+        STALE_DECAY_HOURS,
+    )
+
     mentiss_cfg = getattr(self.config, "mentiss", None)
     threshold = getattr(mentiss_cfg, "reward_threshold", 0.30) if mentiss_cfg else 0.30
     steepness = getattr(mentiss_cfg, "reward_steepness", 20.0) if mentiss_cfg else 20.0
-    min_games = getattr(mentiss_cfg, "games_per_cycle", 1) if mentiss_cfg else 1
-    w_wr = getattr(mentiss_cfg, "weight_win_rate", 0.5) if mentiss_cfg else 0.5
-    w_gd = getattr(mentiss_cfg, "weight_game_dominance", 0.25) if mentiss_cfg else 0.25
-    w_vi = getattr(mentiss_cfg, "weight_vote_influence", 0.25) if mentiss_cfg else 0.25
+    window_hours = getattr(mentiss_cfg, "scoring_window_hours", SCORING_WINDOW_HOURS) if mentiss_cfg else SCORING_WINDOW_HOURS
+    max_games = getattr(mentiss_cfg, "max_games_in_window", MAX_GAMES_IN_WINDOW) if mentiss_cfg else MAX_GAMES_IN_WINDOW
+    decay_hours = getattr(mentiss_cfg, "stale_decay_hours", STALE_DECAY_HOURS) if mentiss_cfg else STALE_DECAY_HOURS
+    min_games = getattr(mentiss_cfg, "protection_min_games", PROTECTION_MIN_GAMES) if mentiss_cfg else PROTECTION_MIN_GAMES
 
     all_uids = list(range(self.metagraph.n.item()))
     rewards = np.zeros(len(all_uids), dtype=np.float32)
 
     for i, uid in enumerate(all_uids):
-        stats = self._game_manager.get_stats(uid)
-        if stats.total_games < min_games:
-            continue
-        score = composite_score(
-            stats.win_rate,
-            stats.avg_game_dominance,
-            stats.avg_vote_influence,
-            w_wr,
-            w_gd,
-            w_vi,
+        effective_score = self._game_manager.get_effective_score(
+            uid,
+            window_hours=window_hours,
+            max_games=max_games,
+            decay_hours=decay_hours,
+            min_games=min_games,
         )
-        rewards[i] = sigmoid_reward(score, threshold, steepness)
+        rewards[i] = sigmoid_reward(effective_score, threshold, steepness)
 
     self.update_scores(rewards, all_uids)
-    bt.logging.info(f"Updated scores from composite metrics")
+
+    # Periodic pruning of old game records (every update)
+    self._game_manager.prune_all_old_games(window_hours)
+
+    # Log summary
+    active_miners = sum(1 for r in rewards if r > 0)
+    bt.logging.info(
+        f"Updated scores: {active_miners}/{len(all_uids)} miners with reward > 0 "
+        f"(window={window_hours}h, max_games={max_games}, "
+        f"decay={decay_hours}h, threshold={threshold})"
+    )
+
