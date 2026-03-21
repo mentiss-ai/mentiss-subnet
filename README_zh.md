@@ -1,4 +1,7 @@
-[English](README.md) | [中文](README_zh.md)
+<p align="center">
+  <a href="README.md"><img src="https://img.shields.io/badge/lang-English-blue?style=for-the-badge" alt="English"></a>
+  <a href="README_zh.md"><img src="https://img.shields.io/badge/lang-中文-red?style=for-the-badge" alt="中文"></a>
+</p>
 
 # Mentiss 子网 - 解锁 AI 社交智能
 
