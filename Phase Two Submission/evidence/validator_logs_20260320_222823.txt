@@ -1,0 +1,616 @@
+# Mentiss Subnet — Validator Running Logs
+# Collected: Fri Mar 20 22:28:23 PDT 2026
+# Netuid: 44
+
+=========================================
+=== VALIDATOR 1 ===
+=========================================
+[34m2026-03-20 17:21:32.787[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:318 | Scattered rewards: [0.         0.         0.         0.98201376 0.         0.
+ 0.         0.74084795 0.         0.         0.98201376 0.8803033
+ 0.         0.98201376]
+[34m2026-03-20 17:21:32.788[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:326 | Updated moving avg scores: [0.         0.         0.1800834  0.9820071  0.22463933 0.
+ 0.         0.72607213 0.8838057  0.02730347 0.98196954 0.8948013
+ 0.01304004 0.9819815 ]
+[34m2026-03-20 17:21:32.788[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 5/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:21:32.811[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 3 at AxonInfo( /ipv4/198.72.219.125:8092, 5ECw9riBibWbNrEo1xX4fwXtq88TMonQRwW8Nevve3oVAWXp, 5FZCeHJLCLMbY8bHHxUjd9t2iGBV6eryvvYPNyHUFYAnHyQD, 10001000 )
+[34m2026-03-20 17:21:32.885[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 3: response='[{"tag": "x-response-number", "value": -1}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:21:32.910[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl1h5s08hhtj195rbqsl36: [{'tag': 'x-response-number', 'value': -1}]
+[34m2026-03-20 17:21:33.936[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 11 at AxonInfo( /ipv4/198.72.219.125:8098, 5FkFQNGuQnE9PbgoknbVg3iLdk5n8niqoXRvZH9MGS9UVkzA, 5GNUkZDFqgAozzbdCVAkx4HsQzcitBxpNWxtBuEYnQAFjhoc, 10001000 )
+[34m2026-03-20 17:21:33.989[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 11: response='[{"tag": "x-response-number", "value": -1}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:21:34.011[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl1h5t08hntj19x4nc5i2d: [{'tag': 'x-response-number', 'value': -1}]
+[34m2026-03-20 17:21:35.980[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:manager.py:79 | Game cmmzl1h5s08hhtj195rbqsl36 result: win for miner 3 | all-time(wins=6, losses=3, errors=0, total=9) | window(8 games, wr=75.00%) | protection=True | staleness=1.00
+[34m2026-03-20 17:21:35.980[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:130 | Game cmmzl1h5s08hhtj195rbqsl36 ended: win (role=werewolf, winner=evil, dominance=0.33, vote_influence=0.00, survived=True)
+[34m2026-03-20 17:21:35.981[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:manager.py:162 | Saved game stats to /Users/jeremywang/.bittensor/miners/validator1/default/netuid44/validator/game_stats.json
+[34m2026-03-20 17:21:35.981[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:318 | Scattered rewards: [0.         0.         0.         0.98201376 0.         0.
+ 0.         0.7408229  0.         0.         0.98201376 0.8802877
+ 0.         0.98201376]
+[34m2026-03-20 17:21:35.981[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:326 | Updated moving avg scores: [0.         0.         0.16207506 0.98200774 0.2021754  0.
+ 0.         0.7275472  0.7954251  0.02457313 0.98197395 0.89334995
+ 0.01173604 0.98198473]
+[34m2026-03-20 17:21:35.981[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 5/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:21:36.859[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052496.859374
+[34m2026-03-20 17:21:37.101[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:manager.py:79 | Game cmmzl1h5t08hntj19x4nc5i2d result: loss for miner 11 | all-time(wins=6, losses=10, errors=0, total=16) | window(16 games, wr=37.50%) | protection=False | staleness=1.00
+[34m2026-03-20 17:21:37.101[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:130 | Game cmmzl1h5t08hntj19x4nc5i2d ended: loss (role=werewolf, winner=good, dominance=0.00, vote_influence=0.00, survived=False)
+[34m2026-03-20 17:21:37.103[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:manager.py:162 | Saved game stats to /Users/jeremywang/.bittensor/miners/validator1/default/netuid44/validator/game_stats.json
+[34m2026-03-20 17:21:37.103[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:318 | Scattered rewards: [0.         0.         0.         0.98201376 0.         0.
+ 0.         0.74081415 0.         0.         0.98201376 0.81757444
+ 0.         0.98201376]
+[34m2026-03-20 17:21:37.103[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:326 | Updated moving avg scores: [0.         0.         0.14586754 0.98200834 0.18195786 0.
+ 0.         0.7288739  0.7158826  0.02211581 0.98197794 0.88577235
+ 0.01056243 0.98198766]
+[34m2026-03-20 17:21:37.103[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 5/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:21:38.105[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:330 | Saving validator state.
+[34m2026-03-20 17:21:38.108[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:116 | Sleeping for a while before next iteration...
+[34m2026-03-20 17:21:41.868[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052501.8686872
+[34m2026-03-20 17:21:46.878[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052506.878815
+[34m2026-03-20 17:21:51.888[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052511.888257
+[34m2026-03-20 17:21:56.898[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052516.898474
+[34m2026-03-20 17:22:01.907[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052521.907691
+[34m2026-03-20 17:22:06.918[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052526.9181309
+[34m2026-03-20 17:22:11.923[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052531.923483
+[34m2026-03-20 17:22:16.928[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052536.92866
+[34m2026-03-20 17:22:21.930[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052541.930327
+[34m2026-03-20 17:22:26.933[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052546.9331741
+[34m2026-03-20 17:22:31.935[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052551.935812
+[34m2026-03-20 17:22:36.936[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052556.93612
+[34m2026-03-20 17:22:38.316[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:102 | step(23) block(6728717)
+[34m2026-03-20 17:22:38.319[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:49 | Selected miner UID 13 for Werewolf game
+[34m2026-03-20 17:22:38.322[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:49 | Selected miner UID 11 for Werewolf game
+[34m2026-03-20 17:22:38.322[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:49 | Selected miner UID 12 for Werewolf game
+[34m2026-03-20 17:22:38.323[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:49 | Selected miner UID 8 for Werewolf game
+[34m2026-03-20 17:22:38.323[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:49 | Selected miner UID 3 for Werewolf game
+[34m2026-03-20 17:22:38.426[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:client.py:55 | Started game: cmmzl36rk08u3tj193jxv8tmy
+[34m2026-03-20 17:22:38.426[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:manager.py:40 | Registered game cmmzl36rk08u3tj193jxv8tmy for miner 13 as werewolf
+[34m2026-03-20 17:22:38.429[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:client.py:55 | Started game: cmmzl36rk08u4tj19sktteocu
+[34m2026-03-20 17:22:38.429[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:manager.py:40 | Registered game cmmzl36rk08u4tj19sktteocu for miner 8 as werewolf
+[34m2026-03-20 17:22:38.429[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:client.py:55 | Started game: cmmzl36rk08u6tj19n9aez7cp
+[34m2026-03-20 17:22:38.429[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:manager.py:40 | Registered game cmmzl36rk08u6tj19n9aez7cp for miner 12 as werewolf
+[34m2026-03-20 17:22:38.430[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:client.py:55 | Started game: cmmzl36rk08u0tj19lm6yq9ld
+[34m2026-03-20 17:22:38.430[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:manager.py:40 | Registered game cmmzl36rk08u0tj19lm6yq9ld for miner 3 as werewolf
+[34m2026-03-20 17:22:38.430[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:client.py:55 | Started game: cmmzl36rj08tytj19vemnd68k
+[34m2026-03-20 17:22:38.430[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:manager.py:40 | Registered game cmmzl36rj08tytj19vemnd68k for miner 11 as werewolf
+[34m2026-03-20 17:22:39.454[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 13 at AxonInfo( /ipv4/198.72.219.125:8100, 5CRnGSv1gqUnrUwW9xLULyZ44dXQPWpAR8EurcrhmP2Xopi9, 5CQLghjLGN6NjJUjDEA4RW4GeFNrfj7FB295Y5SHXUMbmhf4, 10001000 )
+[34m2026-03-20 17:22:39.474[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 8 at AxonInfo( /ipv4/198.72.219.125:8095, 5GHiT9TSfjscjiCYUAXsWMq1Jvd75oSgwVspxHwidUKnxEfD, 5G1UNXXoyaMuNMu2GDqMGcPqXmej8v8STWu1UGS4QF7c8J5N, 10001000 )
+[34m2026-03-20 17:22:39.493[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 12 at AxonInfo( /ipv4/198.72.219.125:8099, 5FZGaCux8vL4srzkuV9CZEVtFEPpnGFroHC82JwfUbh2ARa3, 5EC9aeHDNMzXQco96t5TtWYF462evhpourbgk97ftdcXixnt, 10001000 )
+[34m2026-03-20 17:22:39.494[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 3 at AxonInfo( /ipv4/198.72.219.125:8092, 5ECw9riBibWbNrEo1xX4fwXtq88TMonQRwW8Nevve3oVAWXp, 5FZCeHJLCLMbY8bHHxUjd9t2iGBV6eryvvYPNyHUFYAnHyQD, 10001000 )
+[34m2026-03-20 17:22:39.495[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 11 at AxonInfo( /ipv4/198.72.219.125:8098, 5FkFQNGuQnE9PbgoknbVg3iLdk5n8niqoXRvZH9MGS9UVkzA, 5GNUkZDFqgAozzbdCVAkx4HsQzcitBxpNWxtBuEYnQAFjhoc, 10001000 )
+[34m2026-03-20 17:22:39.583[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 13: response='[{"tag": "x-response-number", "value": 2}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:39.635[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 12: response='[{"tag": "x-response-number", "value": 7}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:39.636[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 8: response='[{"tag": "x-response-number", "value": 8}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:39.636[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 11: response='[{"tag": "x-response-number", "value": 9}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:39.654[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 3: response='[{"tag": "x-response-number", "value": 5}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:39.690[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl36rk08u0tj19lm6yq9ld: [{'tag': 'x-response-number', 'value': 5}]
+[34m2026-03-20 17:22:39.693[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl36rk08u4tj19sktteocu: [{'tag': 'x-response-number', 'value': 8}]
+[34m2026-03-20 17:22:39.693[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl36rj08tytj19vemnd68k: [{'tag': 'x-response-number', 'value': 9}]
+[34m2026-03-20 17:22:39.693[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl36rk08u3tj193jxv8tmy: [{'tag': 'x-response-number', 'value': 2}]
+[34m2026-03-20 17:22:39.694[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl36rk08u6tj19n9aez7cp: [{'tag': 'x-response-number', 'value': 7}]
+[34m2026-03-20 17:22:40.843[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 3 at AxonInfo( /ipv4/198.72.219.125:8092, 5ECw9riBibWbNrEo1xX4fwXtq88TMonQRwW8Nevve3oVAWXp, 5FZCeHJLCLMbY8bHHxUjd9t2iGBV6eryvvYPNyHUFYAnHyQD, 10001000 )
+[34m2026-03-20 17:22:40.920[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 3: response='[{"tag": "x-response-message", "value": "*"}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:40.947[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl36rk08u0tj19lm6yq9ld: [{'tag': 'x-response-message', 'value': '*'}]
+[34m2026-03-20 17:22:41.844[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 8 at AxonInfo( /ipv4/198.72.219.125:8095, 5GHiT9TSfjscjiCYUAXsWMq1Jvd75oSgwVspxHwidUKnxEfD, 5G1UNXXoyaMuNMu2GDqMGcPqXmej8v8STWu1UGS4QF7c8J5N, 10001000 )
+[34m2026-03-20 17:22:41.862[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 12 at AxonInfo( /ipv4/198.72.219.125:8099, 5FZGaCux8vL4srzkuV9CZEVtFEPpnGFroHC82JwfUbh2ARa3, 5EC9aeHDNMzXQco96t5TtWYF462evhpourbgk97ftdcXixnt, 10001000 )
+[34m2026-03-20 17:22:41.880[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 11 at AxonInfo( /ipv4/198.72.219.125:8098, 5FkFQNGuQnE9PbgoknbVg3iLdk5n8niqoXRvZH9MGS9UVkzA, 5GNUkZDFqgAozzbdCVAkx4HsQzcitBxpNWxtBuEYnQAFjhoc, 10001000 )
+[34m2026-03-20 17:22:41.898[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 13 at AxonInfo( /ipv4/198.72.219.125:8100, 5CRnGSv1gqUnrUwW9xLULyZ44dXQPWpAR8EurcrhmP2Xopi9, 5CQLghjLGN6NjJUjDEA4RW4GeFNrfj7FB295Y5SHXUMbmhf4, 10001000 )
+[34m2026-03-20 17:22:41.931[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 8: response='[{"tag": "x-response-message", "value": "*"}, {"tag": "x-response-number", "value": 8}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:41.942[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052561.942763
+[34m2026-03-20 17:22:41.964[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 12: response='[{"tag": "x-response-message", "value": "*"}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:41.965[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 11: response='[{"tag": "x-response-message", "value": "*"}, {"tag": "x-response-number", "value": 7}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:41.983[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 13: response='[{"tag": "x-response-message", "value": "*"}, {"tag": "x-response-number", "value": 6}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:42.013[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 3 at AxonInfo( /ipv4/198.72.219.125:8092, 5ECw9riBibWbNrEo1xX4fwXtq88TMonQRwW8Nevve3oVAWXp, 5FZCeHJLCLMbY8bHHxUjd9t2iGBV6eryvvYPNyHUFYAnHyQD, 10001000 )
+[34m2026-03-20 17:22:42.032[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl36rk08u6tj19n9aez7cp: [{'tag': 'x-response-message', 'value': '*'}]
+[34m2026-03-20 17:22:42.034[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl36rk08u4tj19sktteocu: [{'tag': 'x-response-message', 'value': '*'}, {'tag': 'x-response-number', 'value': 8}]
+[34m2026-03-20 17:22:42.034[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl36rk08u3tj193jxv8tmy: [{'tag': 'x-response-message', 'value': '*'}, {'tag': 'x-response-number', 'value': 6}]
+[34m2026-03-20 17:22:42.035[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl36rj08tytj19vemnd68k: [{'tag': 'x-response-message', 'value': '*'}, {'tag': 'x-response-number', 'value': 7}]
+[34m2026-03-20 17:22:42.088[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 3: response='[{"tag": "x-response-message", "value": "*"}, {"tag": "x-response-number", "value": 8}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:42.121[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl36rk08u0tj19lm6yq9ld: [{'tag': 'x-response-message', 'value': '*'}, {'tag': 'x-response-number', 'value': 8}]
+[34m2026-03-20 17:22:44.086[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 12 at AxonInfo( /ipv4/198.72.219.125:8099, 5FZGaCux8vL4srzkuV9CZEVtFEPpnGFroHC82JwfUbh2ARa3, 5EC9aeHDNMzXQco96t5TtWYF462evhpourbgk97ftdcXixnt, 10001000 )
+[34m2026-03-20 17:22:44.105[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 8 at AxonInfo( /ipv4/198.72.219.125:8095, 5GHiT9TSfjscjiCYUAXsWMq1Jvd75oSgwVspxHwidUKnxEfD, 5G1UNXXoyaMuNMu2GDqMGcPqXmej8v8STWu1UGS4QF7c8J5N, 10001000 )
+[34m2026-03-20 17:22:44.106[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 13 at AxonInfo( /ipv4/198.72.219.125:8100, 5CRnGSv1gqUnrUwW9xLULyZ44dXQPWpAR8EurcrhmP2Xopi9, 5CQLghjLGN6NjJUjDEA4RW4GeFNrfj7FB295Y5SHXUMbmhf4, 10001000 )
+[34m2026-03-20 17:22:44.106[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 11 at AxonInfo( /ipv4/198.72.219.125:8098, 5FkFQNGuQnE9PbgoknbVg3iLdk5n8niqoXRvZH9MGS9UVkzA, 5GNUkZDFqgAozzbdCVAkx4HsQzcitBxpNWxtBuEYnQAFjhoc, 10001000 )
+[34m2026-03-20 17:22:44.193[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 12: response='[{"tag": "x-response-message", "value": "*"}, {"tag": "x-response-number", "value": 8}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:44.194[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 8: response='[{"tag": "x-response-number", "value": 7}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:44.230[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 13: response='[{"tag": "x-response-number", "value": 4}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:44.231[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 11: response='[{"tag": "x-response-number", "value": 6}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:44.265[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl36rk08u4tj19sktteocu: [{'tag': 'x-response-number', 'value': 7}]
+[34m2026-03-20 17:22:44.266[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl36rk08u3tj193jxv8tmy: [{'tag': 'x-response-number', 'value': 4}]
+[34m2026-03-20 17:22:44.266[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl36rj08tytj19vemnd68k: [{'tag': 'x-response-number', 'value': 6}]
+[34m2026-03-20 17:22:44.273[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl36rk08u6tj19n9aez7cp: [{'tag': 'x-response-message', 'value': '*'}, {'tag': 'x-response-number', 'value': 8}]
+[34m2026-03-20 17:22:44.289[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 3 at AxonInfo( /ipv4/198.72.219.125:8092, 5ECw9riBibWbNrEo1xX4fwXtq88TMonQRwW8Nevve3oVAWXp, 5FZCeHJLCLMbY8bHHxUjd9t2iGBV6eryvvYPNyHUFYAnHyQD, 10001000 )
+[34m2026-03-20 17:22:44.362[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 3: response='[{"tag": "x-response-number", "value": 3}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:44.391[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl36rk08u0tj19lm6yq9ld: [{'tag': 'x-response-number', 'value': 3}]
+[34m2026-03-20 17:22:46.421[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 12 at AxonInfo( /ipv4/198.72.219.125:8099, 5FZGaCux8vL4srzkuV9CZEVtFEPpnGFroHC82JwfUbh2ARa3, 5EC9aeHDNMzXQco96t5TtWYF462evhpourbgk97ftdcXixnt, 10001000 )
+[34m2026-03-20 17:22:46.440[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:manager.py:79 | Game cmmzl36rk08u3tj193jxv8tmy result: loss for miner 13 | all-time(wins=1, losses=6, errors=0, total=7) | window(7 games, wr=14.29%) | protection=True | staleness=1.00
+[34m2026-03-20 17:22:46.440[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:130 | Game cmmzl36rk08u3tj193jxv8tmy ended: loss (role=werewolf, winner=good, dominance=0.00, vote_influence=0.00, survived=False)
+[34m2026-03-20 17:22:46.441[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:manager.py:162 | Saved game stats to /Users/jeremywang/.bittensor/miners/validator1/default/netuid44/validator/game_stats.json
+[34m2026-03-20 17:22:46.442[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:318 | Scattered rewards: [0.         0.         0.         0.98201376 0.         0.
+ 0.         0.7402699  0.         0.         0.98201376 0.8171252
+ 0.         0.98201376]
+[34m2026-03-20 17:22:46.442[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:326 | Updated moving avg scores: [0.         0.         0.13128078 0.9820089  0.16376206 0.
+ 0.         0.7300135  0.6442943  0.01990423 0.9819815  0.8789076
+ 0.00950619 0.9819903 ]
+[34m2026-03-20 17:22:46.442[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 5/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:22:46.475[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 12: response='[{"tag": "x-response-number", "value": 5}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:46.508[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl36rk08u6tj19n9aez7cp: [{'tag': 'x-response-number', 'value': 5}]
+[34m2026-03-20 17:22:46.945[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052566.945706
+[34m2026-03-20 17:22:47.434[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 8 at AxonInfo( /ipv4/198.72.219.125:8095, 5GHiT9TSfjscjiCYUAXsWMq1Jvd75oSgwVspxHwidUKnxEfD, 5G1UNXXoyaMuNMu2GDqMGcPqXmej8v8STWu1UGS4QF7c8J5N, 10001000 )
+[34m2026-03-20 17:22:47.488[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 8: response='[{"tag": "x-response-message", "value": "*"}, {"tag": "x-response-number", "value": -1}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:47.490[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 3 at AxonInfo( /ipv4/198.72.219.125:8092, 5ECw9riBibWbNrEo1xX4fwXtq88TMonQRwW8Nevve3oVAWXp, 5FZCeHJLCLMbY8bHHxUjd9t2iGBV6eryvvYPNyHUFYAnHyQD, 10001000 )
+[34m2026-03-20 17:22:47.490[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 11 at AxonInfo( /ipv4/198.72.219.125:8098, 5FkFQNGuQnE9PbgoknbVg3iLdk5n8niqoXRvZH9MGS9UVkzA, 5GNUkZDFqgAozzbdCVAkx4HsQzcitBxpNWxtBuEYnQAFjhoc, 10001000 )
+[34m2026-03-20 17:22:47.562[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 11: response='[{"tag": "x-response-message", "value": "*"}, {"tag": "x-response-number", "value": 8}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:47.580[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl36rk08u4tj19sktteocu: [{'tag': 'x-response-message', 'value': '*'}, {'tag': 'x-response-number', 'value': -1}]
+[34m2026-03-20 17:22:47.581[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 3: response='[{"tag": "x-response-message", "value": "*"}, {"tag": "x-response-number", "value": 2}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:47.615[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl36rk08u0tj19lm6yq9ld: [{'tag': 'x-response-message', 'value': '*'}, {'tag': 'x-response-number', 'value': 2}]
+[34m2026-03-20 17:22:47.616[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl36rj08tytj19vemnd68k: [{'tag': 'x-response-message', 'value': '*'}, {'tag': 'x-response-number', 'value': 8}]
+[34m2026-03-20 17:22:48.608[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 12 at AxonInfo( /ipv4/198.72.219.125:8099, 5FZGaCux8vL4srzkuV9CZEVtFEPpnGFroHC82JwfUbh2ARa3, 5EC9aeHDNMzXQco96t5TtWYF462evhpourbgk97ftdcXixnt, 10001000 )
+[34m2026-03-20 17:22:48.663[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 12: response='[{"tag": "x-response-message", "value": "*"}, {"tag": "x-response-number", "value": -1}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:48.805[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl36rk08u6tj19n9aez7cp: [{'tag': 'x-response-message', 'value': '*'}, {'tag': 'x-response-number', 'value': -1}]
+[34m2026-03-20 17:22:51.676[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 8 at AxonInfo( /ipv4/198.72.219.125:8095, 5GHiT9TSfjscjiCYUAXsWMq1Jvd75oSgwVspxHwidUKnxEfD, 5G1UNXXoyaMuNMu2GDqMGcPqXmej8v8STWu1UGS4QF7c8J5N, 10001000 )
+[34m2026-03-20 17:22:51.730[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 8: response='[{"tag": "x-response-number", "value": 5}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:51.748[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:manager.py:79 | Game cmmzl36rk08u0tj19lm6yq9ld result: loss for miner 3 | all-time(wins=6, losses=4, errors=0, total=10) | window(9 games, wr=66.67%) | protection=False | staleness=1.00
+[34m2026-03-20 17:22:51.748[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:130 | Game cmmzl36rk08u0tj19lm6yq9ld ended: loss (role=werewolf, winner=good, dominance=0.00, vote_influence=0.00, survived=False)
+[34m2026-03-20 17:22:51.749[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:manager.py:162 | Saved game stats to /Users/jeremywang/.bittensor/miners/validator1/default/netuid44/validator/game_stats.json
+[34m2026-03-20 17:22:51.749[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:318 | Scattered rewards: [0.         0.         0.         0.99934703 0.         0.
+ 0.         0.74022824 0.         0.         0.98201376 0.81709075
+ 0.         0.98201376]
+[34m2026-03-20 17:22:51.749[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:326 | Updated moving avg scores: [0.         0.         0.1181527  0.98374265 0.14738585 0.
+ 0.         0.73103493 0.57986486 0.01791381 0.98198473 0.8727259
+ 0.00855557 0.9819926 ]
+[34m2026-03-20 17:22:51.749[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 5/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:22:51.750[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:manager.py:79 | Game cmmzl36rj08tytj19vemnd68k result: loss for miner 11 | all-time(wins=6, losses=11, errors=0, total=17) | window(17 games, wr=35.29%) | protection=False | staleness=1.00
+[34m2026-03-20 17:22:51.750[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:130 | Game cmmzl36rj08tytj19vemnd68k ended: loss (role=werewolf, winner=good, dominance=0.00, vote_influence=0.00, survived=False)
+[34m2026-03-20 17:22:51.751[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:manager.py:162 | Saved game stats to /Users/jeremywang/.bittensor/miners/validator1/default/netuid44/validator/game_stats.json
+[34m2026-03-20 17:22:51.752[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:318 | Scattered rewards: [0.         0.         0.         0.99934703 0.         0.
+ 0.         0.7402282  0.         0.         0.98201376 0.7424657
+ 0.         0.98201376]
+[34m2026-03-20 17:22:51.752[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:326 | Updated moving avg scores: [0.         0.         0.10633743 0.98530304 0.13264726 0.
+ 0.         0.7319543  0.52187836 0.01612243 0.98198766 0.8596999
+ 0.00770001 0.9819947 ]
+[34m2026-03-20 17:22:51.752[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 5/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:22:51.761[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl36rk08u4tj19sktteocu: [{'tag': 'x-response-number', 'value': 5}]
+[34m2026-03-20 17:22:51.870[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 12 at AxonInfo( /ipv4/198.72.219.125:8099, 5FZGaCux8vL4srzkuV9CZEVtFEPpnGFroHC82JwfUbh2ARa3, 5EC9aeHDNMzXQco96t5TtWYF462evhpourbgk97ftdcXixnt, 10001000 )
+[34m2026-03-20 17:22:51.924[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 12: response='[{"tag": "x-response-number", "value": -1}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:51.948[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052571.948184
+[34m2026-03-20 17:22:51.949[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl36rk08u6tj19n9aez7cp: [{'tag': 'x-response-number', 'value': -1}]
+[34m2026-03-20 17:22:54.828[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 8 at AxonInfo( /ipv4/198.72.219.125:8095, 5GHiT9TSfjscjiCYUAXsWMq1Jvd75oSgwVspxHwidUKnxEfD, 5G1UNXXoyaMuNMu2GDqMGcPqXmej8v8STWu1UGS4QF7c8J5N, 10001000 )
+[34m2026-03-20 17:22:54.879[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 8: response='[{"tag": "x-response-number", "value": 1}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:54.904[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl36rk08u4tj19sktteocu: [{'tag': 'x-response-number', 'value': 1}]
+[34m2026-03-20 17:22:55.014[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 12 at AxonInfo( /ipv4/198.72.219.125:8099, 5FZGaCux8vL4srzkuV9CZEVtFEPpnGFroHC82JwfUbh2ARa3, 5EC9aeHDNMzXQco96t5TtWYF462evhpourbgk97ftdcXixnt, 10001000 )
+[34m2026-03-20 17:22:55.068[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 12: response='[{"tag": "x-response-message", "value": "*"}, {"tag": "x-response-number", "value": 6}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:55.095[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl36rk08u6tj19n9aez7cp: [{'tag': 'x-response-message', 'value': '*'}, {'tag': 'x-response-number', 'value': 6}]
+[34m2026-03-20 17:22:56.951[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052576.951922
+[34m2026-03-20 17:22:57.979[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:manager.py:79 | Game cmmzl36rk08u4tj19sktteocu result: loss for miner 8 | all-time(wins=2, losses=9, errors=0, total=11) | window(11 games, wr=18.18%) | protection=False | staleness=1.00
+[34m2026-03-20 17:22:57.979[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:130 | Game cmmzl36rk08u4tj19sktteocu ended: loss (role=werewolf, winner=good, dominance=0.00, vote_influence=0.00, survived=False)
+[34m2026-03-20 17:22:57.980[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:manager.py:162 | Saved game stats to /Users/jeremywang/.bittensor/miners/validator1/default/netuid44/validator/game_stats.json
+[34m2026-03-20 17:22:57.980[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:318 | Scattered rewards: [0.         0.         0.         0.99934673 0.         0.
+ 0.         0.74017924 0.         0.         0.98201376 0.742417
+ 0.         0.98201376]
+[34m2026-03-20 17:22:57.981[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:326 | Updated moving avg scores: [0.         0.         0.09570368 0.9867074  0.11938253 0.
+ 0.         0.73277676 0.4696905  0.01451018 0.9819903  0.8479716
+ 0.00693001 0.9819966 ]
+[34m2026-03-20 17:22:57.981[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 5/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:22:58.166[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:manager.py:79 | Game cmmzl36rk08u6tj19n9aez7cp result: loss for miner 12 | all-time(wins=1, losses=10, errors=0, total=11) | window(11 games, wr=9.09%) | protection=False | staleness=1.00
+[34m2026-03-20 17:22:58.166[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:130 | Game cmmzl36rk08u6tj19n9aez7cp ended: loss (role=werewolf, winner=good, dominance=0.00, vote_influence=0.00, survived=False)
+[34m2026-03-20 17:22:58.167[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:manager.py:162 | Saved game stats to /Users/jeremywang/.bittensor/miners/validator1/default/netuid44/validator/game_stats.json
+[34m2026-03-20 17:22:58.167[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:318 | Scattered rewards: [0.         0.         0.         0.99934673 0.         0.
+ 0.         0.7401778  0.         0.         0.98201376 0.74241555
+ 0.         0.98201376]
+[34m2026-03-20 17:22:58.167[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:326 | Updated moving avg scores: [0.         0.         0.08613332 0.9879713  0.10744427 0.
+ 0.         0.7335168  0.42272145 0.01305917 0.9819926  0.837416
+ 0.00623701 0.9819983 ]
+[34m2026-03-20 17:22:58.167[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 5/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:22:59.628[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:330 | Saving validator state.
+[34m2026-03-20 17:22:59.629[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:116 | Sleeping for a while before next iteration...
+[34m2026-03-20 17:23:01.957[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052581.9570649
+[34m2026-03-20 17:23:06.957[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052586.95751
+[34m2026-03-20 17:23:11.962[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052591.9627469
+/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/resource_tracker.py:279: UserWarning: resource_tracker: There appear to be 3 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '
+
+=========================================
+=== VALIDATOR 2 ===
+=========================================
+[34m2026-03-20 17:21:23.147[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:manager.py:79 | Game cmmzl0vpn0890tj19k1mzti9a result: loss for miner 8 | all-time(wins=3, losses=10, errors=0, total=13) | window(13 games, wr=23.08%) | protection=False | staleness=1.00
+[34m2026-03-20 17:21:23.147[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:130 | Game cmmzl0vpn0890tj19k1mzti9a ended: loss (role=werewolf, winner=good, dominance=0.00, vote_influence=0.00, survived=False)
+[34m2026-03-20 17:21:23.148[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:manager.py:162 | Saved game stats to /Users/jeremywang/.bittensor/miners/validator2/default/netuid44/validator/game_stats.json
+[34m2026-03-20 17:21:23.149[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:318 | Scattered rewards: [0.         0.         0.5360077  0.98201376 0.         0.
+ 0.         0.         0.         0.         0.         0.98201376
+ 0.         0.98201376]
+[34m2026-03-20 17:21:23.149[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:326 | Updated moving avg scores: [0.         0.         0.58608544 0.9819983  0.14736271 0.
+ 0.         0.05138332 0.30814508 0.7954199  0.02730347 0.98197794
+ 0.00686983 0.98197395]
+[34m2026-03-20 17:21:23.149[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 4/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:21:24.153[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:330 | Saving validator state.
+[34m2026-03-20 17:21:24.153[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:116 | Sleeping for a while before next iteration...
+[34m2026-03-20 17:21:26.850[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052486.8505442
+[34m2026-03-20 17:21:31.853[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052491.853641
+[34m2026-03-20 17:21:36.859[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052496.859329
+[34m2026-03-20 17:21:41.865[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052501.8653162
+[34m2026-03-20 17:21:46.875[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052506.875603
+[34m2026-03-20 17:21:51.881[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052511.8815832
+[34m2026-03-20 17:21:56.885[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052516.884913
+[34m2026-03-20 17:22:01.894[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052521.8945432
+[34m2026-03-20 17:22:06.904[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052526.904814
+[34m2026-03-20 17:22:11.909[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052531.909641
+[34m2026-03-20 17:22:16.914[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052536.9146922
+[34m2026-03-20 17:22:21.916[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052541.916339
+[34m2026-03-20 17:22:24.476[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:102 | step(22) block(6728715)
+[34m2026-03-20 17:22:24.477[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:49 | Selected miner UID 11 for Werewolf game
+[34m2026-03-20 17:22:24.479[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:49 | Selected miner UID 11 for Werewolf game
+[34m2026-03-20 17:22:24.479[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:49 | Selected miner UID 10 for Werewolf game
+[34m2026-03-20 17:22:24.479[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:49 | Selected miner UID 3 for Werewolf game
+[34m2026-03-20 17:22:24.480[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:49 | Selected miner UID 12 for Werewolf game
+[34m2026-03-20 17:22:24.581[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:client.py:55 | Started game: cmmzl2w2w08p9tj192o8c61ty
+[34m2026-03-20 17:22:24.581[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:manager.py:40 | Registered game cmmzl2w2w08p9tj192o8c61ty for miner 10 as werewolf
+[34m2026-03-20 17:22:24.581[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:client.py:55 | Started game: cmmzl2w2w08pctj19xe05q60d
+[34m2026-03-20 17:22:24.581[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:manager.py:40 | Registered game cmmzl2w2w08pctj19xe05q60d for miner 11 as werewolf
+[34m2026-03-20 17:22:24.582[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:client.py:55 | Started game: cmmzl2w2w08p8tj19zstxmrzy
+[34m2026-03-20 17:22:24.582[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:manager.py:40 | Registered game cmmzl2w2w08p8tj19zstxmrzy for miner 3 as werewolf
+[34m2026-03-20 17:22:24.583[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:client.py:55 | Started game: cmmzl2w2x08petj191gi2d4rn
+[34m2026-03-20 17:22:24.583[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:manager.py:40 | Registered game cmmzl2w2x08petj191gi2d4rn for miner 11 as werewolf
+[34m2026-03-20 17:22:24.584[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:client.py:55 | Started game: cmmzl2w2w08pbtj19o1508b0e
+[34m2026-03-20 17:22:24.584[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:manager.py:40 | Registered game cmmzl2w2w08pbtj19o1508b0e for miner 12 as werewolf
+[34m2026-03-20 17:22:25.604[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 3 at AxonInfo( /ipv4/198.72.219.125:8092, 5ECw9riBibWbNrEo1xX4fwXtq88TMonQRwW8Nevve3oVAWXp, 5FZCeHJLCLMbY8bHHxUjd9t2iGBV6eryvvYPNyHUFYAnHyQD, 10001000 )
+[34m2026-03-20 17:22:25.625[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 12 at AxonInfo( /ipv4/198.72.219.125:8099, 5FZGaCux8vL4srzkuV9CZEVtFEPpnGFroHC82JwfUbh2ARa3, 5EC9aeHDNMzXQco96t5TtWYF462evhpourbgk97ftdcXixnt, 10001000 )
+[34m2026-03-20 17:22:25.625[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 11 at AxonInfo( /ipv4/198.72.219.125:8098, 5FkFQNGuQnE9PbgoknbVg3iLdk5n8niqoXRvZH9MGS9UVkzA, 5GNUkZDFqgAozzbdCVAkx4HsQzcitBxpNWxtBuEYnQAFjhoc, 10001000 )
+[34m2026-03-20 17:22:25.626[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 10 at AxonInfo( /ipv4/198.72.219.125:8097, 5CqbPn5kcrsr7xu3r61uKQNDU9c1qeWAPBfsc3zKmfqRU6mD, 5GZBJk1PQcQgsXb4Ts45XAiaZa9JNvKaS9BtsAcaNahiMrZp, 10001000 )
+[34m2026-03-20 17:22:25.626[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 11 at AxonInfo( /ipv4/198.72.219.125:8098, 5FkFQNGuQnE9PbgoknbVg3iLdk5n8niqoXRvZH9MGS9UVkzA, 5GNUkZDFqgAozzbdCVAkx4HsQzcitBxpNWxtBuEYnQAFjhoc, 10001000 )
+[34m2026-03-20 17:22:25.727[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 12: response='[{"tag": "x-response-number", "value": 4}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:25.744[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 10: response='[{"tag": "x-response-number", "value": 8}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:25.794[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 11: response='[{"tag": "x-response-number", "value": 4}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:25.794[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 11: response='[{"tag": "x-response-number", "value": 3}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:25.795[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 3: response=None, dendrite.status_code=403, dendrite.status_message=Forbidden. Key is blacklisted: Unrecognized hotkey., axon.status_code=403
+[34m2026-03-20 17:22:25.795[39m | [1m[33mWARNING [39m[49m[0m | bittensor:forward.py:212 | Miner 3 returned no response for game cmmzl2w2w08p8tj19zstxmrzy (strike 1/3)
+[34m2026-03-20 17:22:25.816[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2w2w08pbtj19o1508b0e: [{'tag': 'x-response-number', 'value': 4}]
+[34m2026-03-20 17:22:25.816[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2w2w08pctj19xe05q60d: [{'tag': 'x-response-number', 'value': 4}]
+[34m2026-03-20 17:22:25.816[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2w2x08petj191gi2d4rn: [{'tag': 'x-response-number', 'value': 3}]
+[34m2026-03-20 17:22:25.817[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2w2w08p9tj192o8c61ty: [{'tag': 'x-response-number', 'value': 8}]
+[34m2026-03-20 17:22:26.817[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 3 at AxonInfo( /ipv4/198.72.219.125:8092, 5ECw9riBibWbNrEo1xX4fwXtq88TMonQRwW8Nevve3oVAWXp, 5FZCeHJLCLMbY8bHHxUjd9t2iGBV6eryvvYPNyHUFYAnHyQD, 10001000 )
+[34m2026-03-20 17:22:26.862[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 11 at AxonInfo( /ipv4/198.72.219.125:8098, 5FkFQNGuQnE9PbgoknbVg3iLdk5n8niqoXRvZH9MGS9UVkzA, 5GNUkZDFqgAozzbdCVAkx4HsQzcitBxpNWxtBuEYnQAFjhoc, 10001000 )
+[34m2026-03-20 17:22:26.898[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 10 at AxonInfo( /ipv4/198.72.219.125:8097, 5CqbPn5kcrsr7xu3r61uKQNDU9c1qeWAPBfsc3zKmfqRU6mD, 5GZBJk1PQcQgsXb4Ts45XAiaZa9JNvKaS9BtsAcaNahiMrZp, 10001000 )
+[34m2026-03-20 17:22:26.899[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 12 at AxonInfo( /ipv4/198.72.219.125:8099, 5FZGaCux8vL4srzkuV9CZEVtFEPpnGFroHC82JwfUbh2ARa3, 5EC9aeHDNMzXQco96t5TtWYF462evhpourbgk97ftdcXixnt, 10001000 )
+[34m2026-03-20 17:22:26.899[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 11 at AxonInfo( /ipv4/198.72.219.125:8098, 5FkFQNGuQnE9PbgoknbVg3iLdk5n8niqoXRvZH9MGS9UVkzA, 5GNUkZDFqgAozzbdCVAkx4HsQzcitBxpNWxtBuEYnQAFjhoc, 10001000 )
+[34m2026-03-20 17:22:26.924[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052546.924174
+[34m2026-03-20 17:22:26.973[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 3: response=None, dendrite.status_code=403, dendrite.status_message=Forbidden. Key is blacklisted: Unrecognized hotkey., axon.status_code=403
+[34m2026-03-20 17:22:26.973[39m | [1m[33mWARNING [39m[49m[0m | bittensor:forward.py:212 | Miner 3 returned no response for game cmmzl2w2w08p8tj19zstxmrzy (strike 2/3)
+[34m2026-03-20 17:22:27.007[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 11: response='[{"tag": "x-response-message", "value": "*"}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:27.024[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 10: response='[{"tag": "x-response-message", "value": "*"}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:27.042[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 12: response='[{"tag": "x-response-message", "value": "*"}, {"tag": "x-response-number", "value": -1}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:27.043[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 11: response='[{"tag": "x-response-message", "value": "*"}, {"tag": "x-response-number", "value": 2}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:27.072[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2w2w08pctj19xe05q60d: [{'tag': 'x-response-message', 'value': '*'}]
+[34m2026-03-20 17:22:27.073[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2w2w08p9tj192o8c61ty: [{'tag': 'x-response-message', 'value': '*'}]
+[34m2026-03-20 17:22:27.074[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2w2w08pbtj19o1508b0e: [{'tag': 'x-response-message', 'value': '*'}, {'tag': 'x-response-number', 'value': -1}]
+[34m2026-03-20 17:22:27.076[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2w2x08petj191gi2d4rn: [{'tag': 'x-response-message', 'value': '*'}, {'tag': 'x-response-number', 'value': 2}]
+[34m2026-03-20 17:22:27.996[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 3 at AxonInfo( /ipv4/198.72.219.125:8092, 5ECw9riBibWbNrEo1xX4fwXtq88TMonQRwW8Nevve3oVAWXp, 5FZCeHJLCLMbY8bHHxUjd9t2iGBV6eryvvYPNyHUFYAnHyQD, 10001000 )
+[34m2026-03-20 17:22:28.068[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 3: response=None, dendrite.status_code=403, dendrite.status_message=Forbidden. Key is blacklisted: Unrecognized hotkey., axon.status_code=403
+[34m2026-03-20 17:22:28.068[39m | [1m[33mWARNING [39m[49m[0m | bittensor:forward.py:212 | Miner 3 returned no response for game cmmzl2w2w08p8tj19zstxmrzy (strike 3/3)
+[34m2026-03-20 17:22:28.068[39m | [1m[31m ERROR  [39m[49m[0m | bittensor:forward.py:217 | Miner 3 exceeded 3 error strikes in game cmmzl2w2w08p8tj19zstxmrzy. Penalizing with zero score.
+[34m2026-03-20 17:22:28.068[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:manager.py:79 | Game cmmzl2w2w08p8tj19zstxmrzy result: error for miner 3 | all-time(wins=0, losses=0, errors=11, total=11) | window(0 games, wr=0.00%) | protection=True | staleness=1.00
+[34m2026-03-20 17:22:28.069[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:manager.py:162 | Saved game stats to /Users/jeremywang/.bittensor/miners/validator2/default/netuid44/validator/game_stats.json
+[34m2026-03-20 17:22:28.070[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:318 | Scattered rewards: [0.         0.         0.53543264 0.98201376 0.         0.
+ 0.         0.         0.         0.         0.         0.98201376
+ 0.         0.98201376]
+[34m2026-03-20 17:22:28.070[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:326 | Updated moving avg scores: [0.         0.         0.5810202  0.9819999  0.13262643 0.
+ 0.         0.04624499 0.27733055 0.7158779  0.02457313 0.9819815
+ 0.00618285 0.98197794]
+[34m2026-03-20 17:22:28.070[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 4/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:22:29.116[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 11 at AxonInfo( /ipv4/198.72.219.125:8098, 5FkFQNGuQnE9PbgoknbVg3iLdk5n8niqoXRvZH9MGS9UVkzA, 5GNUkZDFqgAozzbdCVAkx4HsQzcitBxpNWxtBuEYnQAFjhoc, 10001000 )
+[34m2026-03-20 17:22:29.135[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 12 at AxonInfo( /ipv4/198.72.219.125:8099, 5FZGaCux8vL4srzkuV9CZEVtFEPpnGFroHC82JwfUbh2ARa3, 5EC9aeHDNMzXQco96t5TtWYF462evhpourbgk97ftdcXixnt, 10001000 )
+[34m2026-03-20 17:22:29.135[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 10 at AxonInfo( /ipv4/198.72.219.125:8097, 5CqbPn5kcrsr7xu3r61uKQNDU9c1qeWAPBfsc3zKmfqRU6mD, 5GZBJk1PQcQgsXb4Ts45XAiaZa9JNvKaS9BtsAcaNahiMrZp, 10001000 )
+[34m2026-03-20 17:22:29.136[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 11 at AxonInfo( /ipv4/198.72.219.125:8098, 5FkFQNGuQnE9PbgoknbVg3iLdk5n8niqoXRvZH9MGS9UVkzA, 5GNUkZDFqgAozzbdCVAkx4HsQzcitBxpNWxtBuEYnQAFjhoc, 10001000 )
+[34m2026-03-20 17:22:29.219[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 11: response='[{"tag": "x-response-message", "value": "*"}, {"tag": "x-response-number", "value": -1}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:29.220[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 12: response='[{"tag": "x-response-message", "value": "*"}, {"tag": "x-response-number", "value": 8}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:29.253[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 10: response='[{"tag": "x-response-message", "value": "*"}, {"tag": "x-response-number", "value": 9}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:29.254[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 11: response='[{"tag": "x-response-number", "value": 8}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:29.283[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2w2x08petj191gi2d4rn: [{'tag': 'x-response-number', 'value': 8}]
+[34m2026-03-20 17:22:29.284[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2w2w08pbtj19o1508b0e: [{'tag': 'x-response-message', 'value': '*'}, {'tag': 'x-response-number', 'value': 8}]
+[34m2026-03-20 17:22:29.284[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2w2w08pctj19xe05q60d: [{'tag': 'x-response-message', 'value': '*'}, {'tag': 'x-response-number', 'value': -1}]
+[34m2026-03-20 17:22:29.286[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2w2w08p9tj192o8c61ty: [{'tag': 'x-response-message', 'value': '*'}, {'tag': 'x-response-number', 'value': 9}]
+[34m2026-03-20 17:22:31.342[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 12 at AxonInfo( /ipv4/198.72.219.125:8099, 5FZGaCux8vL4srzkuV9CZEVtFEPpnGFroHC82JwfUbh2ARa3, 5EC9aeHDNMzXQco96t5TtWYF462evhpourbgk97ftdcXixnt, 10001000 )
+[34m2026-03-20 17:22:31.361[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 10 at AxonInfo( /ipv4/198.72.219.125:8097, 5CqbPn5kcrsr7xu3r61uKQNDU9c1qeWAPBfsc3zKmfqRU6mD, 5GZBJk1PQcQgsXb4Ts45XAiaZa9JNvKaS9BtsAcaNahiMrZp, 10001000 )
+[34m2026-03-20 17:22:31.379[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 11 at AxonInfo( /ipv4/198.72.219.125:8098, 5FkFQNGuQnE9PbgoknbVg3iLdk5n8niqoXRvZH9MGS9UVkzA, 5GNUkZDFqgAozzbdCVAkx4HsQzcitBxpNWxtBuEYnQAFjhoc, 10001000 )
+[34m2026-03-20 17:22:31.413[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 12: response='[{"tag": "x-response-number", "value": 1}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:31.431[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 10: response='[{"tag": "x-response-number", "value": 1}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:31.448[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 11: response='[{"tag": "x-response-message", "value": "*"}, {"tag": "x-response-number", "value": -1}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:31.479[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2w2w08pbtj19o1508b0e: [{'tag': 'x-response-number', 'value': 1}]
+[34m2026-03-20 17:22:31.481[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2w2w08p9tj192o8c61ty: [{'tag': 'x-response-number', 'value': 1}]
+[34m2026-03-20 17:22:31.485[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2w2w08pctj19xe05q60d: [{'tag': 'x-response-message', 'value': '*'}, {'tag': 'x-response-number', 'value': -1}]
+[34m2026-03-20 17:22:31.928[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052551.9283662
+[34m2026-03-20 17:22:32.370[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 11 at AxonInfo( /ipv4/198.72.219.125:8098, 5FkFQNGuQnE9PbgoknbVg3iLdk5n8niqoXRvZH9MGS9UVkzA, 5GNUkZDFqgAozzbdCVAkx4HsQzcitBxpNWxtBuEYnQAFjhoc, 10001000 )
+[34m2026-03-20 17:22:32.424[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 11: response='[{"tag": "x-response-message", "value": "*"}, {"tag": "x-response-number", "value": 6}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:32.461[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2w2x08petj191gi2d4rn: [{'tag': 'x-response-message', 'value': '*'}, {'tag': 'x-response-number', 'value': 6}]
+[34m2026-03-20 17:22:33.542[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 11 at AxonInfo( /ipv4/198.72.219.125:8098, 5FkFQNGuQnE9PbgoknbVg3iLdk5n8niqoXRvZH9MGS9UVkzA, 5GNUkZDFqgAozzbdCVAkx4HsQzcitBxpNWxtBuEYnQAFjhoc, 10001000 )
+[34m2026-03-20 17:22:33.596[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 11: response='[{"tag": "x-response-number", "value": -1}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:33.619[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2w2w08pctj19xe05q60d: [{'tag': 'x-response-number', 'value': -1}]
+[34m2026-03-20 17:22:34.559[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 12 at AxonInfo( /ipv4/198.72.219.125:8099, 5FZGaCux8vL4srzkuV9CZEVtFEPpnGFroHC82JwfUbh2ARa3, 5EC9aeHDNMzXQco96t5TtWYF462evhpourbgk97ftdcXixnt, 10001000 )
+[34m2026-03-20 17:22:34.578[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 10 at AxonInfo( /ipv4/198.72.219.125:8097, 5CqbPn5kcrsr7xu3r61uKQNDU9c1qeWAPBfsc3zKmfqRU6mD, 5GZBJk1PQcQgsXb4Ts45XAiaZa9JNvKaS9BtsAcaNahiMrZp, 10001000 )
+[34m2026-03-20 17:22:34.614[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 12: response='[{"tag": "x-response-number", "value": 7}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:34.632[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 10: response='[{"tag": "x-response-message", "value": "*"}, {"tag": "x-response-number", "value": -1}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:34.647[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2w2w08pbtj19o1508b0e: [{'tag': 'x-response-number', 'value': 7}]
+[34m2026-03-20 17:22:34.662[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 11 at AxonInfo( /ipv4/198.72.219.125:8098, 5FkFQNGuQnE9PbgoknbVg3iLdk5n8niqoXRvZH9MGS9UVkzA, 5GNUkZDFqgAozzbdCVAkx4HsQzcitBxpNWxtBuEYnQAFjhoc, 10001000 )
+[34m2026-03-20 17:22:34.680[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2w2w08p9tj192o8c61ty: [{'tag': 'x-response-message', 'value': '*'}, {'tag': 'x-response-number', 'value': -1}]
+[34m2026-03-20 17:22:34.717[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 11: response='[{"tag": "x-response-number", "value": 2}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:34.742[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2w2w08pctj19xe05q60d: [{'tag': 'x-response-number', 'value': 2}]
+[34m2026-03-20 17:22:35.537[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:manager.py:79 | Game cmmzl2w2x08petj191gi2d4rn result: loss for miner 11 | all-time(wins=1, losses=6, errors=0, total=7) | window(7 games, wr=14.29%) | protection=True | staleness=1.00
+[34m2026-03-20 17:22:35.537[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:130 | Game cmmzl2w2x08petj191gi2d4rn ended: loss (role=werewolf, winner=good, dominance=0.00, vote_influence=0.00, survived=False)
+[34m2026-03-20 17:22:35.538[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:manager.py:162 | Saved game stats to /Users/jeremywang/.bittensor/miners/validator2/default/netuid44/validator/game_stats.json
+[34m2026-03-20 17:22:35.538[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:318 | Scattered rewards: [0.         0.         0.5353665  0.98201376 0.         0.
+ 0.         0.         0.         0.         0.         0.98201376
+ 0.         0.98201376]
+[34m2026-03-20 17:22:35.538[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:326 | Updated moving avg scores: [0.         0.         0.5764548  0.98200125 0.11936378 0.
+ 0.         0.04162049 0.24959749 0.6442901  0.02211581 0.98198473
+ 0.00556456 0.9819815 ]
+[34m2026-03-20 17:22:35.538[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 4/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:22:36.929[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052556.929141
+[34m2026-03-20 17:22:37.711[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:manager.py:79 | Game cmmzl2w2w08pbtj19o1508b0e result: loss for miner 12 | all-time(wins=2, losses=12, errors=0, total=14) | window(14 games, wr=14.29%) | protection=False | staleness=1.00
+[34m2026-03-20 17:22:37.711[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:130 | Game cmmzl2w2w08pbtj19o1508b0e ended: loss (role=werewolf, winner=good, dominance=0.00, vote_influence=0.00, survived=False)
+[34m2026-03-20 17:22:37.711[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:manager.py:162 | Saved game stats to /Users/jeremywang/.bittensor/miners/validator2/default/netuid44/validator/game_stats.json
+[34m2026-03-20 17:22:37.712[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:318 | Scattered rewards: [0.         0.         0.5353472  0.98201376 0.         0.
+ 0.         0.         0.         0.         0.         0.98201376
+ 0.         0.98201376]
+[34m2026-03-20 17:22:37.712[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:326 | Updated moving avg scores: [0.         0.         0.57234406 0.9820025  0.1074274  0.
+ 0.         0.03745843 0.22463773 0.57986104 0.01990423 0.98198766
+ 0.00500811 0.98198473]
+[34m2026-03-20 17:22:37.712[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 4/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:22:37.747[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 10 at AxonInfo( /ipv4/198.72.219.125:8097, 5CqbPn5kcrsr7xu3r61uKQNDU9c1qeWAPBfsc3zKmfqRU6mD, 5GZBJk1PQcQgsXb4Ts45XAiaZa9JNvKaS9BtsAcaNahiMrZp, 10001000 )
+[34m2026-03-20 17:22:37.815[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 11 at AxonInfo( /ipv4/198.72.219.125:8098, 5FkFQNGuQnE9PbgoknbVg3iLdk5n8niqoXRvZH9MGS9UVkzA, 5GNUkZDFqgAozzbdCVAkx4HsQzcitBxpNWxtBuEYnQAFjhoc, 10001000 )
+[34m2026-03-20 17:22:37.880[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 11: response='[{"tag": "x-response-number", "value": 5}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:37.917[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2w2w08pctj19xe05q60d: [{'tag': 'x-response-number', 'value': 5}]
+[34m2026-03-20 17:22:37.941[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 10: response='[{"tag": "x-response-number", "value": 6}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:37.972[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2w2w08p9tj192o8c61ty: [{'tag': 'x-response-number', 'value': 6}]
+[34m2026-03-20 17:22:41.931[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052561.9319391
+[34m2026-03-20 17:22:42.027[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 11 at AxonInfo( /ipv4/198.72.219.125:8098, 5FkFQNGuQnE9PbgoknbVg3iLdk5n8niqoXRvZH9MGS9UVkzA, 5GNUkZDFqgAozzbdCVAkx4HsQzcitBxpNWxtBuEYnQAFjhoc, 10001000 )
+[34m2026-03-20 17:22:42.086[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 11: response='[{"tag": "x-response-message", "value": "*"}, {"tag": "x-response-number", "value": 8}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:42.088[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 10 at AxonInfo( /ipv4/198.72.219.125:8097, 5CqbPn5kcrsr7xu3r61uKQNDU9c1qeWAPBfsc3zKmfqRU6mD, 5GZBJk1PQcQgsXb4Ts45XAiaZa9JNvKaS9BtsAcaNahiMrZp, 10001000 )
+[34m2026-03-20 17:22:42.141[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 10: response='[{"tag": "x-response-number", "value": 4}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:42.154[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2w2w08pctj19xe05q60d: [{'tag': 'x-response-message', 'value': '*'}, {'tag': 'x-response-number', 'value': 8}]
+[34m2026-03-20 17:22:42.179[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2w2w08p9tj192o8c61ty: [{'tag': 'x-response-number', 'value': 4}]
+[34m2026-03-20 17:22:46.429[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 11 at AxonInfo( /ipv4/198.72.219.125:8098, 5FkFQNGuQnE9PbgoknbVg3iLdk5n8niqoXRvZH9MGS9UVkzA, 5GNUkZDFqgAozzbdCVAkx4HsQzcitBxpNWxtBuEYnQAFjhoc, 10001000 )
+[34m2026-03-20 17:22:46.485[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 11: response='[{"tag": "x-response-number", "value": 9}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:46.520[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2w2w08pctj19xe05q60d: [{'tag': 'x-response-number', 'value': 9}]
+[34m2026-03-20 17:22:46.933[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052566.933811
+[34m2026-03-20 17:22:47.457[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 10 at AxonInfo( /ipv4/198.72.219.125:8097, 5CqbPn5kcrsr7xu3r61uKQNDU9c1qeWAPBfsc3zKmfqRU6mD, 5GZBJk1PQcQgsXb4Ts45XAiaZa9JNvKaS9BtsAcaNahiMrZp, 10001000 )
+[34m2026-03-20 17:22:47.511[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 10: response='[{"tag": "x-response-number", "value": -1}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:47.543[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2w2w08p9tj192o8c61ty: [{'tag': 'x-response-number', 'value': -1}]
+[34m2026-03-20 17:22:51.678[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:manager.py:79 | Game cmmzl2w2w08pctj19xe05q60d result: win for miner 11 | all-time(wins=2, losses=6, errors=0, total=8) | window(8 games, wr=25.00%) | protection=True | staleness=1.00
+[34m2026-03-20 17:22:51.678[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:130 | Game cmmzl2w2w08pctj19xe05q60d ended: win (role=werewolf, winner=evil, dominance=0.33, vote_influence=0.00, survived=True)
+[34m2026-03-20 17:22:51.679[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:manager.py:162 | Saved game stats to /Users/jeremywang/.bittensor/miners/validator2/default/netuid44/validator/game_stats.json
+[34m2026-03-20 17:22:51.679[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:318 | Scattered rewards: [0.         0.         0.5352235  0.98201376 0.         0.
+ 0.         0.         0.         0.         0.         0.98201376
+ 0.         0.98201376]
+[34m2026-03-20 17:22:51.679[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:326 | Updated moving avg scores: [0.         0.         0.568632   0.9820036  0.09668466 0.
+ 0.         0.03371259 0.20217395 0.5218749  0.01791381 0.9819903
+ 0.00450729 0.98198766]
+[34m2026-03-20 17:22:51.679[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 4/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:22:51.937[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052571.9372292
+[34m2026-03-20 17:22:52.693[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 10 at AxonInfo( /ipv4/198.72.219.125:8097, 5CqbPn5kcrsr7xu3r61uKQNDU9c1qeWAPBfsc3zKmfqRU6mD, 5GZBJk1PQcQgsXb4Ts45XAiaZa9JNvKaS9BtsAcaNahiMrZp, 10001000 )
+[34m2026-03-20 17:22:52.745[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 10: response='[{"tag": "x-response-message", "value": "*"}, {"tag": "x-response-number", "value": -1}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:52.776[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2w2w08p9tj192o8c61ty: [{'tag': 'x-response-message', 'value': '*'}, {'tag': 'x-response-number', 'value': -1}]
+[34m2026-03-20 17:22:56.873[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 10 at AxonInfo( /ipv4/198.72.219.125:8097, 5CqbPn5kcrsr7xu3r61uKQNDU9c1qeWAPBfsc3zKmfqRU6mD, 5GZBJk1PQcQgsXb4Ts45XAiaZa9JNvKaS9BtsAcaNahiMrZp, 10001000 )
+[34m2026-03-20 17:22:56.927[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 10: response='[{"tag": "x-response-number", "value": 2}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:56.937[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052576.9377432
+[34m2026-03-20 17:22:56.957[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2w2w08p9tj192o8c61ty: [{'tag': 'x-response-number', 'value': 2}]
+[34m2026-03-20 17:23:01.942[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052581.942295
+[34m2026-03-20 17:23:02.105[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 10 at AxonInfo( /ipv4/198.72.219.125:8097, 5CqbPn5kcrsr7xu3r61uKQNDU9c1qeWAPBfsc3zKmfqRU6mD, 5GZBJk1PQcQgsXb4Ts45XAiaZa9JNvKaS9BtsAcaNahiMrZp, 10001000 )
+[34m2026-03-20 17:23:02.162[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 10: response='[{"tag": "x-response-message", "value": "*"}, {"tag": "x-response-number", "value": -1}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:23:02.204[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2w2w08p9tj192o8c61ty: [{'tag': 'x-response-message', 'value': '*'}, {'tag': 'x-response-number', 'value': -1}]
+[34m2026-03-20 17:23:06.946[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052586.946623
+[34m2026-03-20 17:23:07.341[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:manager.py:79 | Game cmmzl2w2w08p9tj192o8c61ty result: win for miner 10 | all-time(wins=3, losses=12, errors=0, total=15) | window(15 games, wr=20.00%) | protection=False | staleness=1.00
+[34m2026-03-20 17:23:07.341[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:130 | Game cmmzl2w2w08p9tj192o8c61ty ended: win (role=werewolf, winner=evil, dominance=0.33, vote_influence=0.00, survived=False)
+[34m2026-03-20 17:23:07.342[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:manager.py:162 | Saved game stats to /Users/jeremywang/.bittensor/miners/validator2/default/netuid44/validator/game_stats.json
+[34m2026-03-20 17:23:07.342[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:318 | Scattered rewards: [0.         0.         0.5350847  0.98201376 0.         0.
+ 0.         0.         0.         0.         0.         0.98201376
+ 0.         0.98201376]
+[34m2026-03-20 17:23:07.342[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:326 | Updated moving avg scores: [0.         0.         0.5652773  0.98200464 0.08701619 0.
+ 0.         0.03034133 0.18195654 0.4696874  0.01612243 0.9819926
+ 0.00405656 0.9819903 ]
+[34m2026-03-20 17:23:07.342[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 4/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:23:08.727[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:330 | Saving validator state.
+[34m2026-03-20 17:23:08.728[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:116 | Sleeping for a while before next iteration...
+[34m2026-03-20 17:23:11.951[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052591.951178
+/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/resource_tracker.py:279: UserWarning: resource_tracker: There appear to be 3 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '
+
+=========================================
+=== VALIDATOR 3 ===
+=========================================
+ 0.8776941  0.        ]
+[34m2026-03-20 17:21:17.204[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:326 | Updated moving avg scores: [0.0000000e+00 0.0000000e+00 7.8327760e-02 9.8200774e-01 9.1815090e-01
+ 0.0000000e+00 0.0000000e+00 2.8402790e-01 1.4738369e-01 9.8199469e-01
+ 9.8201019e-01 9.8199260e-01 8.8271183e-01 3.5596630e-04]
+[34m2026-03-20 17:21:17.204[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 6/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:21:19.235[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:manager.py:79 | Game cmmzl10x708cltj198dd05ed2 result: loss for miner 9 | all-time(wins=2, losses=7, errors=0, total=9) | window(9 games, wr=22.22%) | protection=True | staleness=1.00
+[34m2026-03-20 17:21:19.235[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:130 | Game cmmzl10x708cltj198dd05ed2 ended: loss (role=werewolf, winner=good, dominance=0.00, vote_influence=0.00, survived=False)
+[34m2026-03-20 17:21:19.236[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:manager.py:162 | Saved game stats to /Users/jeremywang/.bittensor/miners/validator3/default/netuid44/validator/game_stats.json
+[34m2026-03-20 17:21:19.236[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:318 | Scattered rewards: [0.         0.         0.         0.98201376 0.95633185 0.
+ 0.         0.         0.         0.98201376 0.98201376 0.98201376
+ 0.87768394 0.        ]
+[34m2026-03-20 17:21:19.236[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:326 | Updated moving avg scores: [0.0000000e+00 0.0000000e+00 7.0494980e-02 9.8200834e-01 9.2196900e-01
+ 0.0000000e+00 0.0000000e+00 2.5562510e-01 1.3264532e-01 9.8199660e-01
+ 9.8201054e-01 9.8199469e-01 8.8220900e-01 3.2036967e-04]
+[34m2026-03-20 17:21:19.236[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 6/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:21:21.126[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:330 | Saving validator state.
+[34m2026-03-20 17:21:21.127[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:116 | Sleeping for a while before next iteration...
+[34m2026-03-20 17:21:21.758[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052481.758235
+[34m2026-03-20 17:21:26.759[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052486.7590468
+[34m2026-03-20 17:21:31.767[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052491.7678232
+[34m2026-03-20 17:21:36.778[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052496.7779782
+[34m2026-03-20 17:21:41.787[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052501.78719
+[34m2026-03-20 17:21:46.796[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052506.796779
+[34m2026-03-20 17:21:51.806[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052511.806005
+[34m2026-03-20 17:21:56.816[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052516.816339
+[34m2026-03-20 17:22:01.825[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052521.825427
+[34m2026-03-20 17:22:06.835[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052526.835724
+[34m2026-03-20 17:22:11.840[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052531.84078
+[34m2026-03-20 17:22:16.844[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052536.844547
+[34m2026-03-20 17:22:21.340[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:102 | step(24) block(6728715)
+[34m2026-03-20 17:22:21.344[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:49 | Selected miner UID 2 for Werewolf game
+[34m2026-03-20 17:22:21.346[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:49 | Selected miner UID 13 for Werewolf game
+[34m2026-03-20 17:22:21.347[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:49 | Selected miner UID 11 for Werewolf game
+[34m2026-03-20 17:22:21.348[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:49 | Selected miner UID 8 for Werewolf game
+[34m2026-03-20 17:22:21.349[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:49 | Selected miner UID 12 for Werewolf game
+[34m2026-03-20 17:22:21.468[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:client.py:55 | Started game: cmmzl2tod08m2tj192v95s800
+[34m2026-03-20 17:22:21.468[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:manager.py:40 | Registered game cmmzl2tod08m2tj192v95s800 for miner 11 as werewolf
+[34m2026-03-20 17:22:21.469[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:client.py:55 | Started game: cmmzl2tod08m5tj19ltpapfho
+[34m2026-03-20 17:22:21.469[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:manager.py:40 | Registered game cmmzl2tod08m5tj19ltpapfho for miner 2 as werewolf
+[34m2026-03-20 17:22:21.470[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:client.py:55 | Started game: cmmzl2tod08m4tj198xerfucy
+[34m2026-03-20 17:22:21.470[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:manager.py:40 | Registered game cmmzl2tod08m4tj198xerfucy for miner 12 as werewolf
+[34m2026-03-20 17:22:21.470[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:client.py:55 | Started game: cmmzl2tod08m6tj19sbtfedst
+[34m2026-03-20 17:22:21.470[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:manager.py:40 | Registered game cmmzl2tod08m6tj19sbtfedst for miner 8 as werewolf
+[34m2026-03-20 17:22:21.471[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:client.py:55 | Started game: cmmzl2tod08m3tj19cmwku39m
+[34m2026-03-20 17:22:21.471[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:manager.py:40 | Registered game cmmzl2tod08m3tj19cmwku39m for miner 13 as werewolf
+[34m2026-03-20 17:22:21.845[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052541.8459342
+[34m2026-03-20 17:22:22.510[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 2 at AxonInfo( /ipv4/198.72.219.125:8091, 5ECYTs4izqCHVggTGeKPqg7ahfQHWofmti8Yv7pJVByJBG8e, 5CZkgWE8nLgYgEMeVxD46gBAZCA1E7g3oUESnDWf6bS4PxcV, 10001000 )
+[34m2026-03-20 17:22:22.511[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 8 at AxonInfo( /ipv4/198.72.219.125:8095, 5GHiT9TSfjscjiCYUAXsWMq1Jvd75oSgwVspxHwidUKnxEfD, 5G1UNXXoyaMuNMu2GDqMGcPqXmej8v8STWu1UGS4QF7c8J5N, 10001000 )
+[34m2026-03-20 17:22:22.511[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 13 at AxonInfo( /ipv4/198.72.219.125:8100, 5CRnGSv1gqUnrUwW9xLULyZ44dXQPWpAR8EurcrhmP2Xopi9, 5CQLghjLGN6NjJUjDEA4RW4GeFNrfj7FB295Y5SHXUMbmhf4, 10001000 )
+[34m2026-03-20 17:22:22.512[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 12 at AxonInfo( /ipv4/198.72.219.125:8099, 5FZGaCux8vL4srzkuV9CZEVtFEPpnGFroHC82JwfUbh2ARa3, 5EC9aeHDNMzXQco96t5TtWYF462evhpourbgk97ftdcXixnt, 10001000 )
+[34m2026-03-20 17:22:22.579[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 11 at AxonInfo( /ipv4/198.72.219.125:8098, 5FkFQNGuQnE9PbgoknbVg3iLdk5n8niqoXRvZH9MGS9UVkzA, 5GNUkZDFqgAozzbdCVAkx4HsQzcitBxpNWxtBuEYnQAFjhoc, 10001000 )
+[34m2026-03-20 17:22:22.680[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 13: response='[{"tag": "x-response-number", "value": -1}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:22.680[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 8: response='[{"tag": "x-response-number", "value": 3}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:22.681[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 2: response='[{"tag": "x-response-number", "value": 4}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:22.697[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 11: response='[{"tag": "x-response-number", "value": 6}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:22.697[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 12: response='[{"tag": "x-response-number", "value": 1}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:22.724[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2tod08m3tj19cmwku39m: [{'tag': 'x-response-number', 'value': -1}]
+[34m2026-03-20 17:22:22.725[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2tod08m4tj198xerfucy: [{'tag': 'x-response-number', 'value': 1}]
+[34m2026-03-20 17:22:22.728[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2tod08m2tj192v95s800: [{'tag': 'x-response-number', 'value': 6}]
+[34m2026-03-20 17:22:22.728[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2tod08m6tj19sbtfedst: [{'tag': 'x-response-number', 'value': 3}]
+[34m2026-03-20 17:22:22.728[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2tod08m5tj19ltpapfho: [{'tag': 'x-response-number', 'value': 4}]
+[34m2026-03-20 17:22:23.797[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 12 at AxonInfo( /ipv4/198.72.219.125:8099, 5FZGaCux8vL4srzkuV9CZEVtFEPpnGFroHC82JwfUbh2ARa3, 5EC9aeHDNMzXQco96t5TtWYF462evhpourbgk97ftdcXixnt, 10001000 )
+[34m2026-03-20 17:22:23.829[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 8 at AxonInfo( /ipv4/198.72.219.125:8095, 5GHiT9TSfjscjiCYUAXsWMq1Jvd75oSgwVspxHwidUKnxEfD, 5G1UNXXoyaMuNMu2GDqMGcPqXmej8v8STWu1UGS4QF7c8J5N, 10001000 )
+[34m2026-03-20 17:22:23.830[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 13 at AxonInfo( /ipv4/198.72.219.125:8100, 5CRnGSv1gqUnrUwW9xLULyZ44dXQPWpAR8EurcrhmP2Xopi9, 5CQLghjLGN6NjJUjDEA4RW4GeFNrfj7FB295Y5SHXUMbmhf4, 10001000 )
+[34m2026-03-20 17:22:23.894[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 11 at AxonInfo( /ipv4/198.72.219.125:8098, 5FkFQNGuQnE9PbgoknbVg3iLdk5n8niqoXRvZH9MGS9UVkzA, 5GNUkZDFqgAozzbdCVAkx4HsQzcitBxpNWxtBuEYnQAFjhoc, 10001000 )
+[34m2026-03-20 17:22:23.895[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 2 at AxonInfo( /ipv4/198.72.219.125:8091, 5ECYTs4izqCHVggTGeKPqg7ahfQHWofmti8Yv7pJVByJBG8e, 5CZkgWE8nLgYgEMeVxD46gBAZCA1E7g3oUESnDWf6bS4PxcV, 10001000 )
+[34m2026-03-20 17:22:23.935[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 12: response='[{"tag": "x-response-message", "value": "*"}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:23.955[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 8: response='[{"tag": "x-response-message", "value": "*"}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:23.980[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 13: response='[{"tag": "x-response-message", "value": "*"}, {"tag": "x-response-number", "value": 8}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:24.013[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 11: response='[{"tag": "x-response-message", "value": "*"}, {"tag": "x-response-number", "value": 7}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:24.013[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 2: response='[{"tag": "x-response-message", "value": "*"}, {"tag": "x-response-number", "value": 3}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:24.014[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2tod08m4tj198xerfucy: [{'tag': 'x-response-message', 'value': '*'}]
+[34m2026-03-20 17:22:24.043[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2tod08m6tj19sbtfedst: [{'tag': 'x-response-message', 'value': '*'}]
+[34m2026-03-20 17:22:24.047[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2tod08m5tj19ltpapfho: [{'tag': 'x-response-message', 'value': '*'}, {'tag': 'x-response-number', 'value': 3}]
+[34m2026-03-20 17:22:24.047[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2tod08m2tj192v95s800: [{'tag': 'x-response-message', 'value': '*'}, {'tag': 'x-response-number', 'value': 7}]
+[34m2026-03-20 17:22:24.048[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2tod08m3tj19cmwku39m: [{'tag': 'x-response-message', 'value': '*'}, {'tag': 'x-response-number', 'value': 8}]
+[34m2026-03-20 17:22:25.041[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 12 at AxonInfo( /ipv4/198.72.219.125:8099, 5FZGaCux8vL4srzkuV9CZEVtFEPpnGFroHC82JwfUbh2ARa3, 5EC9aeHDNMzXQco96t5TtWYF462evhpourbgk97ftdcXixnt, 10001000 )
+[34m2026-03-20 17:22:25.096[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 12: response='[{"tag": "x-response-message", "value": "*"}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:25.120[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2tod08m4tj198xerfucy: [{'tag': 'x-response-message', 'value': '*'}]
+[34m2026-03-20 17:22:26.128[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 11 at AxonInfo( /ipv4/198.72.219.125:8098, 5FkFQNGuQnE9PbgoknbVg3iLdk5n8niqoXRvZH9MGS9UVkzA, 5GNUkZDFqgAozzbdCVAkx4HsQzcitBxpNWxtBuEYnQAFjhoc, 10001000 )
+[34m2026-03-20 17:22:26.148[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 8 at AxonInfo( /ipv4/198.72.219.125:8095, 5GHiT9TSfjscjiCYUAXsWMq1Jvd75oSgwVspxHwidUKnxEfD, 5G1UNXXoyaMuNMu2GDqMGcPqXmej8v8STWu1UGS4QF7c8J5N, 10001000 )
+[34m2026-03-20 17:22:26.167[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 13 at AxonInfo( /ipv4/198.72.219.125:8100, 5CRnGSv1gqUnrUwW9xLULyZ44dXQPWpAR8EurcrhmP2Xopi9, 5CQLghjLGN6NjJUjDEA4RW4GeFNrfj7FB295Y5SHXUMbmhf4, 10001000 )
+[34m2026-03-20 17:22:26.168[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 2 at AxonInfo( /ipv4/198.72.219.125:8091, 5ECYTs4izqCHVggTGeKPqg7ahfQHWofmti8Yv7pJVByJBG8e, 5CZkgWE8nLgYgEMeVxD46gBAZCA1E7g3oUESnDWf6bS4PxcV, 10001000 )
+[34m2026-03-20 17:22:26.203[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 12 at AxonInfo( /ipv4/198.72.219.125:8099, 5FZGaCux8vL4srzkuV9CZEVtFEPpnGFroHC82JwfUbh2ARa3, 5EC9aeHDNMzXQco96t5TtWYF462evhpourbgk97ftdcXixnt, 10001000 )
+[34m2026-03-20 17:22:26.255[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 11: response='[{"tag": "x-response-number", "value": 5}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:26.272[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 8: response='[{"tag": "x-response-message", "value": "*"}, {"tag": "x-response-number", "value": 5}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:26.290[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 13: response='[{"tag": "x-response-number", "value": 4}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:26.308[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 2: response='[{"tag": "x-response-number", "value": 7}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:26.309[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 12: response='[{"tag": "x-response-message", "value": "*"}, {"tag": "x-response-number", "value": -1}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:26.350[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2tod08m5tj19ltpapfho: [{'tag': 'x-response-number', 'value': 7}]
+[34m2026-03-20 17:22:26.352[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2tod08m2tj192v95s800: [{'tag': 'x-response-number', 'value': 5}]
+[34m2026-03-20 17:22:26.352[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2tod08m3tj19cmwku39m: [{'tag': 'x-response-number', 'value': 4}]
+[34m2026-03-20 17:22:26.353[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2tod08m6tj19sbtfedst: [{'tag': 'x-response-message', 'value': '*'}, {'tag': 'x-response-number', 'value': 5}]
+[34m2026-03-20 17:22:26.354[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2tod08m4tj198xerfucy: [{'tag': 'x-response-message', 'value': '*'}, {'tag': 'x-response-number', 'value': -1}]
+[34m2026-03-20 17:22:26.848[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052546.848822
+[34m2026-03-20 17:22:28.412[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 12 at AxonInfo( /ipv4/198.72.219.125:8099, 5FZGaCux8vL4srzkuV9CZEVtFEPpnGFroHC82JwfUbh2ARa3, 5EC9aeHDNMzXQco96t5TtWYF462evhpourbgk97ftdcXixnt, 10001000 )
+[34m2026-03-20 17:22:28.431[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 8 at AxonInfo( /ipv4/198.72.219.125:8095, 5GHiT9TSfjscjiCYUAXsWMq1Jvd75oSgwVspxHwidUKnxEfD, 5G1UNXXoyaMuNMu2GDqMGcPqXmej8v8STWu1UGS4QF7c8J5N, 10001000 )
+[34m2026-03-20 17:22:28.467[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 12: response='[{"tag": "x-response-number", "value": 8}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:28.486[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 8: response='[{"tag": "x-response-number", "value": 4}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:28.497[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2tod08m4tj198xerfucy: [{'tag': 'x-response-number', 'value': 8}]
+[34m2026-03-20 17:22:28.513[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2tod08m6tj19sbtfedst: [{'tag': 'x-response-number', 'value': 4}]
+[34m2026-03-20 17:22:29.463[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 11 at AxonInfo( /ipv4/198.72.219.125:8098, 5FkFQNGuQnE9PbgoknbVg3iLdk5n8niqoXRvZH9MGS9UVkzA, 5GNUkZDFqgAozzbdCVAkx4HsQzcitBxpNWxtBuEYnQAFjhoc, 10001000 )
+[34m2026-03-20 17:22:29.483[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 2 at AxonInfo( /ipv4/198.72.219.125:8091, 5ECYTs4izqCHVggTGeKPqg7ahfQHWofmti8Yv7pJVByJBG8e, 5CZkgWE8nLgYgEMeVxD46gBAZCA1E7g3oUESnDWf6bS4PxcV, 10001000 )
+[34m2026-03-20 17:22:29.484[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 13 at AxonInfo( /ipv4/198.72.219.125:8100, 5CRnGSv1gqUnrUwW9xLULyZ44dXQPWpAR8EurcrhmP2Xopi9, 5CQLghjLGN6NjJUjDEA4RW4GeFNrfj7FB295Y5SHXUMbmhf4, 10001000 )
+[34m2026-03-20 17:22:29.535[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 11: response='[{"tag": "x-response-message", "value": "*"}, {"tag": "x-response-number", "value": 1}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:29.554[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 2: response='[{"tag": "x-response-message", "value": "*"}, {"tag": "x-response-number", "value": -1}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:29.572[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 13: response='[{"tag": "x-response-message", "value": "*"}, {"tag": "x-response-number", "value": -1}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:29.620[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2tod08m3tj19cmwku39m: [{'tag': 'x-response-message', 'value': '*'}, {'tag': 'x-response-number', 'value': -1}]
+[34m2026-03-20 17:22:29.621[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2tod08m5tj19ltpapfho: [{'tag': 'x-response-message', 'value': '*'}, {'tag': 'x-response-number', 'value': -1}]
+[34m2026-03-20 17:22:29.621[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2tod08m2tj192v95s800: [{'tag': 'x-response-message', 'value': '*'}, {'tag': 'x-response-number', 'value': 1}]
+[34m2026-03-20 17:22:31.632[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 12 at AxonInfo( /ipv4/198.72.219.125:8099, 5FZGaCux8vL4srzkuV9CZEVtFEPpnGFroHC82JwfUbh2ARa3, 5EC9aeHDNMzXQco96t5TtWYF462evhpourbgk97ftdcXixnt, 10001000 )
+[34m2026-03-20 17:22:31.662[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 8 at AxonInfo( /ipv4/198.72.219.125:8095, 5GHiT9TSfjscjiCYUAXsWMq1Jvd75oSgwVspxHwidUKnxEfD, 5G1UNXXoyaMuNMu2GDqMGcPqXmej8v8STWu1UGS4QF7c8J5N, 10001000 )
+[34m2026-03-20 17:22:31.698[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 12: response='[{"tag": "x-response-number", "value": -1}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:31.717[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 8: response='[{"tag": "x-response-message", "value": "*"}, {"tag": "x-response-number", "value": 8}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:31.750[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2tod08m4tj198xerfucy: [{'tag': 'x-response-number', 'value': -1}]
+[34m2026-03-20 17:22:31.755[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2tod08m6tj19sbtfedst: [{'tag': 'x-response-message', 'value': '*'}, {'tag': 'x-response-number', 'value': 8}]
+[34m2026-03-20 17:22:31.849[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052551.849576
+[34m2026-03-20 17:22:32.726[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 2 at AxonInfo( /ipv4/198.72.219.125:8091, 5ECYTs4izqCHVggTGeKPqg7ahfQHWofmti8Yv7pJVByJBG8e, 5CZkgWE8nLgYgEMeVxD46gBAZCA1E7g3oUESnDWf6bS4PxcV, 10001000 )
+[34m2026-03-20 17:22:32.744[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 13 at AxonInfo( /ipv4/198.72.219.125:8100, 5CRnGSv1gqUnrUwW9xLULyZ44dXQPWpAR8EurcrhmP2Xopi9, 5CQLghjLGN6NjJUjDEA4RW4GeFNrfj7FB295Y5SHXUMbmhf4, 10001000 )
+[34m2026-03-20 17:22:32.763[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:manager.py:79 | Game cmmzl2tod08m2tj192v95s800 result: loss for miner 11 | all-time(wins=1, losses=9, errors=0, total=10) | window(10 games, wr=10.00%) | protection=False | staleness=1.00
+[34m2026-03-20 17:22:32.763[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:130 | Game cmmzl2tod08m2tj192v95s800 ended: loss (role=werewolf, winner=good, dominance=0.00, vote_influence=0.00, survived=False)
+[34m2026-03-20 17:22:32.764[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:manager.py:162 | Saved game stats to /Users/jeremywang/.bittensor/miners/validator3/default/netuid44/validator/game_stats.json
+[34m2026-03-20 17:22:32.765[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:318 | Scattered rewards: [0.         0.         0.         0.98201376 0.95617    0.
+ 0.         0.         0.         0.98201376 0.98201376 0.
+ 0.877318   0.        ]
+[34m2026-03-20 17:22:32.765[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:326 | Updated moving avg scores: [0.0000000e+00 0.0000000e+00 6.3445479e-02 9.8200887e-01 9.2538905e-01
+ 0.0000000e+00 0.0000000e+00 2.3006259e-01 1.1938079e-01 9.8199832e-01
+ 9.8201084e-01 8.8379520e-01 8.8171989e-01 2.8833270e-04]
+[34m2026-03-20 17:22:32.765[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 5/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:22:32.801[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 13: response='[{"tag": "x-response-number", "value": 6}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:32.839[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2tod08m3tj19cmwku39m: [{'tag': 'x-response-number', 'value': 6}]
+[34m2026-03-20 17:22:32.906[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 2: response='[{"tag": "x-response-number", "value": 5}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:32.938[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2tod08m5tj19ltpapfho: [{'tag': 'x-response-number', 'value': 5}]
+[34m2026-03-20 17:22:34.866[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:manager.py:79 | Game cmmzl2tod08m6tj19sbtfedst result: loss for miner 8 | all-time(wins=2, losses=15, errors=0, total=17) | window(17 games, wr=11.76%) | protection=False | staleness=1.00
+[34m2026-03-20 17:22:34.867[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:130 | Game cmmzl2tod08m6tj19sbtfedst ended: loss (role=werewolf, winner=good, dominance=0.00, vote_influence=0.00, survived=False)
+[34m2026-03-20 17:22:34.868[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:manager.py:162 | Saved game stats to /Users/jeremywang/.bittensor/miners/validator3/default/netuid44/validator/game_stats.json
+[34m2026-03-20 17:22:34.868[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:318 | Scattered rewards: [0.         0.         0.         0.98201376 0.9561654  0.
+ 0.         0.         0.         0.98201376 0.98201376 0.
+ 0.87730753 0.        ]
+[34m2026-03-20 17:22:34.868[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:326 | Updated moving avg scores: [0.0000000e+00 0.0000000e+00 5.7100929e-02 9.8200935e-01 9.2846662e-01
+ 0.0000000e+00 0.0000000e+00 2.0705633e-01 1.0744271e-01 9.8199987e-01
+ 9.8201114e-01 7.9541564e-01 8.8127863e-01 2.5949941e-04]
+[34m2026-03-20 17:22:34.868[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 5/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:22:35.893[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 12 at AxonInfo( /ipv4/198.72.219.125:8099, 5FZGaCux8vL4srzkuV9CZEVtFEPpnGFroHC82JwfUbh2ARa3, 5EC9aeHDNMzXQco96t5TtWYF462evhpourbgk97ftdcXixnt, 10001000 )
+[34m2026-03-20 17:22:35.949[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 12: response='[{"tag": "x-response-message", "value": "*"}, {"tag": "x-response-number", "value": -1}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:35.985[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2tod08m4tj198xerfucy: [{'tag': 'x-response-message', 'value': '*'}, {'tag': 'x-response-number', 'value': -1}]
+[34m2026-03-20 17:22:36.002[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 2 at AxonInfo( /ipv4/198.72.219.125:8091, 5ECYTs4izqCHVggTGeKPqg7ahfQHWofmti8Yv7pJVByJBG8e, 5CZkgWE8nLgYgEMeVxD46gBAZCA1E7g3oUESnDWf6bS4PxcV, 10001000 )
+[34m2026-03-20 17:22:36.060[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 2: response='[{"tag": "x-response-message", "value": "*"}, {"tag": "x-response-number", "value": 1}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:36.361[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2tod08m5tj19ltpapfho: [{'tag': 'x-response-message', 'value': '*'}, {'tag': 'x-response-number', 'value': 1}]
+[34m2026-03-20 17:22:36.851[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052556.85183
+[34m2026-03-20 17:22:36.948[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 13 at AxonInfo( /ipv4/198.72.219.125:8100, 5CRnGSv1gqUnrUwW9xLULyZ44dXQPWpAR8EurcrhmP2Xopi9, 5CQLghjLGN6NjJUjDEA4RW4GeFNrfj7FB295Y5SHXUMbmhf4, 10001000 )
+[34m2026-03-20 17:22:37.001[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 13: response='[{"tag": "x-response-number", "value": -1}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:37.032[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2tod08m3tj19cmwku39m: [{'tag': 'x-response-number', 'value': -1}]
+[34m2026-03-20 17:22:39.448[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:manager.py:79 | Game cmmzl2tod08m5tj19ltpapfho result: loss for miner 2 | all-time(wins=2, losses=11, errors=0, total=13) | window(13 games, wr=15.38%) | protection=False | staleness=1.00
+[34m2026-03-20 17:22:39.448[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:130 | Game cmmzl2tod08m5tj19ltpapfho ended: loss (role=werewolf, winner=good, dominance=0.00, vote_influence=0.00, survived=False)
+[34m2026-03-20 17:22:39.449[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:manager.py:162 | Saved game stats to /Users/jeremywang/.bittensor/miners/validator3/default/netuid44/validator/game_stats.json
+[34m2026-03-20 17:22:39.449[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:318 | Scattered rewards: [0.         0.         0.         0.98201376 0.9561553  0.
+ 0.         0.         0.         0.98201376 0.98201376 0.
+ 0.8772847  0.        ]
+[34m2026-03-20 17:22:39.450[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:326 | Updated moving avg scores: [0.0000000e+00 0.0000000e+00 5.1390834e-02 9.8200977e-01 9.3123543e-01
+ 0.0000000e+00 0.0000000e+00 1.8635069e-01 9.6698433e-02 9.8200125e-01
+ 9.8201138e-01 7.1587408e-01 8.8087916e-01 2.3354946e-04]
+[34m2026-03-20 17:22:39.450[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 5/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:22:40.108[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 12 at AxonInfo( /ipv4/198.72.219.125:8099, 5FZGaCux8vL4srzkuV9CZEVtFEPpnGFroHC82JwfUbh2ARa3, 5EC9aeHDNMzXQco96t5TtWYF462evhpourbgk97ftdcXixnt, 10001000 )
+[34m2026-03-20 17:22:40.165[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 12: response='[{"tag": "x-response-number", "value": 3}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:40.206[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2tod08m4tj198xerfucy: [{'tag': 'x-response-number', 'value': 3}]
+[34m2026-03-20 17:22:41.852[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052561.852266
+[34m2026-03-20 17:22:42.169[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:176 | Sending synapse to miner 13 at AxonInfo( /ipv4/198.72.219.125:8100, 5CRnGSv1gqUnrUwW9xLULyZ44dXQPWpAR8EurcrhmP2Xopi9, 5CQLghjLGN6NjJUjDEA4RW4GeFNrfj7FB295Y5SHXUMbmhf4, 10001000 )
+[34m2026-03-20 17:22:42.224[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:forward.py:202 | Dendrite response from miner 13: response='[{"tag": "x-response-message", "value": "*"}, {"tag": "x-response-number", "value": 6}]', dendrite.status_code=200, dendrite.status_message=Success, axon.status_code=200
+[34m2026-03-20 17:22:42.265[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:232 | Submitted action for game cmmzl2tod08m3tj19cmwku39m: [{'tag': 'x-response-message', 'value': '*'}, {'tag': 'x-response-number', 'value': 6}]
+[34m2026-03-20 17:22:44.334[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:manager.py:79 | Game cmmzl2tod08m4tj198xerfucy result: loss for miner 12 | all-time(wins=4, losses=7, errors=0, total=11) | window(11 games, wr=36.36%) | protection=False | staleness=1.00
+[34m2026-03-20 17:22:44.334[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:130 | Game cmmzl2tod08m4tj198xerfucy ended: loss (role=werewolf, winner=good, dominance=0.00, vote_influence=0.18, survived=False)
+[34m2026-03-20 17:22:44.335[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:manager.py:162 | Saved game stats to /Users/jeremywang/.bittensor/miners/validator3/default/netuid44/validator/game_stats.json
+[34m2026-03-20 17:22:44.335[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:318 | Scattered rewards: [0.         0.         0.         0.98201376 0.9561445  0.
+ 0.         0.         0.         0.98201376 0.98201376 0.
+ 0.78120923 0.        ]
+[34m2026-03-20 17:22:44.335[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:326 | Updated moving avg scores: [0.0000000e+00 0.0000000e+00 4.6251748e-02 9.8201019e-01 9.3372631e-01
+ 0.0000000e+00 0.0000000e+00 1.6771561e-01 8.7028585e-02 9.8200250e-01
+ 9.8201162e-01 6.4428663e-01 8.7091219e-01 2.1019451e-04]
+[34m2026-03-20 17:22:44.335[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 5/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:22:46.856[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052566.856853
+[34m2026-03-20 17:22:47.477[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:manager.py:79 | Game cmmzl2tod08m3tj19cmwku39m result: loss for miner 13 | all-time(wins=4, losses=15, errors=0, total=19) | window(19 games, wr=21.05%) | protection=False | staleness=1.00
+[34m2026-03-20 17:22:47.477[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:130 | Game cmmzl2tod08m3tj19cmwku39m ended: loss (role=werewolf, winner=good, dominance=0.00, vote_influence=0.00, survived=False)
+[34m2026-03-20 17:22:47.478[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:manager.py:162 | Saved game stats to /Users/jeremywang/.bittensor/miners/validator3/default/netuid44/validator/game_stats.json
+[34m2026-03-20 17:22:47.478[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:318 | Scattered rewards: [0.         0.         0.         0.98201376 0.95613754 0.
+ 0.         0.         0.         0.98201376 0.98201376 0.
+ 0.78118664 0.        ]
+[34m2026-03-20 17:22:47.478[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:326 | Updated moving avg scores: [0.0000000e+00 0.0000000e+00 4.1626573e-02 9.8201054e-01 9.3596745e-01
+ 0.0000000e+00 0.0000000e+00 1.5094404e-01 7.8325726e-02 9.8200363e-01
+ 9.8201185e-01 5.7985795e-01 8.6193961e-01 1.8917506e-04]
+[34m2026-03-20 17:22:47.478[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 5/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:22:49.072[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:330 | Saving validator state.
+[34m2026-03-20 17:22:49.077[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:116 | Sleeping for a while before next iteration...
+[34m2026-03-20 17:22:51.861[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052571.86132
+[34m2026-03-20 17:22:56.861[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052576.861515
+[34m2026-03-20 17:23:01.865[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052581.865868
+[34m2026-03-20 17:23:06.871[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052586.871037
+[34m2026-03-20 17:23:11.876[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:25 | Validator running... 1774052591.876179
+/opt/homebrew/Cellar/python@3.12/3.12.13/Frameworks/Python.framework/Versions/3.12/lib/python3.12/multiprocessing/resource_tracker.py:279: UserWarning: resource_tracker: There appear to be 3 leaked semaphore objects to clean up at shutdown
+  warnings.warn('resource_tracker: There appear to be %d '
+

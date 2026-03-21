@@ -1,0 +1,170 @@
+# Mentiss Subnet — Weight Update Evidence
+# Collected: Fri Mar 20 22:28:23 PDT 2026
+# Netuid: 44
+
+=========================================
+=== set_weights LOG ENTRIES ===
+=========================================
+
+--- Validator 1 ---
+ 0.12399605 0.12060528 0.03148855 0.12402496] - processed_weights
+[34m2026-03-20 17:10:10.236[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:222 | [42993, 65535, 65526, 42413, 65535, 34821, 65487, 63696, 16630, 65502] - uint_weights
+[34m2026-03-20 17:10:13.080[39m | [1m[31m ERROR  [39m[49m[0m | bittensor:validator.py:238 | set_weights failed
+[34m2026-03-20 17:11:24.538[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 7/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:11:26.663[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 7/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:11:35.321[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 7/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:11:37.379[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 7/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:11:44.431[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 7/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+ 0.02006886 0.13389923] - raw_weights
+ 0.1338808  0.12296655 0.02006886 0.13389923] - processed_weights
+[34m2026-03-20 17:12:21.268[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:222 | [25385, 65535, 65530, 45738, 65535, 20560, 65507, 60166, 9820, 65516] - uint_weights
+[34m2026-03-20 17:12:24.058[39m | [1m[31m ERROR  [39m[49m[0m | bittensor:validator.py:238 | set_weights failed
+[34m2026-03-20 17:13:30.887[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 7/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:13:37.160[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 7/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:13:40.564[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 7/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:13:47.863[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 7/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:13:49.786[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 7/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+ 0.01246348 0.14084712] - raw_weights
+ 0.14083569 0.12716235 0.01246348 0.14084712] - processed_weights
+[34m2026-03-20 17:14:34.711[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:222 | [14989, 65535, 65532, 45482, 65535, 12140, 65518, 59157, 5798, 65524] - uint_weights
+[34m2026-03-20 17:14:39.872[39m | [1m[31m ERROR  [39m[49m[0m | bittensor:validator.py:238 | set_weights failed
+[34m2026-03-20 17:15:59.412[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 7/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:16:01.541[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 7/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:16:03.218[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 7/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:16:06.772[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 8/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:16:08.365[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 7/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+ 0.00756514 0.14479454] - raw_weights
+ 0.1447876  0.13325998 0.00756514 0.14479454] - processed_weights
+[34m2026-03-20 17:16:27.848[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:222 | [15678, 65535, 58979, 44880, 65535, 7169, 65525, 60308, 3424, 65528] - uint_weights
+[34m2026-03-20 17:16:50.259[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:236 | set_weights on chain successfully!
+[34m2026-03-20 17:17:56.536[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 7/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:18:06.105[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 7/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:18:11.372[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 7/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:18:11.496[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 7/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:18:17.186[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 7/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:19:51.388[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 7/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:20:01.972[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 6/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:20:11.620[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 6/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:20:11.655[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 6/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:20:17.060[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 6/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:21:29.673[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 6/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:21:30.712[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 6/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:21:32.788[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 5/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:21:35.981[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 5/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:21:37.103[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 5/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:22:46.442[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 5/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:22:51.749[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 5/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:22:51.752[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 5/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:22:57.981[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 5/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:22:58.167[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 5/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+
+--- Validator 2 ---
+[34m2026-03-20 17:07:21.696[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:222 | [65509, 65518, 65473, 65532, 65503, 65529, 65535, 65464, 18322, 65453] - uint_weights
+[34m2026-03-20 17:07:24.480[39m | [1m[31m ERROR  [39m[49m[0m | bittensor:validator.py:238 | set_weights failed
+[34m2026-03-20 17:08:34.654[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 9/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:08:38.061[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 8/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:08:40.136[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 8/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:08:41.762[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 8/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:08:49.601[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 8/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+ 0.01871796 0.11331572] - raw_weights
+ 0.07439273 0.11332656 0.01871796 0.11331573] - processed_weights
+[34m2026-03-20 17:09:53.477[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:222 | [65521, 65527, 65500, 65535, 65518, 65533, 42994, 65495, 10818, 65488] - uint_weights
+[34m2026-03-20 17:09:56.303[39m | [1m[31m ERROR  [39m[49m[0m | bittensor:validator.py:238 | set_weights failed
+[34m2026-03-20 17:11:00.701[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 8/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:11:06.215[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 8/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:11:11.290[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 7/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:11:24.126[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 7/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:11:50.514[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 7/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+ 0.01186762 0.12171739] - raw_weights
+ 0.0471667  0.12172426 0.01186762 0.12171739] - processed_weights
+[34m2026-03-20 17:12:45.294[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:222 | [65528, 65531, 65515, 47773, 65526, 65535, 25385, 65512, 6387, 65508] - uint_weights
+[34m2026-03-20 17:13:04.242[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:236 | set_weights on chain successfully!
+[34m2026-03-20 17:14:17.802[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 7/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:14:19.995[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 7/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:14:26.406[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 7/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:14:30.474[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 7/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:14:36.521[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 7/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:16:44.667[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 7/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:16:52.142[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 7/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:16:52.468[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 6/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:16:54.545[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 6/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:16:56.679[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 6/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:18:13.982[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 6/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:18:14.570[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 6/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:18:16.172[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 6/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:18:21.386[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 6/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:18:26.652[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 5/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:19:38.507[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 5/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:19:41.582[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 5/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:19:46.919[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 5/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:19:48.933[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 5/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:19:48.988[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 5/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:20:54.290[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 5/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:21:02.070[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 5/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:21:02.084[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 5/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:21:15.607[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 4/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:21:23.149[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 4/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:22:28.070[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 4/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:22:35.538[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 4/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:22:37.712[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 4/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:22:51.679[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 4/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:23:07.342[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 4/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+
+--- Validator 3 ---
+[34m2026-03-20 17:08:57.273[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:222 | [65534, 65529, 65522, 60078, 65517, 65498, 65535, 65493, 65506, 854] - uint_weights
+[34m2026-03-20 17:09:00.097[39m | [1m[31m ERROR  [39m[49m[0m | bittensor:validator.py:238 | set_weights failed
+[34m2026-03-20 17:10:06.641[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 9/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:10:10.714[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 9/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:10:15.049[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 9/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:10:19.168[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 9/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:10:45.888[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 9/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+ 0.11163937 0.0008684 ] - raw_weights
+ 0.11283141 0.11278846 0.11163938 0.0008684 ] - processed_weights
+[34m2026-03-20 17:11:01.685[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:222 | [65534, 65532, 65527, 56800, 65524, 65513, 65535, 65510, 64843, 504] - uint_weights
+[34m2026-03-20 17:11:04.458[39m | [1m[31m ERROR  [39m[49m[0m | bittensor:validator.py:238 | set_weights failed
+[34m2026-03-20 17:12:08.278[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 9/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:12:10.525[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 9/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:12:18.948[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 9/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:12:22.165[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 9/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:12:28.276[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 9/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+ 0.10873915 0.00051943] - raw_weights
+ 0.11429828 0.1142726  0.10873915 0.00051943] - processed_weights
+[34m2026-03-20 17:12:43.094[39m | [1m[34m DEBUG  [39m[49m[0m | bittensor:validator.py:222 | [65535, 65533, 64855, 52694, 65529, 65522, 65535, 65520, 62348, 298] - uint_weights
+[34m2026-03-20 17:13:00.453[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:validator.py:236 | set_weights on chain successfully!
+[34m2026-03-20 17:14:09.710[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 8/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:14:10.755[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 8/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:14:11.750[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 8/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:14:12.884[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 8/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:14:38.232[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 8/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:16:50.881[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 8/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:16:51.040[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 7/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:16:51.369[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 7/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:16:51.373[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 7/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:16:55.144[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 7/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:17:59.929[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 7/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:18:07.756[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 7/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:18:16.172[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 7/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:18:16.249[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 7/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:18:29.125[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 7/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:19:42.629[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 7/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:19:44.733[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 6/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:19:44.835[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 6/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:19:45.806[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 6/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:19:55.161[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 6/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:21:07.522[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 6/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:21:07.577[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 6/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:21:11.864[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 6/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:21:17.204[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 6/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:21:19.236[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 6/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:22:32.765[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 5/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:22:34.868[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 5/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:22:39.450[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 5/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:22:44.335[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 5/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+[34m2026-03-20 17:22:47.478[39m | [1m[37m  INFO  [39m[49m[0m | bittensor:forward.py:295 | Updated scores: 5/14 miners with reward > 0 (window=36.0h, max_games=50, decay=48.0h, threshold=0.3)
+
+=========================================
+=== METAGRAPH SNAPSHOT ===
+=========================================
+
+./scripts/collect_evidence.sh: line 172: btcli: command not found
+(failed to fetch metagraph — is btcli installed?)
