@@ -199,15 +199,29 @@ To keep the subnet sustainable as it scales, Mentiss and validators **split this
 
 ### How It Works
 
-Before each game, the validator automatically transfers a small TAO amount to the Mentiss wallet on-chain. This is a standard Bittensor `transfer()` call — fully transparent and verifiable on the blockchain.
+Validators purchase game credits in **bulk** via a single on-chain TAO transfer (default: 100 credits per purchase). Each game deducts 1 credit locally. When credits run low, a new batch is purchased automatically.
 
-```python
-# Automatic per-game payment (configured via CLI)
---mentiss.game_cost_tao 0.001    # TAO amount per game (adjust for TAO price)
---mentiss.payment_address 5F...  # Mentiss coldkey (SS58)
+```
+Validator starts → check local credits
+    │
+    ├── credits > threshold → play game, deduct 1 credit
+    │
+    └── credits ≤ threshold → bulk transfer (100 × cost_per_game TAO)
+                                  │
+                                  ├── success → +100 credits, continue
+                                  └── fail → skip game, retry later
 ```
 
-If the transfer fails (insufficient balance, network issue), the game is skipped gracefully — no crash, no penalty.
+This bulk approach uses **one transaction per 100 games** instead of one per game, reducing transaction fees by ~100×. Credit balances are persisted to disk and survive validator restarts.
+
+```bash
+# CLI configuration
+--mentiss.game_cost_tao 0.001        # TAO per game (adjust for TAO price)
+--mentiss.payment_address 5F...      # Mentiss coldkey (SS58)
+--mentiss.credit_batch_size 100      # Credits per bulk purchase
+```
+
+If a transfer fails (insufficient balance, network issue), the game is skipped gracefully — no crash, no penalty.
 
 ### Why Cost Sharing?
 
@@ -334,6 +348,7 @@ The reference miner uses random action selection. To compete, override `_select_
 | `--mentiss.poll_interval` | `2.0` | Seconds between game status polls |
 | `--mentiss.game_cost_tao` | `0.0` | TAO per game for infrastructure cost sharing |
 | `--mentiss.payment_address` | — | Mentiss coldkey (SS58) for game fee payments |
+| `--mentiss.credit_batch_size` | `100` | Credits purchased per bulk TAO transfer |
 | `--neuron.num_concurrent_forwards` | `30` | Concurrent games per validator |
 
 ---

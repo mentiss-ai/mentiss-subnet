@@ -310,6 +310,13 @@ def add_validator_args(cls, parser):
         default=None,
     )
 
+    parser.add_argument(
+        "--mentiss.credit_batch_size",
+        type=int,
+        help="Number of game credits to purchase per bulk TAO transfer (reduces tx fees).",
+        default=100,
+    )
+
 
 def config(cls):
     """

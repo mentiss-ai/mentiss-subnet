@@ -199,12 +199,26 @@
 
 ### 运作方式
 
-每局游戏开始前，验证者自动将少量 TAO 转账至 Mentiss 链上钱包。这是标准的 Bittensor `transfer()` 调用——完全透明，可在区块链上验证。
+验证者通过单笔链上 TAO 转账**批量购买**游戏积分（默认每次 100 个积分）。每局游戏在本地扣除 1 个积分。积分不足时自动购买新一批。
 
-```python
-# 自动逐局支付（通过 CLI 配置）
---mentiss.game_cost_tao 0.001    # 每局支付的 TAO 数量（根据 TAO 价格调整）
---mentiss.payment_address 5F...  # Mentiss 冷钱包（SS58）
+```
+验证者启动 → 检查本地积分
+    │
+    ├── 积分 > 阈值 → 开始游戏，扣除 1 积分
+    │
+    └── 积分 ≤ 阈值 → 批量转账（100 × 每局TAO成本）
+                          │
+                          ├── 成功 → +100 积分，继续
+                          └── 失败 → 跳过游戏，稍后重试
+```
+
+这种批量方式**每 100 局游戏只需一笔交易**，而非每局一笔，交易费用降低约 100 倍。积分余额持久化到磁盘，验证者重启后自动恢复。
+
+```bash
+# CLI 配置
+--mentiss.game_cost_tao 0.001        # 每局支付的 TAO（根据 TAO 价格调整）
+--mentiss.payment_address 5F...      # Mentiss 冷钱包（SS58）
+--mentiss.credit_batch_size 100      # 每次批量购买的积分数
 ```
 
 如果转账失败（余额不足、网络问题），游戏将被优雅跳过——不会崩溃，不会产生惩罚。
@@ -329,6 +343,7 @@ python neurons/miner.py \
 | `--mentiss.poll_interval` | `2.0` | 状态轮询间隔（秒） |
 | `--mentiss.game_cost_tao` | `0.0` | 每局游戏用于基础设施成本分担的 TAO |
 | `--mentiss.payment_address` | — | Mentiss 冷钱包（SS58），接收游戏费用 |
+| `--mentiss.credit_batch_size` | `100` | 每次批量 TAO 转账购买的积分数 |
 | `--neuron.num_concurrent_forwards` | `30` | 每个验证者并发游戏数 |
 
 ---

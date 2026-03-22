@@ -13,6 +13,7 @@ from mentiss.validator.reward import (
     composite_score,
     determine_game_result,
 )
+from mentiss.validator.credits import CreditManager
 from mentiss.utils.uids import get_random_uids
 
 MINER_TIMEOUT = 120  # 2 minutes per action response
@@ -53,33 +54,30 @@ async def forward(self):
     role = getattr(mentiss_cfg, "role", "werewolf") if mentiss_cfg else "werewolf"
     poll_interval = getattr(mentiss_cfg, "poll_interval", 2.0) if mentiss_cfg else 2.0
 
-    # --- Per-game TAO payment ---
+    # --- Bulk credit system (TAO → game credits) ---
     game_cost_tao = getattr(mentiss_cfg, "game_cost_tao", 0.0) if mentiss_cfg else 0.0
     payment_address = getattr(mentiss_cfg, "payment_address", None) if mentiss_cfg else None
 
     if game_cost_tao > 0 and payment_address:
-        try:
-            result = self.subtensor.transfer(
+        # Initialize credit manager once
+        if not hasattr(self, "_credit_manager") or self._credit_manager is None:
+            batch_size = getattr(mentiss_cfg, "credit_batch_size", 100) if mentiss_cfg else 100
+            self._credit_manager = CreditManager(
+                state_dir=self.config.neuron.full_path,
+                subtensor=self.subtensor,
                 wallet=self.wallet,
-                destination_ss58=payment_address,
-                amount=bt.Balance.from_tao(game_cost_tao),
-                wait_for_inclusion=True,
-                wait_for_finalization=False,
+                payment_address=payment_address,
+                cost_per_game_tao=game_cost_tao,
+                batch_size=batch_size,
+                refill_threshold=max(10, batch_size // 10),
             )
-            if result.success:
-                bt.logging.info(
-                    f"Game fee paid: {game_cost_tao} TAO → {payment_address}"
-                )
-            else:
-                bt.logging.error(
-                    f"Game fee transfer failed ({game_cost_tao} TAO → {payment_address}): "
-                    f"{result.error_message}. Check wallet balance. Skipping game."
-                )
-                await asyncio.sleep(10)
-                return
-        except Exception as e:
-            bt.logging.error(f"Game fee transfer error: {e}. Skipping game.")
-            await asyncio.sleep(10)
+
+        if not self._credit_manager.use_credit():
+            bt.logging.error(
+                "[Credits] No credits available and purchase failed. "
+                "Check wallet balance. Skipping game."
+            )
+            await asyncio.sleep(30)
             return
 
     settings = GameSettings(
