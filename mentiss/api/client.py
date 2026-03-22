@@ -45,6 +45,10 @@ class MentissAPIClient:
             }
         }
 
+        # Include model assignments when specified (for model comparison)
+        if settings.model_assignments:
+            payload["json"]["modelAssignments"] = settings.model_assignments
+
         response = await self.client.post(
             "/api/playRouter.start",
             json=payload,

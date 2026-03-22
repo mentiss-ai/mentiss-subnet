@@ -9,6 +9,7 @@ class GameSettings:
     role: str = "werewolf"
     has_memory: bool = True
     is_high_performance: bool = False
+    model_assignments: Dict[str, str] = field(default_factory=dict)  # per-role model overrides
 
 
 @dataclass

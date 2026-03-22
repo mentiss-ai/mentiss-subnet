@@ -54,6 +54,25 @@ Each game uses a **9-player** Werewolf setup:
 
 Game setting string: `G9_1SR1WT1HT_2WW1AW_3VG-H`
 
+### Model Comparison
+
+The validator splits each miner's 50-game scoring window evenly between **two AI models** for the good-faction opponents:
+
+| Slot | Model | Games per Miner |
+|------|-------|-----------------|
+| A | `google/gemini-3-flash-preview` | ~25 |
+| B | `z-ai/glm-5` | ~25 |
+
+This enables head-to-head comparison of how miners perform against different AI opponents. The validator uses **per-miner round-robin** balancing: for each new game, it picks the model with fewer completed games for that miner. Results from both models are combined into a single win rate for scoring.
+
+```
+Miner UID 42 starts a new game
+    │
+    ├── Check model counts: gemini=12, glm=11
+    │
+    └── Pick glm-5 (fewer games) → all good-faction players use glm-5
+```
+
 ### Game Flow
 
 ```
@@ -83,7 +102,7 @@ Validator                     Mentiss API                  Miner
 5. When the game ends, the validator records the result with a timestamp and updates the miner's sliding window score
 6. Each validator runs **30 concurrent games** to ensure sufficient throughput
 
-Miners always play **werewolf-faction roles**, competing against AI-controlled good-faction players.
+Miners always play **werewolf-faction roles**, competing against AI-controlled good-faction players. The good-faction AI alternates between `google/gemini-3-flash-preview` and `z-ai/glm-5` for model comparison.
 
 ---
 
@@ -427,6 +446,7 @@ All evidence files are in [`Phase Two Submission/evidence/`](Phase%20Two%20Submi
 | Per-action error strikes (3 max) | Catches persistent failures without penalizing transient issues |
 | 1-hour game safety cap | Prevents infinite loops from API bugs or stalled games |
 | EMA smoothing (α=0.1) | Prevents single-game score manipulation |
+| **Model comparison** (new) | 25/25 split between gemini-3-flash-preview and glm-5 per miner for head-to-head evaluation |
 
 ---
 

@@ -1,5 +1,5 @@
 from dataclasses import dataclass, field
-from typing import List, Optional
+from typing import Dict, List, Optional
 from enum import Enum
 import time
 
@@ -22,6 +22,7 @@ class GameOutcome:
     game_dominance: float = 0.0
     vote_influence: float = 0.0
     survived: bool = False
+    model: str = ""  # Good-faction model used for this game
 
 
 @dataclass
@@ -32,6 +33,7 @@ class GameRecord:
     game_dominance: float = 0.0
     vote_influence: float = 0.0
     survived: bool = False
+    model: str = ""  # Good-faction model used (for model comparison tracking)
 
 
 # ---- Scoring Constants ----
@@ -125,6 +127,23 @@ class MinerGameStats:
     ) -> int:
         """Number of qualifying games in the current window."""
         return len(self._get_qualifying_games(window_hours, max_games))
+
+    def model_game_counts(
+        self,
+        models: List[str],
+        window_hours: float = SCORING_WINDOW_HOURS,
+        max_games: int = MAX_GAMES_IN_WINDOW,
+    ) -> Dict[str, int]:
+        """Count qualifying games per model within the scoring window.
+
+        Used for round-robin balancing between comparison models.
+        """
+        games = self._get_qualifying_games(window_hours, max_games)
+        counts = {m: 0 for m in models}
+        for g in games:
+            if g.model in counts:
+                counts[g.model] += 1
+        return counts
 
     def staleness_multiplier(self, decay_hours: float = STALE_DECAY_HOURS) -> float:
         """Linear decay from 1.0 to 0.0 based on time since last game.

@@ -30,14 +30,15 @@ class GameManager:
         self.active_games: Dict[str, GameOutcome] = {}
         self.miner_stats: Dict[int, MinerGameStats] = {}
 
-    def register_game(self, game_id: str, miner_uid: int, role: str):
+    def register_game(self, game_id: str, miner_uid: int, role: str, model: str = ""):
         outcome = GameOutcome(
             game_id=game_id,
             miner_uid=miner_uid,
             role=role,
+            model=model,
         )
         self.active_games[game_id] = outcome
-        bt.logging.info(f"Registered game {game_id} for miner {miner_uid} as {role}")
+        bt.logging.info(f"Registered game {game_id} for miner {miner_uid} as {role} (model={model})")
 
     def record_result(
         self,
@@ -73,6 +74,7 @@ class GameManager:
                 game_dominance=game_dominance,
                 vote_influence=vote_influence,
                 survived=survived,
+                model=outcome.model,
             )
             stats.add_game(record)
 
@@ -152,6 +154,7 @@ class GameManager:
                         "game_dominance": r.game_dominance,
                         "vote_influence": r.vote_influence,
                         "survived": r.survived,
+                        "model": r.model,
                     }
                     for r in stats.game_history
                 ],
@@ -180,6 +183,7 @@ class GameManager:
                     game_dominance=rec.get("game_dominance", 0.0),
                     vote_influence=rec.get("vote_influence", 0.0),
                     survived=rec.get("survived", False),
+                    model=rec.get("model", ""),
                 ))
 
             self.miner_stats[uid] = MinerGameStats(

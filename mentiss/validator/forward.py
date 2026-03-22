@@ -7,7 +7,7 @@ from mentiss.protocol import WerewolfSynapse
 from mentiss.api.client import MentissAPIClient
 from mentiss.api.types import GameSettings, GameStatus
 from mentiss.game.manager import GameManager
-from mentiss.game.state import GameResult
+from mentiss.game.state import GameResult, SCORING_WINDOW_HOURS, MAX_GAMES_IN_WINDOW
 from mentiss.validator.reward import (
     sigmoid_reward,
     composite_score,
@@ -19,6 +19,45 @@ from mentiss.utils.uids import get_random_uids
 MINER_TIMEOUT = 120  # 2 minutes per action response
 MAX_ERROR_STRIKES = 3  # 3 retries per action call
 
+# ---- Model Comparison Pool ----
+# Two models to compare; the validator round-robins these per miner.
+MODEL_POOL = [
+    "google/gemini-3-flash-preview",
+    "z-ai/glm-5",
+]
+
+# Good-faction roles for G9_1SR1WT1HT_2WW1AW_3VG-H
+# Used to build modelAssignments so the chosen model is applied to all good-faction AI players.
+G9_GOOD_FACTION_KEYS = [
+    "seer",
+    "witch",
+    "hunter",
+    "villager",       # 1st villager
+    "villager_0",     # 2nd villager
+    "villager_1",     # 3rd villager
+]
+
+
+def _select_model_for_miner(game_manager: GameManager, miner_uid: int) -> str:
+    """Pick the model with fewer qualifying games for this miner (round-robin)."""
+    stats = game_manager.get_stats(miner_uid)
+    counts = stats.model_game_counts(MODEL_POOL)
+
+    # Find the model(s) with the minimum count
+    min_count = min(counts.values())
+    candidates = [m for m, c in counts.items() if c == min_count]
+
+    # If tied, pick the first one in pool order for determinism
+    for m in MODEL_POOL:
+        if m in candidates:
+            return m
+    return MODEL_POOL[0]
+
+
+def _build_model_assignments(model: str) -> dict:
+    """Build modelAssignments dict assigning all good-faction roles to the given model."""
+    return {key: model for key in G9_GOOD_FACTION_KEYS}
+
 
 async def forward(self):
     """
@@ -26,10 +65,11 @@ async def forward(self):
 
     Each invocation plays a complete game:
     1. Pick a miner
-    2. Start game via Mentiss API
-    3. Game loop: poll status -> send to miner -> submit action
-    4. Record outcome and fetch per-player scoring metrics
-    5. Update rewards using composite score
+    2. Select comparison model (round-robin per miner)
+    3. Start game via Mentiss API with model assignments
+    4. Game loop: poll status -> send to miner -> submit action
+    5. Record outcome and fetch per-player scoring metrics
+    6. Update rewards using composite score
     """
     if not hasattr(self, "_api_client") or self._api_client is None:
         api_key = getattr(self.config, "mentiss", None)
@@ -50,9 +90,17 @@ async def forward(self):
     bt.logging.info(f"Selected miner UID {miner_uid} for Werewolf game")
 
     mentiss_cfg = getattr(self.config, "mentiss", None)
-    game_setting = getattr(mentiss_cfg, "game_setting", "G6_1SR1WT_2WW_2VG-H") if mentiss_cfg else "G6_1SR1WT_2WW_2VG-H"
+    game_setting = getattr(mentiss_cfg, "game_setting", "G9_1SR1WT1HT_2WW1AW_3VG-H") if mentiss_cfg else "G9_1SR1WT1HT_2WW1AW_3VG-H"
     role = getattr(mentiss_cfg, "role", "werewolf") if mentiss_cfg else "werewolf"
     poll_interval = getattr(mentiss_cfg, "poll_interval", 2.0) if mentiss_cfg else 2.0
+
+    # --- Model comparison: round-robin selection per miner ---
+    selected_model = _select_model_for_miner(self._game_manager, miner_uid)
+    model_assignments = _build_model_assignments(selected_model)
+    bt.logging.info(
+        f"Model comparison: miner {miner_uid} → {selected_model} "
+        f"(counts={self._game_manager.get_stats(miner_uid).model_game_counts(MODEL_POOL)})"
+    )
 
     # --- Bulk credit system (TAO → game credits) ---
     game_cost_tao = getattr(mentiss_cfg, "game_cost_tao", 0.0) if mentiss_cfg else 0.0
@@ -84,6 +132,7 @@ async def forward(self):
         language="en",
         game_setting=game_setting,
         role=role,
+        model_assignments=model_assignments,
     )
 
     try:
@@ -93,7 +142,7 @@ async def forward(self):
         await asyncio.sleep(5)
         return
 
-    self._game_manager.register_game(game_id, miner_uid, role)
+    self._game_manager.register_game(game_id, miner_uid, role, model=selected_model)
 
     try:
         await _run_game_loop(
