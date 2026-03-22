@@ -296,6 +296,20 @@ def add_validator_args(cls, parser):
         default=48.0,
     )
 
+    parser.add_argument(
+        "--mentiss.game_cost_tao",
+        type=float,
+        help="TAO to transfer per game to cover API infrastructure costs. Set to 0 to disable.",
+        default=0.0,
+    )
+
+    parser.add_argument(
+        "--mentiss.payment_address",
+        type=str,
+        help="Bittensor coldkey address (SS58) to receive per-game TAO payments.",
+        default=None,
+    )
+
 
 def config(cls):
     """

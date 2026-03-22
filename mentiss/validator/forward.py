@@ -53,6 +53,35 @@ async def forward(self):
     role = getattr(mentiss_cfg, "role", "werewolf") if mentiss_cfg else "werewolf"
     poll_interval = getattr(mentiss_cfg, "poll_interval", 2.0) if mentiss_cfg else 2.0
 
+    # --- Per-game TAO payment ---
+    game_cost_tao = getattr(mentiss_cfg, "game_cost_tao", 0.0) if mentiss_cfg else 0.0
+    payment_address = getattr(mentiss_cfg, "payment_address", None) if mentiss_cfg else None
+
+    if game_cost_tao > 0 and payment_address:
+        try:
+            result = self.subtensor.transfer(
+                wallet=self.wallet,
+                destination_ss58=payment_address,
+                amount=bt.Balance.from_tao(game_cost_tao),
+                wait_for_inclusion=True,
+                wait_for_finalization=False,
+            )
+            if result.success:
+                bt.logging.info(
+                    f"Game fee paid: {game_cost_tao} TAO → {payment_address}"
+                )
+            else:
+                bt.logging.error(
+                    f"Game fee transfer failed ({game_cost_tao} TAO → {payment_address}): "
+                    f"{result.error_message}. Check wallet balance. Skipping game."
+                )
+                await asyncio.sleep(10)
+                return
+        except Exception as e:
+            bt.logging.error(f"Game fee transfer error: {e}. Skipping game.")
+            await asyncio.sleep(10)
+            return
+
     settings = GameSettings(
         language="en",
         game_setting=game_setting,

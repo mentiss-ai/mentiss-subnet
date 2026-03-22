@@ -120,6 +120,8 @@ for i in $(seq 1 $NUM_VALIDATORS); do
         --mentiss.scoring_window_hours 36.0 \
         --mentiss.max_games_in_window 50 \
         --mentiss.stale_decay_hours 48.0 \
+        --mentiss.game_cost_tao "${GAME_COST_TAO:-0}" \
+        --mentiss.payment_address "${PAYMENT_ADDRESS:-}" \
         --neuron.num_concurrent_forwards "$CONCURRENT" \
         --neuron.epoch_length 50 \
         --logging.debug \

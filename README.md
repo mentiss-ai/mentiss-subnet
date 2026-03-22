@@ -185,6 +185,41 @@ Multiple UIDs from the same operator are randomly assigned to different games. S
 
 ---
 
+## Infrastructure Cost Sharing
+
+Each Werewolf game requires multiple AI API calls across 9 players, plus server infrastructure, queue processing, and ongoing maintenance. The total cost per game is approximately **$0.70 USD**.
+
+To keep the subnet sustainable as it scales, Mentiss and validators **split this cost equally**:
+
+| | Per Game | Covers |
+|--|----------|--------|
+| **Validator pays** | $0.35 | AI API inference costs |
+| **Mentiss absorbs** | $0.35 | Infrastructure, maintenance, development |
+| **Total** | $0.70 | Full game operation |
+
+### How It Works
+
+Before each game, the validator automatically transfers a small TAO amount to the Mentiss wallet on-chain. This is a standard Bittensor `transfer()` call — fully transparent and verifiable on the blockchain.
+
+```python
+# Automatic per-game payment (configured via CLI)
+--mentiss.game_cost_tao 0.001    # TAO amount per game (adjust for TAO price)
+--mentiss.payment_address 5F...  # Mentiss coldkey (SS58)
+```
+
+If the transfer fails (insufficient balance, network issue), the game is skipped gracefully — no crash, no penalty.
+
+### Why Cost Sharing?
+
+Without cost sharing, the Mentiss team would absorb **all** AI API costs. At scale (128 miners × 50 games/36h), this reaches **~$3,000+/day** — unsustainable for any team. Cost sharing ensures:
+
+- **Subnet longevity** — Mentiss can continue operating and improving the platform
+- **Validator profitability** — At $0.35/game, validators spend ~$504/day and earn ~$1,300/day in emissions (**~2.5× ROI**)
+- **Aligned incentives** — Both parties invest in the subnet's success
+- **Full transparency** — Every payment is an on-chain TAO transfer, auditable by anyone
+
+---
+
 ## Architecture
 
 ```
@@ -259,6 +294,8 @@ python neurons/validator.py \
   --netuid <netuid> \
   --mentiss.game_setting "G9_1SR1WT1HT_2WW1AW_3VG-H" \
   --mentiss.role werewolf \
+  --mentiss.game_cost_tao 0.001 \
+  --mentiss.payment_address <MENTISS_COLDKEY_SS58> \
   --neuron.num_concurrent_forwards 30
 ```
 
@@ -295,6 +332,8 @@ The reference miner uses random action selection. To compete, override `_select_
 | `--mentiss.game_setting` | `G9_1SR1WT1HT_2WW1AW_3VG-H` | 9-player Werewolf configuration |
 | `--mentiss.role` | `werewolf` | Role for miners to play |
 | `--mentiss.poll_interval` | `2.0` | Seconds between game status polls |
+| `--mentiss.game_cost_tao` | `0.0` | TAO per game for infrastructure cost sharing |
+| `--mentiss.payment_address` | — | Mentiss coldkey (SS58) for game fee payments |
 | `--neuron.num_concurrent_forwards` | `30` | Concurrent games per validator |
 
 ---

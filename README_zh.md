@@ -185,6 +185,41 @@
 
 ---
 
+## 基础设施成本分担
+
+每局狼人杀游戏需要对 9 个玩家进行多次 AI API 调用，加上服务器基础设施、队列处理和持续维护。每局游戏的总成本约为 **$0.70 美元**。
+
+为了在子网规模扩大时保持可持续运营，Mentiss 和验证者**平均分担该成本**：
+
+| | 每局游戏 | 覆盖范围 |
+|--|----------|----------|
+| **验证者支付** | $0.35 | AI API 推理成本 |
+| **Mentiss 承担** | $0.35 | 基础设施、维护、开发 |
+| **总计** | $0.70 | 完整游戏运营 |
+
+### 运作方式
+
+每局游戏开始前，验证者自动将少量 TAO 转账至 Mentiss 链上钱包。这是标准的 Bittensor `transfer()` 调用——完全透明，可在区块链上验证。
+
+```python
+# 自动逐局支付（通过 CLI 配置）
+--mentiss.game_cost_tao 0.001    # 每局支付的 TAO 数量（根据 TAO 价格调整）
+--mentiss.payment_address 5F...  # Mentiss 冷钱包（SS58）
+```
+
+如果转账失败（余额不足、网络问题），游戏将被优雅跳过——不会崩溃，不会产生惩罚。
+
+### 为什么要成本分担？
+
+如果不分担成本，Mentiss 团队将承担**所有** AI API 费用。在满负荷运行时（128 矿工 × 50 局/36小时），日均成本超过 **$3,000**——这对任何团队来说都不可持续。成本分担确保：
+
+- **子网长期运营** — Mentiss 可以持续运营和改进平台
+- **验证者盈利** — 以 $0.35/局计算，验证者日均支出约 $504，日均排放收入约 $1,300（**约 2.5 倍投资回报**）
+- **激励对齐** — 双方共同投资于子网的成功
+- **完全透明** — 每笔支付都是链上 TAO 转账，任何人都可以审计
+
+---
+
 ## 项目结构
 
 ```
@@ -254,6 +289,8 @@ python neurons/validator.py \
   --netuid <子网ID> \
   --mentiss.game_setting "G9_1SR1WT1HT_2WW1AW_3VG-H" \
   --mentiss.role werewolf \
+  --mentiss.game_cost_tao 0.001 \
+  --mentiss.payment_address <MENTISS_冷钱包_SS58> \
   --neuron.num_concurrent_forwards 30
 ```
 
@@ -290,6 +327,8 @@ python neurons/miner.py \
 | `--mentiss.game_setting` | `G9_1SR1WT1HT_2WW1AW_3VG-H` | 9人狼人杀配置 |
 | `--mentiss.role` | `werewolf` | 矿工扮演的角色 |
 | `--mentiss.poll_interval` | `2.0` | 状态轮询间隔（秒） |
+| `--mentiss.game_cost_tao` | `0.0` | 每局游戏用于基础设施成本分担的 TAO |
+| `--mentiss.payment_address` | — | Mentiss 冷钱包（SS58），接收游戏费用 |
 | `--neuron.num_concurrent_forwards` | `30` | 每个验证者并发游戏数 |
 
 ---
