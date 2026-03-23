@@ -54,24 +54,9 @@ Each game uses a **9-player** Werewolf setup:
 
 Game setting string: `G9_1SR1WT1HT_2WW1AW_3VG-H`
 
-### Model Comparison
+### Good-Faction AI
 
-The validator splits each miner's 50-game scoring window evenly between **two AI models** for the good-faction opponents:
-
-| Slot | Model | Games per Miner |
-|------|-------|-----------------|
-| A | `google/gemini-3-flash-preview` | ~25 |
-| B | `z-ai/glm-5` | ~25 |
-
-This enables head-to-head comparison of how miners perform against different AI opponents. The validator uses **per-miner round-robin** balancing: for each new game, it picks the model with fewer completed games for that miner. Results from both models are combined into a single win rate for scoring.
-
-```
-Miner UID 42 starts a new game
-    │
-    ├── Check model counts: gemini=12, glm=11
-    │
-    └── Pick glm-5 (fewer games) → all good-faction players use glm-5
-```
+The good-faction players (Seer, Witch, Hunter, Villagers) are controlled by the Mentiss game engine using its **default model pool** — a diverse mix of frontier models (DeepSeek, Gemini, GLM, etc.) that are randomly assigned each game. This ensures miners face a realistic variety of AI opponents.
 
 ### Game Flow
 
@@ -102,7 +87,24 @@ Validator                     Mentiss API                  Miner
 5. When the game ends, the validator records the result with a timestamp and updates the miner's sliding window score
 6. Each validator runs **30 concurrent games** to ensure sufficient throughput
 
-Miners always play **werewolf-faction roles**, competing against AI-controlled good-faction players. The good-faction AI alternates between `google/gemini-3-flash-preview` and `z-ai/glm-5` for model comparison.
+Miners always play **werewolf-faction roles**, competing against AI-controlled good-faction players. The good-faction AI is randomly selected from the platform's model pool each game.
+
+---
+
+## Example Game
+
+Below is a complete game played by `google/gemini-3-flash-preview` (all 9 players). The Alpha Wolf (Ocean) orchestrates a masterful deception — voting out two of its own teammates to build a "confirmed good" reputation, then finishing off the last power role to win by Slaughter Gods in 3 rounds.
+
+| Log | Description |
+|-----|-------------|
+| [System Prompt](docs/example-game/system_prompt.md) | Full game rules and role descriptions sent to every player |
+| [God Log](docs/example-game/god_log.md) | Complete god-perspective log showing every action, vote, and internal thought |
+| [Alpha Wolf — Input Example](docs/example-game/alpha_wolf_input_example.md) | What the AI sees: full first-person game history + action prompt for the final kill |
+| [Alpha Wolf — Output Example](docs/example-game/alpha_wolf_output_example.md) | What the AI responds: strategic memory update + kill target selection |
+
+**Watch the replays:**
+- 🎮 [3D Replay](https://mentiss.ai/play-3d/cmn2ehuwg002abtj9cmxx80pd) — Interactive 3D arena with animated characters
+- 📜 [Text Replay](https://mentiss.ai/play/cmn2ehuwg002abtj9cmxx80pd) — Full text-based game log
 
 ---
 
@@ -254,6 +256,33 @@ Without cost sharing, the Mentiss team would absorb **all** AI API costs. At sca
 ---
 
 ## Architecture
+
+```mermaid
+flowchart LR
+    subgraph Bittensor Chain
+        M["⛏️ Miner (neurons/miner.py)"]
+        V["✅ Validator (neurons/validator.py)"]
+    end
+
+    subgraph Mentiss Platform
+        API["🌐 Mentiss API"]
+        GE["🎮 Game Engine"]
+        AI["🤖 AI Models\ngemini-3-flash / glm-5"]
+    end
+
+    V -- "1. start_game()" --> API
+    API -- "2. game_id" --> V
+    V -- "3. get_status()" --> API
+    API -- "4. needs_action + context" --> V
+    V -- "5. WerewolfSynapse" --> M
+    M -- "6. action response" --> V
+    V -- "7. submit_action()" --> API
+    API --> GE
+    GE --> AI
+    V -- "8. set_weights()" --> BC["⛓️ Bittensor Chain"]
+```
+
+### Directory Structure
 
 ```
 mentiss-subnet/
@@ -446,7 +475,6 @@ All evidence files are in [`Phase Two Submission/evidence/`](Phase%20Two%20Submi
 | Per-action error strikes (3 max) | Catches persistent failures without penalizing transient issues |
 | 1-hour game safety cap | Prevents infinite loops from API bugs or stalled games |
 | EMA smoothing (α=0.1) | Prevents single-game score manipulation |
-| **Model comparison** (new) | 25/25 split between gemini-3-flash-preview and glm-5 per miner for head-to-head evaluation |
 
 ---
 
@@ -456,6 +484,24 @@ All evidence files are in [`Phase Two Submission/evidence/`](Phase%20Two%20Submi
 - [Validation Flow](docs/validation-flow.md) — How the validator evaluates miner performance
 - [Validation Logic](docs/validation-logic.md) — Scoring system and configuration reference
 - [Testnet Development Guide](docs/testnet-development.md) — Full setup and debugging guide
+
+---
+
+## Roadmap
+
+| Phase | Target | Description |
+|-------|--------|-------------|
+| ✅ Phase 1 | Testnet | Core game loop, random miner, basic scoring |
+| ✅ Phase 2 | Testnet | Sliding window scoring, anti-gaming, model comparison |
+| 🔄 Phase 3 | Testnet → Mainnet | Community miners, tournament mode, ELO-based ranking |
+| 📋 Phase 4 | Mainnet | Multi-game benchmarks (G6, G10, custom), public leaderboard |
+| 📋 Phase 5 | Mainnet | RLHF/RLVR integration — use game outcomes as reward signal for model fine-tuning |
+
+### Near-term priorities
+- **Smarter reference miner** — Provide a heuristic-based miner showing strategy depth beyond random play
+- **Public leaderboard** — Display miner rankings, model comparison results, and game replays on mentiss.ai
+- **Multi-model tournaments** — Expand beyond 2 models to N-model round-robin comparison
+- **Mainnet launch** — Register on mainnet once the scoring and incentive mechanisms are battle-tested
 
 ---
 

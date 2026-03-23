@@ -1,0 +1,100 @@
+2026-03-22 19:19:16 | INFO    | ============================================================
+2026-03-22 19:19:16 | INFO    | MENTISS SUBNET — EVIDENCE TEST
+2026-03-22 19:19:16 | INFO    | Games: 6 | Setting: G4_1SR_1WW_2VG-H
+2026-03-22 19:19:16 | INFO    | Models: ['google/gemini-3-flash-preview', 'z-ai/glm-5']
+2026-03-22 19:19:16 | INFO    | ============================================================
+2026-03-22 19:19:16 | INFO    | [Game 1] Starting with good-faction model: google/gemini-3-flash-preview
+2026-03-22 19:19:16 | INFO    | [Game 1] Game ID: cmn2k4vpi003cjmlzz2t7i61k
+2026-03-22 19:19:16 | INFO    | [Game 1] System prompt: 7306 chars
+2026-03-22 19:19:18 | INFO    | [Game 1] Action needed: night/round_werewolf_kill R1
+2026-03-22 19:19:21 | INFO    | [Game 1] Gemini: <x-response-number>1</x-response-number>...
+2026-03-22 19:19:21 | INFO    | [Game 1] Submitted action #1: [{"tag": "x-response-number", "value": 1}]
+2026-03-22 19:26:01 | INFO    | [Game 1] GAME OVER: LOSS (winner=None)
+2026-03-22 19:26:01 | INFO    | Model counts after game 1: {'google/gemini-3-flash-preview': 1, 'z-ai/glm-5': 0}
+2026-03-22 19:26:01 | INFO    | ----------------------------------------
+2026-03-22 19:26:01 | INFO    | [Game 2] Starting with good-faction model: z-ai/glm-5
+2026-03-22 19:26:02 | INFO    | [Game 2] Game ID: cmn2kdkst003mjmlzt7315de5
+2026-03-22 19:26:02 | INFO    | [Game 2] System prompt: 7306 chars
+2026-03-22 19:26:04 | INFO    | [Game 2] Action needed: night/round_werewolf_kill R1
+2026-03-22 19:26:07 | INFO    | [Game 2] Gemini: I'm going to take out player 1. No mercy tonight.
+x-response-number: 1...
+2026-03-22 19:26:07 | INFO    | [Game 2] Submitted action #1: [{"tag": "x-response-number", "value": 1}]
+2026-03-22 19:26:09 | INFO    | [Game 2] GAME OVER: WIN (winner=evil)
+2026-03-22 19:26:09 | INFO    | Model counts after game 2: {'google/gemini-3-flash-preview': 1, 'z-ai/glm-5': 1}
+2026-03-22 19:26:09 | INFO    | ----------------------------------------
+2026-03-22 19:26:09 | INFO    | [Game 3] Starting with good-faction model: google/gemini-3-flash-preview
+2026-03-22 19:26:10 | INFO    | [Game 3] Game ID: cmn2kdqzz0059btj9lkhbhvb6
+2026-03-22 19:26:10 | INFO    | [Game 3] System prompt: 7306 chars
+2026-03-22 19:26:12 | INFO    | [Game 3] Action needed: night/round_werewolf_kill R1
+2026-03-22 19:26:14 | INFO    | [Game 3] Gemini: x-response-number
+3...
+2026-03-22 19:26:14 | INFO    | [Game 3] Submitted action #1: [{"tag": "x-response-number", "value": 3}]
+2026-03-22 19:27:05 | INFO    | [Game 3] Action needed: day/round_round_speech R1
+2026-03-22 19:27:14 | INFO    | [Game 3] Gemini: Man, this is just brutal, Charlie. *Seriously*? Night one? He sounded so genuinely pissed off, I'm with Yara, I think he was just a regular townie. An...
+2026-03-22 19:27:15 | INFO    | [Game 3] Submitted action #2: [{"tag": "x-response-message", "value": "*"}, {"tag": "x-response-number", "value": -1}]
+2026-03-22 19:27:36 | INFO    | [Game 3] Action needed: day/round_vote R1
+2026-03-22 19:27:43 | INFO    | [Game 3] Gemini: This is unbelievable! Bob, you're just throwing out a Seer claim and pointing at me after I just... *missed* my turn to speak? That's way too convenie...
+2026-03-22 19:27:43 | INFO    | [Game 3] Submitted action #3: [{"tag": "x-response-number", "value": 2}]
+2026-03-22 19:28:07 | INFO    | [Game 3] GAME OVER: LOSS (winner=good)
+2026-03-22 19:28:07 | INFO    | Model counts after game 3: {'google/gemini-3-flash-preview': 2, 'z-ai/glm-5': 1}
+2026-03-22 19:28:07 | INFO    | ----------------------------------------
+2026-03-22 19:28:07 | INFO    | [Game 4] Starting with good-faction model: z-ai/glm-5
+2026-03-22 19:28:07 | INFO    | [Game 4] Game ID: cmn2kg9b7005mbtj92qt18wdd
+2026-03-22 19:28:07 | INFO    | [Game 4] System prompt: 7306 chars
+2026-03-22 19:28:09 | INFO    | [Game 4] Action needed: night/round_werewolf_kill R1
+2026-03-22 19:28:12 | INFO    | [Game 4] Gemini: Alright, it's night one, and we've got to make a move. No time to waste. We need to take out one of them right away. I'm going for player 1. Let's get...
+2026-03-22 19:28:12 | INFO    | [Game 4] Submitted action #1: [{"tag": "x-response-number", "value": 1}]
+2026-03-22 19:28:31 | INFO    | [Game 4] Action needed: day/round_round_speech R1
+2026-03-22 19:28:36 | INFO    | [Game 4] Gemini: _Wow_, Liam, already? That's a brutal start, seriously. If you were really just a Villager, then the wolves are playing it smart, going for numbers. T...
+2026-03-22 19:28:36 | INFO    | [Game 4] Submitted action #2: [{"tag": "x-response-message", "value": "*"}, {"tag": "x-response-number", "value": -1}]
+2026-03-22 19:30:29 | INFO    | [Game 4] Action needed: day/round_vote R1
+2026-03-22 19:30:39 | INFO    | [Game 4] Gemini: Oh, for crying out loud! You think I'm the wolf just because I didn't blabber on like everyone else? Give me a break! I was just trying to listen and ...
+2026-03-22 19:30:39 | INFO    | [Game 4] Submitted action #3: [{"tag": "x-response-number", "value": -1}]
+2026-03-22 19:30:50 | INFO    | [Game 4] GAME OVER: LOSS (winner=good)
+2026-03-22 19:30:50 | INFO    | Model counts after game 4: {'google/gemini-3-flash-preview': 2, 'z-ai/glm-5': 2}
+2026-03-22 19:30:50 | INFO    | ----------------------------------------
+2026-03-22 19:30:50 | INFO    | [Game 5] Starting with good-faction model: google/gemini-3-flash-preview
+2026-03-22 19:30:50 | INFO    | [Game 5] Game ID: cmn2kjrm30061btj9qmqc7vu3
+2026-03-22 19:30:50 | INFO    | [Game 5] System prompt: 7306 chars
+2026-03-22 19:30:52 | INFO    | [Game 5] Action needed: night/round_werewolf_kill R1
+2026-03-22 19:30:57 | INFO    | [Game 5] Gemini: Alright, it's night one, and the Town has no idea what's coming. I'm the big bad wolf, and it's time to make my move. We've got a Seer out there, prob...
+2026-03-22 19:30:57 | INFO    | [Game 5] Submitted action #1: [{"tag": "x-response-number", "value": 2}]
+2026-03-22 19:32:38 | INFO    | [Game 5] Action needed: day/round_round_speech R1
+2026-03-22 19:32:49 | INFO    | [Game 5] Gemini: Xavier, you've got some nerve! What kind of Seer screams out an accusation like that on day one? That's not how a real Seer operates, you're just tryi...
+2026-03-22 19:32:49 | INFO    | [Game 5] Submitted action #2: [{"tag": "x-response-message", "value": "*"}, {"tag": "x-response-number", "value": -1}]
+2026-03-22 19:32:51 | INFO    | [Game 5] Action needed: day/round_vote R1
+2026-03-22 19:33:01 | INFO    | [Game 5] Gemini: Xavier, what the hell are you talking about?! That’s a load of absolute garbage! You’re just throwing out a wild accusation hoping someone will bite. ...
+2026-03-22 19:33:02 | INFO    | [Game 5] Submitted action #3: [{"tag": "x-response-number", "value": -1}]
+2026-03-22 19:33:30 | INFO    | [Game 5] GAME OVER: LOSS (winner=good)
+2026-03-22 19:33:30 | INFO    | Model counts after game 5: {'google/gemini-3-flash-preview': 3, 'z-ai/glm-5': 2}
+2026-03-22 19:33:30 | INFO    | ----------------------------------------
+2026-03-22 19:33:30 | INFO    | [Game 6] Starting with good-faction model: z-ai/glm-5
+2026-03-22 19:33:30 | INFO    | [Game 6] Game ID: cmn2kn6nm006fbtj91mcr56lg
+2026-03-22 19:33:30 | INFO    | [Game 6] System prompt: 7306 chars
+2026-03-22 19:33:32 | INFO    | [Game 6] Action needed: night/round_werewolf_kill R1
+2026-03-22 19:33:37 | INFO    | [Game 6] Gemini: 1...
+2026-03-22 19:33:37 | INFO    | [Game 6] Submitted action #1: [{"tag": "x-response-number", "value": 1}]
+2026-03-22 19:34:10 | INFO    | [Game 6] Action needed: day/round_round_speech R1
+2026-03-22 19:34:20 | INFO    | [Game 6] Gemini: Okay, listen up everyone. Tim being gone on the first night? That's just brutal, and it really narrows things down, Charlie, you're right. No time for...
+2026-03-22 19:34:20 | INFO    | [Game 6] Submitted action #2: [{"tag": "x-response-message", "value": "*"}, {"tag": "x-response-number", "value": -1}]
+2026-03-22 19:36:14 | INFO    | [Game 6] Action needed: day/round_vote R1
+2026-03-22 19:36:24 | INFO    | [Game 6] Gemini: Henry, you're trying to play us for fools! You claim Seer and checked Tim, but how convenient that you waited until *after* Tim was killed to say he w...
+2026-03-22 19:36:24 | INFO    | [Game 6] Submitted action #3: [{"tag": "x-response-number", "value": -1}]
+2026-03-22 19:37:09 | INFO    | [Game 6] GAME OVER: LOSS (winner=good)
+2026-03-22 19:37:09 | INFO    | Model counts after game 6: {'google/gemini-3-flash-preview': 3, 'z-ai/glm-5': 3}
+2026-03-22 19:37:09 | INFO    | ----------------------------------------
+2026-03-22 19:37:09 | INFO    | 
+2026-03-22 19:37:09 | INFO    | ============================================================
+2026-03-22 19:37:09 | INFO    | TEST RESULTS SUMMARY
+2026-03-22 19:37:09 | INFO    | ============================================================
+2026-03-22 19:37:09 | INFO    | Total: 6 | Wins: 1 | Losses: 5 | Errors: 0
+2026-03-22 19:37:09 | INFO    | Win rate: 16.7%
+2026-03-22 19:37:09 | INFO    | Model distribution: {'google/gemini-3-flash-preview': 3, 'z-ai/glm-5': 3}
+2026-03-22 19:37:09 | INFO    | 
+2026-03-22 19:37:09 | INFO    |   Game 1: LOSS  | model=google/gemini-3-flash-preview | actions=1 | id=cmn2k4vpi003cjmlzz2t7i61k
+2026-03-22 19:37:09 | INFO    |   Game 2: WIN   | model=z-ai/glm-5 | actions=1 | id=cmn2kdkst003mjmlzt7315de5
+2026-03-22 19:37:09 | INFO    |   Game 3: LOSS  | model=google/gemini-3-flash-preview | actions=3 | id=cmn2kdqzz0059btj9lkhbhvb6
+2026-03-22 19:37:09 | INFO    |   Game 4: LOSS  | model=z-ai/glm-5 | actions=3 | id=cmn2kg9b7005mbtj92qt18wdd
+2026-03-22 19:37:09 | INFO    |   Game 5: LOSS  | model=google/gemini-3-flash-preview | actions=3 | id=cmn2kjrm30061btj9qmqc7vu3
+2026-03-22 19:37:09 | INFO    |   Game 6: LOSS  | model=z-ai/glm-5 | actions=3 | id=cmn2kn6nm006fbtj91mcr56lg
+2026-03-22 19:37:09 | INFO    | ============================================================

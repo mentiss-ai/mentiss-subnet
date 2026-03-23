@@ -178,5 +178,31 @@ class MentissAPIClient:
             human_player_metrics=human_player_metrics,
         )
 
+    async def get_system_prompt(self, game_id: str) -> str:
+        """Fetch the system prompt (game rules) for a game.
+
+        Uses the queryRouter.getGameDataById endpoint.
+        Called once per game after creation to get the rules for miners.
+        """
+        input_data = json.dumps({"json": {"gameId": game_id}})
+
+        response = await self.client.get(
+            "/api/queryRouter.getGameDataById",
+            params={"input": input_data},
+        )
+        response.raise_for_status()
+        data = response.json()
+        game_data = data.get("result", {}).get("data", {}).get("json", {})
+        game = game_data.get("data", {}).get("game", {})
+        system_prompt = game.get("systemPrompt", "")
+        if system_prompt:
+            bt.logging.info(
+                f"Fetched system prompt for game {game_id} "
+                f"({len(system_prompt)} chars)"
+            )
+        else:
+            bt.logging.warning(f"No system prompt found for game {game_id}")
+        return system_prompt
+
     async def close(self):
         await self.client.aclose()

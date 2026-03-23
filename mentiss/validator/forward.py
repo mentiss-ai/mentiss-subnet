@@ -19,44 +19,6 @@ from mentiss.utils.uids import get_random_uids
 MINER_TIMEOUT = 120  # 2 minutes per action response
 MAX_ERROR_STRIKES = 3  # 3 retries per action call
 
-# ---- Model Comparison Pool ----
-# Two models to compare; the validator round-robins these per miner.
-MODEL_POOL = [
-    "google/gemini-3-flash-preview",
-    "z-ai/glm-5",
-]
-
-# Good-faction roles for G9_1SR1WT1HT_2WW1AW_3VG-H
-# Used to build modelAssignments so the chosen model is applied to all good-faction AI players.
-G9_GOOD_FACTION_KEYS = [
-    "seer",
-    "witch",
-    "hunter",
-    "villager",       # 1st villager
-    "villager_0",     # 2nd villager
-    "villager_1",     # 3rd villager
-]
-
-
-def _select_model_for_miner(game_manager: GameManager, miner_uid: int) -> str:
-    """Pick the model with fewer qualifying games for this miner (round-robin)."""
-    stats = game_manager.get_stats(miner_uid)
-    counts = stats.model_game_counts(MODEL_POOL)
-
-    # Find the model(s) with the minimum count
-    min_count = min(counts.values())
-    candidates = [m for m, c in counts.items() if c == min_count]
-
-    # If tied, pick the first one in pool order for determinism
-    for m in MODEL_POOL:
-        if m in candidates:
-            return m
-    return MODEL_POOL[0]
-
-
-def _build_model_assignments(model: str) -> dict:
-    """Build modelAssignments dict assigning all good-faction roles to the given model."""
-    return {key: model for key in G9_GOOD_FACTION_KEYS}
 
 
 async def forward(self):
@@ -94,13 +56,6 @@ async def forward(self):
     role = getattr(mentiss_cfg, "role", "werewolf") if mentiss_cfg else "werewolf"
     poll_interval = getattr(mentiss_cfg, "poll_interval", 2.0) if mentiss_cfg else 2.0
 
-    # --- Model comparison: round-robin selection per miner ---
-    selected_model = _select_model_for_miner(self._game_manager, miner_uid)
-    model_assignments = _build_model_assignments(selected_model)
-    bt.logging.info(
-        f"Model comparison: miner {miner_uid} → {selected_model} "
-        f"(counts={self._game_manager.get_stats(miner_uid).model_game_counts(MODEL_POOL)})"
-    )
 
     # --- Bulk credit system (TAO → game credits) ---
     game_cost_tao = getattr(mentiss_cfg, "game_cost_tao", 0.0) if mentiss_cfg else 0.0
@@ -132,7 +87,6 @@ async def forward(self):
         language="en",
         game_setting=game_setting,
         role=role,
-        model_assignments=model_assignments,
     )
 
     try:
@@ -142,11 +96,22 @@ async def forward(self):
         await asyncio.sleep(5)
         return
 
-    self._game_manager.register_game(game_id, miner_uid, role, model=selected_model)
+    self._game_manager.register_game(game_id, miner_uid, role)
+
+    # Fetch system prompt once per game (may require a short wait for generation)
+    system_prompt = ""
+    for attempt in range(5):
+        try:
+            system_prompt = await self._api_client.get_system_prompt(game_id)
+            if system_prompt:
+                break
+        except Exception as e:
+            bt.logging.warning(f"Failed to fetch system prompt (attempt {attempt+1}): {e}")
+        await asyncio.sleep(3)
 
     try:
         await _run_game_loop(
-            self, game_id, miner_uid, role, poll_interval,
+            self, game_id, miner_uid, role, poll_interval, system_prompt,
         )
     except Exception as e:
         bt.logging.error(f"Game {game_id} error: {e}")
@@ -162,6 +127,7 @@ async def _run_game_loop(
     miner_uid: int,
     role: str,
     poll_interval: float,
+    system_prompt: str = "",
 ):
     """Run the game loop until the game ends or miner is penalized."""
     # Consecutive error counter — persists across loop iterations.
@@ -246,6 +212,7 @@ async def _run_game_loop(
             phase=status.phase,
             sub_phase=status.sub_phase,
             round_number=status.current_round,
+            system_prompt=system_prompt,
         )
 
         try:

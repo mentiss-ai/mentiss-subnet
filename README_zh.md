@@ -54,24 +54,9 @@
 
 游戏配置字符串：`G9_1SR1WT1HT_2WW1AW_3VG-H`
 
-### 模型对比
+### 好人阵营 AI
 
-验证者将每个矿工的 50 局评分窗口均匀分配给**两个 AI 模型**作为好人阵营对手：
-
-| 槽位 | 模型 | 每矿工游戏数 |
-|------|------|--------------|
-| A | `google/gemini-3-flash-preview` | ~25 |
-| B | `z-ai/glm-5` | ~25 |
-
-这使得我们能够进行头对头对比，观察矿工面对不同 AI 对手时的表现。验证者使用**每矿工轮询**均衡策略：每开始一局新游戏时，选择该矿工已完成游戏数较少的模型。两个模型的结果合并计算为单一胜率用于评分。
-
-```
-矿工 UID 42 开始新游戏
-    │
-    ├── 检查模型计数: gemini=12, glm=11
-    │
-    └── 选择 glm-5 (游戏数较少) → 所有好人阵营玩家使用 glm-5
-```
+好人阵营玩家（预言家、女巫、猎人、村民）由 Mentiss 游戏引擎使用其**默认模型池**控制 — 包含多种前沿模型（DeepSeek、Gemini、GLM 等），每局游戏随机分配。这确保矿工面对多样化的 AI 对手。
 
 ### 游戏流程
 
@@ -102,7 +87,24 @@
 5. 游戏结束后，验证者记录带时间戳的结果并更新矿工的滑动窗口评分
 6. 每个验证者运行 **30 个并发游戏** 以确保足够的吞吐量
 
-矿工始终扮演**狼人阵营角色**，与 AI 控制的好人阵营玩家对抗。好人阵营 AI 在 `google/gemini-3-flash-preview` 和 `z-ai/glm-5` 之间交替使用，以进行模型对比。
+矿工始终扮演**狼人阵营角色**，与 AI 控制的好人阵营玩家对抗。好人阵营 AI 由平台模型池随机选择。
+
+---
+
+## 示例对局
+
+以下是一局完整的对局，所有 9 名玩家均由 `google/gemini-3-flash-preview` 扮演。Alpha Wolf（Ocean）展现了精妙的欺骗策略——主动投票淘汰两名队友以建立"已确认好人"的声誉，随后在第三轮击杀最后一个神职角色，通过屠神获胜。
+
+| 日志 | 说明 |
+|------|------|
+| [系统提示词](docs/example-game/system_prompt.md) | 发送给每位玩家的完整游戏规则和角色描述 |
+| [上帝视角日志](docs/example-game/god_log.md) | 完整的上帝视角日志，包含每个行动、投票和内心想法 |
+| [Alpha Wolf — 输入示例](docs/example-game/alpha_wolf_input_example.md) | AI 看到的内容：完整的第一人称游戏历史 + 最终击杀的行动提示 |
+| [Alpha Wolf — 输出示例](docs/example-game/alpha_wolf_output_example.md) | AI 的回应：战略记忆更新 + 击杀目标选择 |
+
+**观看回放：**
+- 🎮 [3D 回放](https://mentiss.ai/play-3d/cmn2ehuwg002abtj9cmxx80pd) — 带动画角色的交互式 3D 竞技场
+- 📜 [文字回放](https://mentiss.ai/play/cmn2ehuwg002abtj9cmxx80pd) — 完整的文字版游戏日志
 
 ---
 
@@ -254,6 +256,33 @@
 ---
 
 ## 项目结构
+
+```mermaid
+flowchart LR
+    subgraph Bittensor 链
+        M["⛏️ 矿工 (neurons/miner.py)"]
+        V["✅ 验证者 (neurons/validator.py)"]
+    end
+
+    subgraph Mentiss 平台
+        API["🌐 Mentiss API"]
+        GE["🎮 游戏引擎"]
+        AI["🤖 AI 模型\ngemini-3-flash / glm-5"]
+    end
+
+    V -- "1. start_game()" --> API
+    API -- "2. game_id" --> V
+    V -- "3. get_status()" --> API
+    API -- "4. needs_action + context" --> V
+    V -- "5. WerewolfSynapse" --> M
+    M -- "6. action response" --> V
+    V -- "7. submit_action()" --> API
+    API --> GE
+    GE --> AI
+    V -- "8. set_weights()" --> BC["⛓️ Bittensor 链"]
+```
+
+### 目录结构
 
 ```
 mentiss-subnet/
@@ -441,7 +470,6 @@ python neurons/miner.py \
 | 单行动 3 次错误上限 | 捕捉持续故障，不惩罚瞬时问题 |
 | 1 小时游戏安全上限 | 防止 API 错误或游戏卡住导致的无限循环 |
 | EMA 平滑 (α=0.1) | 防止单局游戏评分操纵 |
-| **模型对比**（新增） | 每矿工 25/25 分配 gemini-3-flash-preview 和 glm-5，进行头对头评估 |
 
 ---
 
@@ -451,6 +479,24 @@ python neurons/miner.py \
 - [验证流程](docs/validation-flow.md) — 验证者如何评估矿工表现
 - [验证逻辑](docs/validation-logic.md) — 评分系统和配置参考
 - [测试网开发指南](docs/testnet-development.md) — 完整的部署和调试指南
+
+---
+
+## 路线图
+
+| 阶段 | 目标 | 描述 |
+|------|------|------|
+| ✅ 第一阶段 | 测试网 | 核心游戏循环、随机矿工、基础评分 |
+| ✅ 第二阶段 | 测试网 | 滑动窗口评分、反作弊、模型对比 |
+| 🔄 第三阶段 | 测试网 → 主网 | 社区矿工、锦标赛模式、ELO 排名 |
+| 📋 第四阶段 | 主网 | 多游戏基准测试（G6、G10、自定义）、公开排行榜 |
+| 📋 第五阶段 | 主网 | RLHF/RLVR 集成 — 使用游戏结果作为模型微调的奖励信号 |
+
+### 近期优先事项
+- **更智能的参考矿工** — 提供基于启发式策略的矿工，展示超越随机玩法的策略深度
+- **公开排行榜** — 在 mentiss.ai 上展示矿工排名、模型对比结果和游戏回放
+- **多模型锦标赛** — 从 2 个模型扩展到 N 个模型的循环对比
+- **主网上线** — 在评分和激励机制经过充分测试后注册主网
 
 ---
 

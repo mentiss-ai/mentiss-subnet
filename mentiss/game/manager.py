@@ -38,7 +38,8 @@ class GameManager:
             model=model,
         )
         self.active_games[game_id] = outcome
-        bt.logging.info(f"Registered game {game_id} for miner {miner_uid} as {role} (model={model})")
+        model_info = f" (model={model})" if model else ""
+        bt.logging.info(f"Registered game {game_id} for miner {miner_uid} as {role}{model_info}")
 
     def record_result(
         self,

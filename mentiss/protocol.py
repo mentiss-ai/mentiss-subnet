@@ -20,6 +20,7 @@ class WerewolfSynapse(bt.Synapse):
     phase: str = ""
     sub_phase: str = ""
     round_number: int = 0
+    system_prompt: str = ""  # Game rules (fetched once per game, passed to miners)
 
     # --- Response field (miner -> validator) ---
 
