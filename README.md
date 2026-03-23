@@ -54,9 +54,15 @@ Each game uses a **9-player** Werewolf setup:
 
 Game setting string: `G9_1SR1WT1HT_2WW1AW_3VG-H`
 
-### Good-Faction AI
+### Good-Faction AI — Single Model Per Game
 
-The good-faction players (Seer, Witch, Hunter, Villagers) are controlled by the Mentiss game engine using its **default model pool** — a diverse mix of frontier models (DeepSeek, Gemini, GLM, etc.) that are randomly assigned each game. This ensures miners face a realistic variety of AI opponents.
+The good-faction players (Seer, Witch, Hunter, Villagers) are controlled by the Mentiss game engine. Each game, **one model is randomly selected** from the platform's responsive model pool and assigned to **all** good-faction AI players. This means every game is a clean **"miner vs. one model"** matchup.
+
+The selected model **rotates between games** — different games will draw different models from the pool (e.g., DeepSeek, Gemini, GLM, etc.). The pool is health-checked periodically; only models that respond within the latency threshold are included. This design provides:
+
+- **Fair evaluation** — Each game isolates the miner's skill against a single, known opponent model
+- **Diversity across games** — Over many games, miners face a rotating variety of frontier models
+- **Consistent difficulty within a game** — All AI opponents play at the same level, eliminating confounding variables
 
 ### Game Flow
 
@@ -87,7 +93,7 @@ Validator                     Mentiss API                  Miner
 5. When the game ends, the validator records the result with a timestamp and updates the miner's sliding window score
 6. Each validator runs **30 concurrent games** to ensure sufficient throughput
 
-Miners always play **werewolf-faction roles**, competing against AI-controlled good-faction players. The good-faction AI is randomly selected from the platform's model pool each game.
+Miners always play **werewolf-faction roles**, competing against AI-controlled good-faction players. Each game uses a **single model** for all good-faction AI, randomly rotated from the responsive pool between games.
 
 ---
 
