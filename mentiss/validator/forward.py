@@ -52,8 +52,10 @@ async def forward(self):
     bt.logging.info(f"Selected miner UID {miner_uid} for Werewolf game")
 
     mentiss_cfg = getattr(self.config, "mentiss", None)
-    game_setting = getattr(mentiss_cfg, "game_setting", "G9_1SR1WT1HT_2WW1AW_3VG-H") if mentiss_cfg else "G9_1SR1WT1HT_2WW1AW_3VG-H"
-    role = getattr(mentiss_cfg, "role", "werewolf") if mentiss_cfg else "werewolf"
+    # 9-player hackathon config: 1SR 1WT 1HT 3VG + 2WW 1AW
+    # Uses -R mode with faction-level modelAssignments (no -H needed)
+    game_setting = getattr(mentiss_cfg, "game_setting", "G9_1SR1WT1HT_2WW1AW_3VG-R") if mentiss_cfg else "G9_1SR1WT1HT_2WW1AW_3VG-R"
+    good_model = getattr(mentiss_cfg, "good_model", "google/gemini-3-flash-preview") if mentiss_cfg else "google/gemini-3-flash-preview"
     poll_interval = getattr(mentiss_cfg, "poll_interval", 2.0) if mentiss_cfg else 2.0
 
 
@@ -83,10 +85,17 @@ async def forward(self):
             await asyncio.sleep(30)
             return
 
+    # Miner hotkey as the bittensor/ prefix model name for evil faction
+    miner_hotkey = self.metagraph.hotkeys[miner_uid]
+    miner_model = f"bittensor/{miner_hotkey}"
+
     settings = GameSettings(
         language="en",
         game_setting=game_setting,
-        role=role,
+        model_assignments={
+            "good": good_model,       # Mentiss AI auto-runs (OpenRouter)
+            "evil": miner_model,      # Miner controls evil faction (external)
+        },
     )
 
     try:
@@ -96,7 +105,7 @@ async def forward(self):
         await asyncio.sleep(5)
         return
 
-    self._game_manager.register_game(game_id, miner_uid, role)
+    self._game_manager.register_game(game_id, miner_uid, "evil")
 
     # Fetch system prompt once per game (may require a short wait for generation)
     system_prompt = ""
