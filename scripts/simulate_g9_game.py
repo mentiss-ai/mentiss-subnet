@@ -23,10 +23,7 @@ from mentiss.api.types import GameSettings
 # ============================================================
 # CONFIG
 # ============================================================
-MENTISS_API_KEY = os.environ.get(
-    "MENTISS_API_KEY",
-    "sk_mentiss_063ffc45866c82535f444e7aa294c4384a84bc9d9f2cc7ea95702f9d8ce4c8a0",
-)
+MENTISS_API_KEY = os.environ.get("MENTISS_API_KEY", "")
 MENTISS_API_URL = "https://api.mentiss.ai"
 
 OPENROUTER_API_KEY = os.environ.get(

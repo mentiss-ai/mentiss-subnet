@@ -18,10 +18,7 @@ from mentiss.api.client import MentissAPIClient
 from mentiss.api.types import GameSettings
 
 
-API_KEY = os.environ.get(
-    "MENTISS_API_KEY",
-    "sk_mentiss_063ffc45866c82535f444e7aa294c4384a84bc9d9f2cc7ea95702f9d8ce4c8a0",
-)
+API_KEY = os.environ.get("MENTISS_API_KEY", "")
 API_URL = os.environ.get("MENTISS_API_URL", "https://api.mentiss.ai")
 
 # Hackathon config: 9 players
