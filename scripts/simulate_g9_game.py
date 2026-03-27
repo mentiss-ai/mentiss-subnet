@@ -26,10 +26,7 @@ from mentiss.api.types import GameSettings
 MENTISS_API_KEY = os.environ.get("MENTISS_API_KEY", "")
 MENTISS_API_URL = "https://api.mentiss.ai"
 
-OPENROUTER_API_KEY = os.environ.get(
-    "OPENROUTER_API_KEY",
-    "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",
-)
+OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY", "")
 OPENROUTER_MODEL = "deepseek/deepseek-chat-v3-0324"  # DeepSeek V3.2
 
 GAME_SETTING = "G9_1SR1WT1HT_2WW1AW_3VG-R"
