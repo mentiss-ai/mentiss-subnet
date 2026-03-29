@@ -1,5 +1,6 @@
 import json
 import asyncio
+import random
 import numpy as np
 import bittensor as bt
 
@@ -55,8 +56,23 @@ async def forward(self):
     # 9-player hackathon config: 1SR 1WT 1HT 3VG + 2WW 1AW
     # Uses -R mode with faction-level modelAssignments (no -H needed)
     game_setting = getattr(mentiss_cfg, "game_setting", "G9_1SR1WT1HT_2WW1AW_3VG-R") if mentiss_cfg else "G9_1SR1WT1HT_2WW1AW_3VG-R"
-    good_model = getattr(mentiss_cfg, "good_model", "google/gemini-3-flash-preview") if mentiss_cfg else "google/gemini-3-flash-preview"
     poll_interval = getattr(mentiss_cfg, "poll_interval", 2.0) if mentiss_cfg else 2.0
+
+    # Fetch available models from Mentiss API and pick one randomly
+    try:
+        available = await self._api_client.get_available_models()
+        low_cost_models = available.get("lowCostModels", [])
+    except Exception as e:
+        bt.logging.error(f"Failed to fetch available models: {e}")
+        low_cost_models = []
+
+    if not low_cost_models:
+        bt.logging.error("No responsive models available. Skipping game.")
+        await asyncio.sleep(10)
+        return
+
+    good_model = random.choice(low_cost_models)
+    bt.logging.info(f"Selected good-faction model: {good_model} (from {len(low_cost_models)} available)")
 
 
     # --- Bulk credit system (TAO → game credits) ---

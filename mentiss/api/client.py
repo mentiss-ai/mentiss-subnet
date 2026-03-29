@@ -178,6 +178,24 @@ class MentissAPIClient:
             human_player_metrics=human_player_metrics,
         )
 
+    async def get_available_models(self) -> Dict[str, List[str]]:
+        """Fetch currently available model pools from the Mentiss API.
+
+        Returns dict with 'lowCostModels' and 'highPerformanceModels' lists.
+        """
+        response = await self.client.get(
+            "/api/playRouter.availableModels",
+            params={"input": json.dumps({"json": {}})},
+        )
+        response.raise_for_status()
+        data = response.json()["result"]["data"]["json"]
+        low_cost = data.get("lowCostModels", [])
+        high_perf = data.get("highPerformanceModels", [])
+        bt.logging.info(
+            f"Available models — lowCost: {low_cost}, highPerformance: {high_perf}"
+        )
+        return {"lowCostModels": low_cost, "highPerformanceModels": high_perf}
+
     async def get_system_prompt(self, game_id: str) -> str:
         """Fetch the system prompt (game rules) for a game.
 
