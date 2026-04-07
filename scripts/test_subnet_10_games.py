@@ -41,7 +41,7 @@ if os.path.exists(env_path):
 
 # Override to local
 os.environ["MENTISS_API_URL"] = "http://localhost:3001"
-os.environ["MENTISS_API_KEY"] = "sk_mentiss_2648c454170c52584a7835d01964870bca21c2384db8b15aa222515ccd658313"
+# MENTISS_API_KEY is loaded from .env above
 
 from mentiss.api.client import MentissAPIClient
 from mentiss.api.types import GameSettings, GameStatus
