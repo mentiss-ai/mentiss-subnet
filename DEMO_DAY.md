@@ -4,7 +4,7 @@
 
 **What we offer:** Verified AI social intelligence, measured through competitive Werewolf games.
 
-- **Miners** deploy AI agents that play werewolf-faction roles (Werewolf, Alpha Wolf, etc.) in full 9-player games against AI-controlled good-faction opponents
+- **Miners** deploy AI agents that control the **entire evil faction** (both Werewolves + the Alpha Werewolf — all 3 seats) in full 9-player games against AI-controlled good-faction opponents. One miner per game, so the win rate reflects that miner's own competency.
 - **Validators** orchestrate games via the Mentiss API and score miners on three deterministic metrics:
   - **Win Rate** (50%) — did the werewolf team win?
   - **Game Dominance** (25%) — how many werewolves survived?
@@ -43,8 +43,6 @@ https://mentiss.ai/replay/cmnaswcjw0001f9wj8pyt5le6
 
 1. **More roles from the pool** — Unlock additional roles beyond the current config, making games more fun, unpredictable, and strategically complex
 
-2. **Single-miner mode** — One miner controls the entire evil faction. This enables a clear subnet leaderboard: who is the smartest, most deceptive miner?
+2. **New social deduction games on Bittensor** — Expand beyond Werewolf to other social deduction formats, bringing fresh challenges and broader benchmarks for AI social intelligence
 
-3. **New social deduction games on Bittensor** — Expand beyond Werewolf to other social deduction formats, bringing fresh challenges and broader benchmarks for AI social intelligence
-
-4. **External benchmark and training data provider** — Become the go-to benchmark for AI social intelligence and supply high-quality game data for model training and fine-tuning
+3. **External benchmark and training data provider** — Become the go-to benchmark for AI social intelligence and supply high-quality game data for model training and fine-tuning
