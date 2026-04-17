@@ -52,7 +52,9 @@
 | 狼人 | 2 | 狼人 |
 | 狼王 | 1 | 狼人 |
 
-游戏配置字符串：`G9_1SR1WT1HT_2WW1AW_3VG-H`
+游戏配置字符串：`G9_1SR1WT1HT_2WW1AW_3VG-R`
+
+每局游戏只挑选**一位**矿工，并将该矿工分配给**整个狼人阵营**——2 只狼人和 1 只狼王都由同一位矿工控制。这样可以让评分直接客观地反映单个矿工的能力。
 
 ### 好人阵营 AI — 每局单一模型
 
@@ -86,14 +88,14 @@
    │  [计算滑动窗口评分, 更新权重]                            │
 ```
 
-1. **验证者** 从元图中随机选择一个矿工 UID
-2. **验证者** 通过 Mentiss API 创建一局 9 人狼人杀游戏
-3. **矿工** 控制狼人阵营；其他玩家由 Mentiss 游戏引擎 AI 控制
-4. **验证者** 轮询游戏状态，将状态打包为 `WerewolfSynapse`，通过 Bittensor dendrite 发送给矿工，并将矿工的响应提交回 API
+1. **验证者** 从元图中随机选择**一位**矿工 UID
+2. **验证者** 通过 Mentiss API 创建一局 9 人狼人杀游戏，并以阵营级模型分配（`good` = 平台模型，`evil` = `bittensor/<矿工热键>`）启动
+3. **矿工** 控制狼人阵营的**全部三个席位**（2 只狼人 + 1 只狼王）；6 名好人阵营玩家由 Mentiss 游戏引擎 AI 控制
+4. **验证者** 轮询游戏状态，为当前轮到行动的狼人席位打包 `WerewolfSynapse`，通过 Bittensor dendrite 发送给矿工，并将矿工的响应提交回 API
 5. 游戏结束后，验证者记录带时间戳的结果并更新矿工的滑动窗口评分
 6. 每个验证者运行 **30 个并发游戏** 以确保足够的吞吐量
 
-矿工始终扮演**狼人阵营角色**，与 AI 控制的好人阵营玩家对抗。每局游戏的好人阵营 AI 使用**单一模型**，该模型从响应模型池中随机选取，不同游戏之间自动轮换。
+矿工始终控制**整个狼人阵营**，与 AI 控制的好人阵营玩家对抗。每局游戏的好人阵营 AI 使用**单一模型**，该模型从响应模型池中随机选取，不同游戏之间自动轮换。由于每局只有一位矿工拥有全部三个狼人席位，胜率可以直接、客观地反映该矿工自身的能力，不受队友影响。
 
 ---
 
@@ -194,7 +196,7 @@
 所有评分指标由 Mentiss 游戏引擎在服务端计算。矿工无法伪造胜利或膨胀指标——游戏结果由 API 决定。
 
 ### 阵营锁定
-矿工始终扮演狼人阵营角色。跨阵营串通在设计上不可能。
+矿工始终控制整个狼人阵营。由于每局只有一位矿工参与，矿工之间的跨阵营或同阵营串通在设计上不可能。
 
 ### 单行动错误计数
 验证者跟踪每个行动调用的连续错误。单个行动 3 次错误（超时、无效 JSON、API 拒绝）后，游戏终止并记录为 `ERROR`，评分为零。这防止矿工发送垃圾响应。
@@ -355,8 +357,7 @@ python neurons/validator.py \
   --wallet.name <名称> \
   --wallet.hotkey <热键> \
   --netuid <子网ID> \
-  --mentiss.game_setting "G9_1SR1WT1HT_2WW1AW_3VG-H" \
-  --mentiss.role werewolf \
+  --mentiss.game_setting "G9_1SR1WT1HT_2WW1AW_3VG-R" \
   --mentiss.game_cost_tao 0.001 \
   --mentiss.payment_address <MENTISS_冷钱包_SS58> \
   --neuron.num_concurrent_forwards 30
@@ -392,8 +393,7 @@ python neurons/miner.py \
 
 | 参数 | 默认值 | 说明 |
 |------|--------|------|
-| `--mentiss.game_setting` | `G9_1SR1WT1HT_2WW1AW_3VG-H` | 9人狼人杀配置 |
-| `--mentiss.role` | `werewolf` | 矿工扮演的角色 |
+| `--mentiss.game_setting` | `G9_1SR1WT1HT_2WW1AW_3VG-R` | 9 人狼人杀配置，矿工控制整个狼人阵营 |
 | `--mentiss.poll_interval` | `2.0` | 状态轮询间隔（秒） |
 | `--mentiss.game_cost_tao` | `0.0` | 每局游戏用于基础设施成本分担的 TAO |
 | `--mentiss.payment_address` | — | Mentiss 冷钱包（SS58），接收游戏费用 |

@@ -36,7 +36,9 @@ Each game uses a **9-player** Werewolf setup:
 | Werewolf          | 2     | Evil    | WW   |
 | Alpha Werewolf    | 1     | Evil    | AW   |
 
-Game setting: `G9_1SR1WT1HT_2WW1AW_3VG-H`
+Game setting: `G9_1SR1WT1HT_2WW1AW_3VG-R`
+
+Each game picks **one** miner and assigns it to the **entire evil faction** (both Werewolves + the Alpha Werewolf) via faction-level model assignment. Every evil-seat action routes back to that single miner, so the win rate is a direct and objective reflection of that miner's competency.
 
 ### Game Flow
 
@@ -145,7 +147,7 @@ Each miner needs ~50 games within 36 hours to fill the scoring window:
 All scoring metrics are computed by the Mentiss game engine on the server side. Miners cannot fabricate wins or inflate metrics — the game outcome is determined by the API.
 
 ### Faction Lock
-Miners always play werewolf-faction roles. Cross-faction collusion is impossible by design.
+Miners always control the full werewolf (evil) faction. Only one miner participates per game, so cross-miner collusion is impossible by design.
 
 ### Per-Action Error Strikes
 The validator tracks consecutive errors per action call. After 3 strikes on a single action (timeout, invalid JSON, API rejection), the game is terminated and recorded as `ERROR` with zero score. This prevents miners from sending garbage responses.

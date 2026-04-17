@@ -52,7 +52,9 @@ Each game uses a **9-player** Werewolf setup:
 | Werewolf          | 2     | Evil    |
 | Alpha Werewolf    | 1     | Evil    |
 
-Game setting string: `G9_1SR1WT1HT_2WW1AW_3VG-H`
+Game setting string: `G9_1SR1WT1HT_2WW1AW_3VG-R`
+
+Each game picks **one** miner and assigns that miner to the **entire evil faction** — both Werewolves and the Alpha Werewolf are all controlled by the same miner. This keeps the score a direct, objective reflection of a single miner's competency.
 
 ### Good-Faction AI — Single Model Per Game
 
@@ -86,14 +88,14 @@ Validator                     Mentiss API                  Miner
    │  [compute sliding window score, update weights]       │
 ```
 
-1. **Validator** selects a random miner UID from the metagraph
-2. **Validator** creates a 9-player Werewolf game via the Mentiss API
-3. **Miner** controls the werewolf faction; the other players are AI-controlled by the Mentiss game engine
-4. **Validator** polls game status, packages state into a `WerewolfSynapse`, sends it to the miner via Bittensor dendrite, and submits the miner's response back to the API
+1. **Validator** selects a single random miner UID from the metagraph
+2. **Validator** creates a 9-player Werewolf game via the Mentiss API with faction-level model assignments (`good` = platform model, `evil` = `bittensor/<miner_hotkey>`)
+3. **Miner** controls **all three** evil-faction seats (2 Werewolves + 1 Alpha Werewolf); the six good-faction players are AI-controlled by the Mentiss game engine
+4. **Validator** polls game status, packages state into a `WerewolfSynapse` for whichever evil seat is currently acting, sends it to the miner via Bittensor dendrite, and submits the miner's response back to the API
 5. When the game ends, the validator records the result with a timestamp and updates the miner's sliding window score
 6. Each validator runs **30 concurrent games** to ensure sufficient throughput
 
-Miners always play **werewolf-faction roles**, competing against AI-controlled good-faction players. Each game uses a **single model** for all good-faction AI, randomly rotated from the responsive pool between games.
+Miners always play the **entire werewolf faction**, competing against AI-controlled good-faction players. Each game uses a **single model** for all good-faction AI, randomly rotated from the responsive pool between games. Because one miner owns all three evil seats per game, the win rate is an objective measure of that miner's competency alone — not a confound of teammates.
 
 ---
 
@@ -194,7 +196,7 @@ Each miner needs ~50 games within 36 hours to fill the scoring window:
 All scoring metrics are computed by the Mentiss game engine on the server side. Miners cannot fabricate wins or inflate metrics — the game outcome is determined by the API.
 
 ### Faction Lock
-Miners always play werewolf-faction roles. Cross-faction collusion is impossible by design.
+Miners always play the full werewolf faction. Cross-faction collusion between miners is impossible by design — only one miner participates per game.
 
 ### Per-Action Error Strikes
 The validator tracks consecutive errors per action call. After 3 strikes on a single action (timeout, invalid JSON, API rejection), the game is terminated and recorded as `ERROR` with zero score. This prevents miners from sending garbage responses.
@@ -360,8 +362,7 @@ python neurons/validator.py \
   --wallet.name <name> \
   --wallet.hotkey <hotkey> \
   --netuid <netuid> \
-  --mentiss.game_setting "G9_1SR1WT1HT_2WW1AW_3VG-H" \
-  --mentiss.role werewolf \
+  --mentiss.game_setting "G9_1SR1WT1HT_2WW1AW_3VG-R" \
   --mentiss.game_cost_tao 0.001 \
   --mentiss.payment_address <MENTISS_COLDKEY_SS58> \
   --neuron.num_concurrent_forwards 30
@@ -397,8 +398,7 @@ The reference miner uses random action selection. To compete, override `_select_
 
 | Flag | Default | Description |
 |------|---------|-------------|
-| `--mentiss.game_setting` | `G9_1SR1WT1HT_2WW1AW_3VG-H` | 9-player Werewolf configuration |
-| `--mentiss.role` | `werewolf` | Role for miners to play |
+| `--mentiss.game_setting` | `G9_1SR1WT1HT_2WW1AW_3VG-R` | 9-player Werewolf config; miner controls entire evil faction |
 | `--mentiss.poll_interval` | `2.0` | Seconds between game status polls |
 | `--mentiss.game_cost_tao` | `0.0` | TAO per game for infrastructure cost sharing |
 | `--mentiss.payment_address` | — | Mentiss coldkey (SS58) for game fee payments |

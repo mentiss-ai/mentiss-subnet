@@ -12,7 +12,6 @@ from mentiss.game.state import GameResult, SCORING_WINDOW_HOURS, MAX_GAMES_IN_WI
 from mentiss.validator.reward import (
     sigmoid_reward,
     composite_score,
-    determine_game_result,
 )
 from mentiss.validator.credits import CreditManager
 from mentiss.utils.uids import get_random_uids
@@ -27,12 +26,13 @@ async def forward(self):
     Main forward pass: run one Werewolf game for a selected miner.
 
     Each invocation plays a complete game:
-    1. Pick a miner
-    2. Select comparison model (round-robin per miner)
-    3. Start game via Mentiss API with model assignments
-    4. Game loop: poll status -> send to miner -> submit action
-    5. Record outcome and fetch per-player scoring metrics
-    6. Update rewards using composite score
+    1. Pick a single miner; the miner controls the entire evil faction
+       (all 3 werewolves in the 9-player config).
+    2. Pick a good-faction model from the Mentiss model pool.
+    3. Start game via Mentiss API with faction-level model assignments.
+    4. Game loop: poll status -> send to miner -> submit action.
+    5. Record outcome and fetch per-player scoring metrics.
+    6. Update rewards using composite score.
     """
     if not hasattr(self, "_api_client") or self._api_client is None:
         api_key = getattr(self.config, "mentiss", None)
@@ -136,7 +136,7 @@ async def forward(self):
 
     try:
         await _run_game_loop(
-            self, game_id, miner_uid, role, poll_interval, system_prompt,
+            self, game_id, miner_uid, poll_interval, system_prompt,
         )
     except Exception as e:
         bt.logging.error(f"Game {game_id} error: {e}")
@@ -150,11 +150,15 @@ async def _run_game_loop(
     self,
     game_id: str,
     miner_uid: int,
-    role: str,
     poll_interval: float,
     system_prompt: str = "",
 ):
-    """Run the game loop until the game ends or miner is penalized."""
+    """Run the game loop until the game ends or miner is penalized.
+
+    The selected miner controls the entire evil faction, so the validator
+    proxies every evil-player action (werewolf, alpha wolf, …) back to the
+    same miner. Win/loss is therefore determined at the faction level.
+    """
     # Consecutive error counter — persists across loop iterations.
     # Resets to 0 on any successful action.
     error_strikes = 0
@@ -170,8 +174,13 @@ async def _run_game_loop(
             continue
 
         if status.is_game_over:
-            result_str = determine_game_result(role, status.winner or "")
-            result = GameResult.WIN if result_str == "win" else GameResult.LOSS
+            # Miner always plays the entire evil faction.
+            winner = status.winner or ""
+            result = (
+                GameResult.WIN
+                if winner in ("werewolf", "evil")
+                else GameResult.LOSS
+            )
 
             game_dominance = 0.0
             vote_influence = 0.0
@@ -196,7 +205,7 @@ async def _run_game_loop(
             )
             bt.logging.info(
                 f"Game {game_id} ended: {result.value} "
-                f"(role={role}, winner={status.winner}, "
+                f"(faction=evil, winner={status.winner}, "
                 f"dominance={game_dominance:.2f}, "
                 f"vote_influence={vote_influence:.2f}, "
                 f"survived={survived})"
@@ -211,6 +220,16 @@ async def _run_game_loop(
             player_id = status.next_input.player_id
         if not player_id and status.human_player:
             player_id = status.human_player.id
+
+        # Look up the acting player's specific role (werewolf / alpha_wolf / ...)
+        # so the miner knows which evil-faction character it's playing this turn.
+        player_role = ""
+        for p in status.players:
+            if p.get("id") == player_id:
+                player_role = p.get("role", "") or ""
+                break
+        if not player_role and status.human_player and status.human_player.id == player_id:
+            player_role = status.human_player.role
 
         context_data = {
             "game": {
@@ -228,7 +247,7 @@ async def _run_game_loop(
         synapse = WerewolfSynapse(
             game_id=game_id,
             player_id=player_id,
-            role=role,
+            role=player_role,
             game_context=json.dumps(context_data),
             pending_action=json.dumps({
                 "options": status.next_input.options,

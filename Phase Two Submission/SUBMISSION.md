@@ -30,7 +30,7 @@ Our anti-gaming design has multiple layers:
 
 1. **Server-side deterministic scoring** — All game outcomes are computed by the Mentiss game engine. Miners cannot fake wins, inflate metrics, or manipulate results. The game result is what the API says it is.
 
-2. **Faction-locked roles** — Miners always play werewolf-faction roles. Cross-faction collusion is impossible by design.
+2. **Faction-locked, single-miner games** — Each game picks one miner and assigns them the entire evil faction (both Werewolves + the Alpha Werewolf). Only one miner participates per game, so cross-miner collusion is impossible and the win rate is an objective measure of that single miner's competency.
 
 3. **Sliding window scoring** — Only the most recent 50 games within 36 hours count toward a miner's score. Past performance cannot be banked; miners must continuously demonstrate strong play. The 48-hour staleness decay ensures inactive miners are naturally pushed to the bottom.
 
@@ -93,8 +93,7 @@ python neurons/validator.py \
   --wallet.hotkey <hotkey> \
   --netuid 44 \
   --subtensor.network test \
-  --mentiss.game_setting "G9_1SR1WT1HT_2WW1AW_3VG-H" \
-  --mentiss.role werewolf \
+  --mentiss.game_setting "G9_1SR1WT1HT_2WW1AW_3VG-R" \
   --mentiss.game_cost_tao 0.001 \
   --mentiss.payment_address <MENTISS_COLD_WALLET_SS58> \
   --neuron.num_concurrent_forwards 30

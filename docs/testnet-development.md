@@ -118,7 +118,7 @@ python neurons/validator.py \
   --wallet.hotkey default \
   --subtensor.network test \
   --netuid <TESTNET_NETUID> \
-  --mentiss.game_setting "G6_1SR1WT_2WW_2VG-H" \
+  --mentiss.game_setting "G9_1SR1WT1HT_2WW1AW_3VG-R" \
   --mentiss.reward_threshold 0.30 \
   --mentiss.reward_steepness 20.0 \
   --mentiss.games_per_cycle 1 \
@@ -138,9 +138,9 @@ The `--mentiss.game_setting` string defines the player composition:
 
 | Setting | Players | Composition |
 |---------|---------|-------------|
-| `G6_1SR1WT_2WW_2VG-H` | 6 | 1 Seer, 1 Witch, 2 Werewolves, 2 Villagers (testnet default) |
+| `G9_1SR1WT1HT_2WW1AW_3VG-R` | 9 | 1 Seer, 1 Witch, 1 Hunter, 3 Villagers, 2 Werewolves, 1 Alpha Werewolf (default) |
 
-The miner always plays a werewolf-faction role. In a 6-player game there are 2 werewolves (1 human + 1 AI). In future 10-12 player games there will be 3 werewolves (1 human + 2 AI).
+The selected miner controls the **entire evil faction** via faction-level model assignment — all 3 werewolves (2 WW + 1 Alpha) route every action back to the same miner. The 6 good-faction players are controlled by a single Mentiss-managed model per game.
 
 ## 8. Developing a Miner
 
@@ -159,7 +159,7 @@ The validator sends a `WerewolfSynapse` with:
 |-------|------|-------------|
 | `game_id` | str | Unique game identifier |
 | `player_id` | str | Your player's ID in the game |
-| `role` | str | Your assigned role (e.g. "werewolf") |
+| `role` | str | The specific role of the acting player this turn (e.g. "werewolf", "alpha_wolf"). Because the miner controls the entire evil faction, this rotates across seats within a single game. |
 | `game_context` | str (JSON) | Full game state: phase, players, actions, logs |
 | `pending_action` | str (JSON) | Available options and prompt |
 | `phase` | str | Current phase ("night" / "day") |
@@ -180,7 +180,7 @@ Focus on:
 - **Deception**: Craft believable day speeches that hide your werewolf identity
 - **Strategic voting**: Guide the village to vote out key good-faction roles (Seer, Witch)
 - **Self-preservation**: Avoid getting voted out or targeted by special roles
-- **Coordination**: Even though AI controls the other werewolves, your night-phase discussions influence the team's kill target
+- **Coordination**: You control all three evil seats yourself, so night-phase discussions, kill targets, and day-phase speeches should be planned as a unified strategy across all three characters
 
 ## 9. Debugging
 
@@ -189,7 +189,7 @@ Focus on:
 The validator logs each game's outcome:
 
 ```
-Game abc123 ended: win (role=werewolf, winner=werewolf, dominance=0.67, vote_influence=0.45, survived=True)
+Game abc123 ended: win (faction=evil, winner=werewolf, dominance=0.67, vote_influence=0.45, survived=True)
 Updated scores from composite metrics
 ```
 

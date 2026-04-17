@@ -4,7 +4,7 @@ This document describes how validators evaluate miners and compute on-chain weig
 
 ## Overview
 
-Validators run Werewolf games via the Mentiss API. Each game pits one miner (controlling a werewolf-faction player) against AI-controlled opponents. After each game, the validator collects three deterministic metrics from the game engine, combines them into a composite score, and updates the miner's on-chain weight accordingly.
+Validators run Werewolf games via the Mentiss API. Each game picks **one** miner and assigns that miner to the **entire evil faction** — both Werewolves and the Alpha Werewolf — using faction-level model assignments (`model_assignments={"good": <pool_model>, "evil": "bittensor/<miner_hotkey>"}`). Only one miner participates per game, so the win rate is an objective measure of that miner's competency. After each game, the validator collects deterministic metrics from the game engine, combines them into a composite score, and updates the miner's on-chain weight accordingly.
 
 ## Game Flow
 
@@ -30,8 +30,8 @@ Validator                    Mentiss API                 Miner
 
 Each forward pass:
 
-1. Select a random miner UID
-2. Start a game via `playRouter.start` (miner always plays werewolf faction)
+1. Select a single random miner UID
+2. Start a game via `playRouter.start` with faction-level model assignment — the miner controls all three evil-faction seats
 3. Poll `playRouter.status` in a loop; when action is needed, send a `WerewolfSynapse` to the miner via dendrite and submit the response back to the API
 4. When the game ends, call `playRouter.playerStats` to retrieve scoring metrics
 5. Record the result and metrics in `GameManager`
@@ -138,8 +138,8 @@ Both are saved after each game and loaded on startup.
 
 ## Anti-Gaming Properties
 
-- **Faction lock**: Miners always play werewolf. No cross-faction collusion possible.
-- **Individual metrics**: Game dominance and vote influence are tracked per miner, preventing free-riding on teammate performance.
+- **Faction lock**: Miners always control the full evil faction. Only one miner participates per game, so cross-miner collusion is impossible by design.
+- **Single-miner games**: Because one miner owns all three evil seats, the win rate reflects that miner's own competency — there is no teammate to free-ride on.
 - **Sybil resistance**: Multiple UIDs from the same operator are randomly assigned to different games. Statistical averaging over many games prevents artificial score inflation.
 - **Deterministic metrics**: All scoring is derived from game engine outcomes, not subjective evaluation.
 
