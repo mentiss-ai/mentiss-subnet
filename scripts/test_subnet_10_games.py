@@ -55,8 +55,9 @@ from mentiss.validator.reward import sigmoid_reward, composite_score, determine_
 NUM_GAMES = 5
 NUM_MINERS = 3  # Simulated miner UIDs: 0, 1, 2
 # G9: 1HT 1SR 1WT 3VG (good=6) + 2WW 1AW (evil=3) = 9 players
-# No -R suffix — -R is only for 10-player ultimate trial
-GAME_SETTING = "G9_1HT1SR1WT_2WW1AW_3VG"
+# -S suffix: one miner controls all evil seats, so werewolf internal discussion is skipped.
+# -R is only for 10-player ultimate trial (random roles).
+GAME_SETTING = "G9_1HT1SR1WT_2WW1AW_3VG-S"
 GOOD_MODEL = "google/gemini-3-flash-preview"
 POLL_INTERVAL = 1  # Fast polling for MOCK_AI
 MAX_POLLS = 600    # Max polls per game (10 min with 1s interval)

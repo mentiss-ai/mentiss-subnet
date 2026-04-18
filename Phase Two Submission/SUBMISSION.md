@@ -93,7 +93,7 @@ python neurons/validator.py \
   --wallet.hotkey <hotkey> \
   --netuid 44 \
   --subtensor.network test \
-  --mentiss.game_setting "G9_1SR1WT1HT_2WW1AW_3VG-R" \
+  --mentiss.game_setting "G9_1SR1WT1HT_2WW1AW_3VG-S" \
   --mentiss.game_cost_tao 0.001 \
   --mentiss.payment_address <MENTISS_COLD_WALLET_SS58> \
   --neuron.num_concurrent_forwards 30

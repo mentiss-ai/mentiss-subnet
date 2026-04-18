@@ -36,7 +36,7 @@ Each game uses a **9-player** Werewolf setup:
 | Werewolf          | 2     | Evil    | WW   |
 | Alpha Werewolf    | 1     | Evil    | AW   |
 
-Game setting: `G9_1SR1WT1HT_2WW1AW_3VG-R`
+Game setting: `G9_1SR1WT1HT_2WW1AW_3VG-S`
 
 Each game picks **one** miner and assigns it to the **entire evil faction** (both Werewolves + the Alpha Werewolf) via faction-level model assignment. Every evil-seat action routes back to that single miner, so the win rate is a direct and objective reflection of that miner's competency.
 

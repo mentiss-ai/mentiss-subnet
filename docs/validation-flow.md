@@ -32,9 +32,9 @@ The validator randomly selects a miner UID from the metagraph.
 
 ### Step 2: Start a Game
 The validator calls the **Mentiss API** to create a Werewolf game:
-- Game setting: `G6_1SR1WT_2WW_2VG-H` (6 players: 1 Seer, 1 Witch, 2 Werewolves, 2 Villagers)
-- The miner controls **one werewolf** (the "human" player in `-H` mode)
-- The other 5 players are AI-controlled by the Mentiss API
+- Game setting: `G6_1SR1WT_2WW_2VG-S` (6 players: 1 Seer, 1 Witch, 2 Werewolves, 2 Villagers)
+- The miner controls the entire evil faction via faction-level `modelAssignments`; `-S` skips the werewolf internal discussion phase since a single entity plays all wolves
+- The other good-faction players are AI-controlled by the Mentiss API
 
 ### Step 3: Game Loop
 The validator orchestrates the game in a loop (with a 1-hour safety cap):

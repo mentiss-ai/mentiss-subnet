@@ -29,7 +29,7 @@ MENTISS_API_URL = "https://api.mentiss.ai"
 OPENROUTER_API_KEY = os.environ.get("OPENROUTER_API_KEY", "")
 OPENROUTER_MODEL = "deepseek/deepseek-chat-v3-0324"  # DeepSeek V3.2
 
-GAME_SETTING = "G9_1SR1WT1HT_2WW1AW_3VG-R"
+GAME_SETTING = "G9_1SR1WT1HT_2WW1AW_3VG-S"
 GOOD_MODEL = "google/gemini-3-flash-preview"
 MINER_MODEL = "bittensor/fake-miner-deepseek-v3.2"
 

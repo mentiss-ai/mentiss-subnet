@@ -240,7 +240,7 @@ def add_validator_args(cls, parser):
             "Werewolf game configuration string. The default 9-player config "
             "gives the selected miner the entire evil faction (2 WW + 1 AW)."
         ),
-        default="G9_1SR1WT1HT_2WW1AW_3VG-R",
+        default="G9_1SR1WT1HT_2WW1AW_3VG-S",
     )
 
     parser.add_argument(

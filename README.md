@@ -52,7 +52,7 @@ Each game uses a **9-player** Werewolf setup:
 | Werewolf          | 2     | Evil    |
 | Alpha Werewolf    | 1     | Evil    |
 
-Game setting string: `G9_1SR1WT1HT_2WW1AW_3VG-R`
+Game setting string: `G9_1SR1WT1HT_2WW1AW_3VG-S`
 
 Each game picks **one** miner and assigns that miner to the **entire evil faction** — both Werewolves and the Alpha Werewolf are all controlled by the same miner. This keeps the score a direct, objective reflection of a single miner's competency.
 
@@ -362,7 +362,7 @@ python neurons/validator.py \
   --wallet.name <name> \
   --wallet.hotkey <hotkey> \
   --netuid <netuid> \
-  --mentiss.game_setting "G9_1SR1WT1HT_2WW1AW_3VG-R" \
+  --mentiss.game_setting "G9_1SR1WT1HT_2WW1AW_3VG-S" \
   --mentiss.game_cost_tao 0.001 \
   --mentiss.payment_address <MENTISS_COLDKEY_SS58> \
   --neuron.num_concurrent_forwards 30
@@ -398,7 +398,7 @@ The reference miner uses random action selection. To compete, override `_select_
 
 | Flag | Default | Description |
 |------|---------|-------------|
-| `--mentiss.game_setting` | `G9_1SR1WT1HT_2WW1AW_3VG-R` | 9-player Werewolf config; miner controls entire evil faction |
+| `--mentiss.game_setting` | `G9_1SR1WT1HT_2WW1AW_3VG-S` | 9-player Werewolf config; miner controls entire evil faction |
 | `--mentiss.poll_interval` | `2.0` | Seconds between game status polls |
 | `--mentiss.game_cost_tao` | `0.0` | TAO per game for infrastructure cost sharing |
 | `--mentiss.payment_address` | — | Mentiss coldkey (SS58) for game fee payments |

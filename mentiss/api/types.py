@@ -5,7 +5,7 @@ from typing import List, Optional, Dict, Any, Union
 @dataclass
 class GameSettings:
     language: str = "en"
-    game_setting: str = "G6_1SR1WT_2WW_2VG-H"
+    game_setting: str = "G6_1SR1WT_2WW_2VG-S"
     role: str = "werewolf"
     has_memory: bool = True
     is_high_performance: bool = False

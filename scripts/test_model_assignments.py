@@ -22,7 +22,7 @@ API_KEY = os.environ.get("MENTISS_API_KEY", "")
 API_URL = os.environ.get("MENTISS_API_URL", "https://api.mentiss.ai")
 
 # Hackathon config: 9 players
-GAME_SETTING = "G9_1SR1WT1HT_2WW1AW_3VG-R"
+GAME_SETTING = "G9_1SR1WT1HT_2WW1AW_3VG-S"
 GOOD_MODEL = "google/gemini-3-flash-preview"
 MINER_HOTKEY = "5FakeHotkey123456789"  # fake for testing
 

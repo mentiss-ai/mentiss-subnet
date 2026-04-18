@@ -54,8 +54,8 @@ async def forward(self):
 
     mentiss_cfg = getattr(self.config, "mentiss", None)
     # 9-player hackathon config: 1SR 1WT 1HT 3VG + 2WW 1AW
-    # Uses -R mode with faction-level modelAssignments (no -H needed)
-    game_setting = getattr(mentiss_cfg, "game_setting", "G9_1SR1WT1HT_2WW1AW_3VG-R") if mentiss_cfg else "G9_1SR1WT1HT_2WW1AW_3VG-R"
+    # -S suffix: one miner controls all evil seats, so the werewolf internal discussion phase is skipped.
+    game_setting = getattr(mentiss_cfg, "game_setting", "G9_1SR1WT1HT_2WW1AW_3VG-S") if mentiss_cfg else "G9_1SR1WT1HT_2WW1AW_3VG-S"
     poll_interval = getattr(mentiss_cfg, "poll_interval", 2.0) if mentiss_cfg else 2.0
 
     # Fetch available models from Mentiss API and pick one randomly

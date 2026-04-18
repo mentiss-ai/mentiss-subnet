@@ -111,7 +111,7 @@ for i in $(seq 1 $NUM_VALIDATORS); do
         --wallet.hotkey default \
         --subtensor.network "$NETWORK" \
         --netuid "$NETUID" \
-        --mentiss.game_setting "G9_1SR1WT1HT_2WW1AW_3VG-R" \
+        --mentiss.game_setting "G9_1SR1WT1HT_2WW1AW_3VG-S" \
         --mentiss.reward_threshold 0.30 \
         --mentiss.reward_steepness 20.0 \
         --mentiss.poll_interval "$POLL_INTERVAL" \

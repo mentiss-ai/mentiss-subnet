@@ -118,7 +118,7 @@ python neurons/validator.py \
   --wallet.hotkey default \
   --subtensor.network test \
   --netuid <TESTNET_NETUID> \
-  --mentiss.game_setting "G9_1SR1WT1HT_2WW1AW_3VG-R" \
+  --mentiss.game_setting "G9_1SR1WT1HT_2WW1AW_3VG-S" \
   --mentiss.reward_threshold 0.30 \
   --mentiss.reward_steepness 20.0 \
   --mentiss.games_per_cycle 1 \
@@ -138,7 +138,7 @@ The `--mentiss.game_setting` string defines the player composition:
 
 | Setting | Players | Composition |
 |---------|---------|-------------|
-| `G9_1SR1WT1HT_2WW1AW_3VG-R` | 9 | 1 Seer, 1 Witch, 1 Hunter, 3 Villagers, 2 Werewolves, 1 Alpha Werewolf (default) |
+| `G9_1SR1WT1HT_2WW1AW_3VG-S` | 9 | 1 Seer, 1 Witch, 1 Hunter, 3 Villagers, 2 Werewolves, 1 Alpha Werewolf (default) |
 
 The selected miner controls the **entire evil faction** via faction-level model assignment — all 3 werewolves (2 WW + 1 Alpha) route every action back to the same miner. The 6 good-faction players are controlled by a single Mentiss-managed model per game.
 

@@ -333,7 +333,7 @@ python neurons/validator.py \
   --wallet.hotkey default \
   --subtensor.chain_endpoint ws://127.0.0.1:9945 \
   --netuid 1 \
-  --mentiss.game_setting "G6_1SR1WT_2WW_2VG-H" \
+  --mentiss.game_setting "G6_1SR1WT_2WW_2VG-S" \
   --mentiss.games_per_cycle 1 \
   --mentiss.poll_interval 2.0 \
   --neuron.epoch_length 100 \
@@ -555,7 +555,7 @@ export MENTISS_API_KEY="sk_mentiss_your_key_here"
 python neurons/validator.py \
   --wallet.name validator --wallet.hotkey default \
   --subtensor.network test --netuid <NETUID> \
-  --mentiss.game_setting "G6_1SR1WT_2WW_2VG-H" \
+  --mentiss.game_setting "G6_1SR1WT_2WW_2VG-S" \
   --mentiss.games_per_cycle 1 \
   --mentiss.poll_interval 2.0 \
   --neuron.epoch_length 100 \

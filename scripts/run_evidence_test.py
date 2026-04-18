@@ -35,7 +35,7 @@ from mentiss.api.client import MentissAPIClient
 from mentiss.api.types import GameSettings, GameStatus
 
 # ---- Config ----
-GAME_SETTING = "G4_1SR_1WW_2VG-H"
+GAME_SETTING = "G4_1SR_1WW_2VG-S"
 
 GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY_BITTENSOR", "")
 GEMINI_MODEL = "gemini-2.5-flash"

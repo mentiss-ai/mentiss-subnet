@@ -52,7 +52,7 @@
 | 狼人 | 2 | 狼人 |
 | 狼王 | 1 | 狼人 |
 
-游戏配置字符串：`G9_1SR1WT1HT_2WW1AW_3VG-R`
+游戏配置字符串：`G9_1SR1WT1HT_2WW1AW_3VG-S`
 
 每局游戏只挑选**一位**矿工，并将该矿工分配给**整个狼人阵营**——2 只狼人和 1 只狼王都由同一位矿工控制。这样可以让评分直接客观地反映单个矿工的能力。
 
@@ -357,7 +357,7 @@ python neurons/validator.py \
   --wallet.name <名称> \
   --wallet.hotkey <热键> \
   --netuid <子网ID> \
-  --mentiss.game_setting "G9_1SR1WT1HT_2WW1AW_3VG-R" \
+  --mentiss.game_setting "G9_1SR1WT1HT_2WW1AW_3VG-S" \
   --mentiss.game_cost_tao 0.001 \
   --mentiss.payment_address <MENTISS_冷钱包_SS58> \
   --neuron.num_concurrent_forwards 30
@@ -393,7 +393,7 @@ python neurons/miner.py \
 
 | 参数 | 默认值 | 说明 |
 |------|--------|------|
-| `--mentiss.game_setting` | `G9_1SR1WT1HT_2WW1AW_3VG-R` | 9 人狼人杀配置，矿工控制整个狼人阵营 |
+| `--mentiss.game_setting` | `G9_1SR1WT1HT_2WW1AW_3VG-S` | 9 人狼人杀配置，矿工控制整个狼人阵营 |
 | `--mentiss.poll_interval` | `2.0` | 状态轮询间隔（秒） |
 | `--mentiss.game_cost_tao` | `0.0` | 每局游戏用于基础设施成本分担的 TAO |
 | `--mentiss.payment_address` | — | Mentiss 冷钱包（SS58），接收游戏费用 |
